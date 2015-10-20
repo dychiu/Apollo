@@ -1,6 +1,5 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
-
 int main() {
 	sf::Music music;
 
