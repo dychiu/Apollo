@@ -1,5 +1,4 @@
 #include <SFML/Audio.hpp>
-#include <
 #include <iostream>
 
 int main() {
