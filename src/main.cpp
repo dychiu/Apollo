@@ -10,7 +10,7 @@ int main()
 	shape.setFillColor(sf::Color::Green);*/
 	sf::Music test;
 
-	if (!test.openFromFile("C:\\Users\\jonat\\University\\3rd_Year\\320\\Project\\walnut\\test\\scholarships.flac")) {
+	if (!test.openFromFile("C:\\Users\\jonat\\University\\3rd_Year\\320\\Project\\walnut\\test\\testflac.flac")) {
 		std::cout << "Unable to open music file";
 	}
 	else {
