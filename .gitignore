@@ -1,2 +1,6 @@
 *.opensdf
 *.sdf
+*.vscode
+*.swp
+.~
+Thumbs.db

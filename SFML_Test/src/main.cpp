@@ -5,7 +5,8 @@ int main()
 {
 	sf::Music test;
 
-	if (!test.openFromFile("C:\\Users\\jonat\\University\\3rd_Year\\320\\Project\\SFML_Test\\Debug\\test_ogg.ogg")) {
+	//Need to figure out relative filepaths, as they currently don't work.
+	if (!test.openFromFile("C:\\Users\\jonat\\University\\3rd_Year\\320\\Project\\walnut\\SFML_Test\\test\\test_ogg.ogg")) {
 		std::cout << "Unable to open music file";
 	}
 	else {
