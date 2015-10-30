@@ -19,4 +19,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="test\scholarships.flac" />
+    <None Include="test\test_ogg.ogg" />
+  </ItemGroup>
 </Project>
