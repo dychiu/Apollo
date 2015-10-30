@@ -35,11 +35,9 @@ int main()
 			validInput = true;
 		}
 		else if (input == "3") {
-			std::cout << "Option 3" << std::endl;
 			TagLib::FileRef f(filepath.c_str());
 			TagLib::String artist = f.tag()->artist();
 			std::cout << "Artist is: " << artist << std::endl;
-			system("pause");
 			validInput = true;
 
 		}
