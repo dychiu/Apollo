@@ -1,7 +1,10 @@
 #include <SFML/Audio.hpp>
+#include <boost/filesystem.hpp>
 #include <iostream>
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
+
+using namespace boost::filesystem;
 
 int main()
 {
@@ -11,7 +14,7 @@ int main()
 	std::string filepath = "../SFML_Test/test/scholarships.flac";
 	std::string input;
 	bool validInput = false;
-	std::cout << "1. Test generic music playback" << std::endl << "2. Test mp3 playback" << std::endl << "3. Test tag reading" << std::endl;
+	std::cout << "1. Test generic music playback" << std::endl << "2. Test mp3 playback" << std::endl << "3. Test tag reading" << std::endl << "4. Test boost filesystem" << std::endl;
 
 	while (!validInput) {
 		std::cout << "Enter a number: ";
@@ -40,6 +43,17 @@ int main()
 			std::cout << "Artist is: " << artist << std::endl;
 			validInput = true;
 
+		}
+		else if (input == "4") {
+			path p(filepath);
+			if (exists(p)) {
+				std::cout << "Found the file!" << std::endl;
+				std::cout << "The filename is: " << p.string() << std::endl;
+			}
+			else {
+				std::cout << "Couldn't find the file..." << std::endl;
+			}
+			validInput = true;
 		}
 	}
 	system("pause");
