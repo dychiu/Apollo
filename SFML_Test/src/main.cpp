@@ -3,8 +3,7 @@
 #include <iostream>
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
-
-using namespace boost::filesystem;
+#include <common.h>
 
 int main()
 {

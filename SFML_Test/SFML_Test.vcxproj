@@ -158,6 +158,9 @@
     <None Include="test\scholarships.flac" />
     <None Include="test\test_ogg.ogg" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\artist.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

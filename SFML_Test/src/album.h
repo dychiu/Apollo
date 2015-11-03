@@ -1,0 +1,25 @@
+#ifndef ALBUM_H
+#define ALBUM_H
+
+#include <String>
+#include <vector>
+#include "song.h"
+#include <boost/filesystem.hpp>
+
+class Album {
+
+private:
+	std::string name;
+	std::vector<Song> songs;
+
+
+public:
+	Album(std::string name);
+	Album(std::string name, std::vector<Song> songs);
+	std::string get_name();
+	std::vector<std::string> get_song_names();
+	void add_song(Song song);
+};
+
+
+#endif
