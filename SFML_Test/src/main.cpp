@@ -3,7 +3,8 @@
 #include <iostream>
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
-#include <common.h>
+
+namespace fs = boost::filesystem;
 
 int main()
 {
@@ -44,8 +45,8 @@ int main()
 
 		}
 		else if (input == "4") {
-			path p(filepath);
-			if (exists(p)) {
+			fs::path p(filepath);
+			if (fs::exists(p)) {
 				std::cout << "Found the file!" << std::endl;
 				std::cout << "The filename is: " << p.string() << std::endl;
 			}
