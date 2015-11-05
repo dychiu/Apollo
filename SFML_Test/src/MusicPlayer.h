@@ -16,15 +16,16 @@ private:
 	Song currentSong;
 	Album currentAlbum;
 	Artist currentArtist;
+	sf::Music currentSFML;
 
 public:
 	MediaPlayer(); //Creates GUI
 	~MediaPlayer();
 	void playSong(std::string filepath);
-	void pauseSong(sf::Music);
-	void closeSong(sf::Music);
-	void setVolume(sf::Music);
-	void seekSong(sf::Music);
+	void pauseSong();
+	void closeSong();
+	void setVolume(int value);
+	void seekSong(int seconds);
 
 	//Accessors
 	Song getCurrentSong();
