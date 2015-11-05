@@ -1,5 +1,4 @@
-#ifndef ARTIST_H
-#define ARTIST_H
+#pragma once
 
 #include <String>
 #include <vector>

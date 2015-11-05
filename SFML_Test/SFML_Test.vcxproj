@@ -159,7 +159,11 @@
     <None Include="test\test_ogg.ogg" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\album.h" />
     <ClInclude Include="src\artist.h" />
+    <ClInclude Include="src\Library.h" />
+    <ClInclude Include="src\MusicPlayer.h" />
+    <ClInclude Include="src\song.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

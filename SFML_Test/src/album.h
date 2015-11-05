@@ -1,5 +1,4 @@
-#ifndef ALBUM_H
-#define ALBUM_H
+#pragma once
 
 #include <String>
 #include <vector>
