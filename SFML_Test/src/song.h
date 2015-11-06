@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <boost/filesystem.hpp>
 #include <SFML/Audio.hpp>
@@ -10,8 +12,8 @@ private:
 	std::string genre;
 	fs::path file_path;
 	sf::Music file_handle;
-	Artist artist;
-	Album album;
+	Artist parentArtist;
+	Album parentAlbum;
 
 public:
 	// One parameter constructor for the song object. Accepts a path to 

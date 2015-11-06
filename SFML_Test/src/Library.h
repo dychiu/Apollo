@@ -12,6 +12,7 @@ namespace fs = boost::filesystem;
 class Library {
 private:
 	std::vector<Artist> artistList;
+	std::vector<Album> albumList;
 	std::vector<Song> songList;
 	std::string xmlFilepath;
 	std::string musicDirectory;
@@ -20,6 +21,7 @@ private:
 	std::vector<Artist> importXML();				//Import from xmlFilepath 
 public:
 	Library();	
+	void import();
 	void load();		//Checks xmlFilepath
 	void save();		//Saves to xmlFilepath
 	void updateLibrary(); //calls importLibrary()

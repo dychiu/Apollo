@@ -15,4 +15,3 @@ public:
 	void add_album(Album album);
 };
 
-#endif

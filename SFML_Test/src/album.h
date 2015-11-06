@@ -10,7 +10,7 @@ class Album {
 private:
 	std::string name;
 	std::vector<Song> songs;
-
+	Artist parentArtist;
 
 public:
 	Album(std::string name);
@@ -20,5 +20,3 @@ public:
 	void add_song(Song song);
 };
 
-
-#endif
