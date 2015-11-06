@@ -15,8 +15,8 @@ private:
 public:
 	Album(std::string name);
 	Album(std::string name, std::vector<Song> songs);
-	std::string get_name();
-	std::vector<std::string> get_song_names();
-	void add_song(Song song);
+	std::string getName();
+	std::vector<std::string> getSongNames();
+	void addSong(Song song);
 };
 

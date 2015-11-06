@@ -10,7 +10,7 @@
 
 
 
-class MediaPlayer {
+class MusicPlayer {
 private:
 	Library library;
 	Song currentSong;
@@ -19,8 +19,8 @@ private:
 	sf::Music currentSFML;
 
 public:
-	MediaPlayer(); //Creates GUI
-	~MediaPlayer();
+	MusicPlayer(); //Creates GUI
+	~MusicPlayer();
 	void playSong(std::string filepath);
 	void pauseSong();
 	void closeSong();

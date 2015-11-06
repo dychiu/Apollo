@@ -11,7 +11,7 @@ private:
 	std::vector<Album> albums;
 
 public:
-	std::string get_name();
-	void add_album(Album album);
+	std::string getName();
+	void addAlbum(Album album);
 };
 
