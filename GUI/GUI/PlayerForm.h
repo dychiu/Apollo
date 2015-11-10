@@ -72,6 +72,7 @@ namespace GUI {
 	private: System::Windows::Forms::NotifyIcon^  notifyIcon1;
 	private: System::Windows::Forms::Button^  importButton;
 	private: System::Windows::Forms::ProgressBar^  volume;
+	private: System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog1;
 
 
 
@@ -152,6 +153,7 @@ namespace GUI {
 			this->notifyIcon1 = (gcnew System::Windows::Forms::NotifyIcon(this->components));
 			this->importButton = (gcnew System::Windows::Forms::Button());
 			this->volume = (gcnew System::Windows::Forms::ProgressBar());
+			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -622,6 +624,7 @@ namespace GUI {
 			this->importButton->Size = System::Drawing::Size(25, 25);
 			this->importButton->TabIndex = 25;
 			this->importButton->UseVisualStyleBackColor = true;
+			this->importButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::importButton_Release);
 			// 
 			// volume
 			// 
@@ -635,6 +638,10 @@ namespace GUI {
 			this->volume->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
 			this->volume->TabIndex = 26;
 			this->volume->Value = 50;
+			// 
+			// folderBrowserDialog1
+			// 
+			this->folderBrowserDialog1->Description = L"Please select a directory to import all of the songs within it.  ";
 			// 
 			// PlayerForm
 			// 
@@ -901,5 +908,8 @@ namespace GUI {
 		this->WindowState = FormWindowState::Minimized;
 	}
 
+	private: System::Void importButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+		folderBrowserDialog1->ShowDialog();
+	}
 };
 }
