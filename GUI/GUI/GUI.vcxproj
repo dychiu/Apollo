@@ -133,8 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\PlayerForm.cpp" />
-    <ClCompile Include="src\WinCLR2015.cpp" />
+    <ClCompile Include="PlayerForm.cpp" />
+    <ClCompile Include="WinCLR2015.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\WinCLR2015.cpp">
+    <ClCompile Include="WinCLR2015.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\PlayerForm.cpp">
+    <ClCompile Include="PlayerForm.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
