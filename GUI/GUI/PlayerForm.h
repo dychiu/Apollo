@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Audio.hpp>
 
 namespace GUI {
 
@@ -166,9 +167,10 @@ namespace GUI {
 			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->button1->FlatAppearance->BorderSize = 0;
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Location = System::Drawing::Point(1259, 1);
+			this->button1->Location = System::Drawing::Point(2203, 2);
+			this->button1->Margin = System::Windows::Forms::Padding(5);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(18, 18);
+			this->button1->Size = System::Drawing::Size(32, 33);
 			this->button1->TabIndex = 0;
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &PlayerForm::button1_Click);
@@ -182,7 +184,7 @@ namespace GUI {
 			this->listBox1->ForeColor = System::Drawing::Color::Black;
 			this->listBox1->FormattingEnabled = true;
 			this->listBox1->IntegralHeight = false;
-			this->listBox1->ItemHeight = 37;
+			this->listBox1->ItemHeight = 65;
 			this->listBox1->Items->AddRange(gcnew cli::array< System::Object^  >(27) {
 				L"A Day To Remember", L"The All-American Rejects",
 					L"Arcade Fire", L"Awolnation", L"Bastille", L"Billy Talent", L"Blink 182", L"Bowling For Soup", L"Cage the Elephant ", L"Down With Webster",
@@ -190,10 +192,11 @@ namespace GUI {
 					L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test",
 					L"Artist Test", L"Artist Test"
 			});
-			this->listBox1->Location = System::Drawing::Point(0, 21);
+			this->listBox1->Location = System::Drawing::Point(0, 38);
+			this->listBox1->Margin = System::Windows::Forms::Padding(5);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->RightToLeft = System::Windows::Forms::RightToLeft::No;
-			this->listBox1->Size = System::Drawing::Size(376, 621);
+			this->listBox1->Size = System::Drawing::Size(658, 1126);
 			this->listBox1->TabIndex = 1;
 			// 
 			// progressBar1
@@ -202,9 +205,10 @@ namespace GUI {
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
 			this->progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->progressBar1->Location = System::Drawing::Point(-1, 640);
+			this->progressBar1->Location = System::Drawing::Point(-2, 1160);
+			this->progressBar1->Margin = System::Windows::Forms::Padding(5);
 			this->progressBar1->Name = L"progressBar1";
-			this->progressBar1->Size = System::Drawing::Size(1282, 81);
+			this->progressBar1->Size = System::Drawing::Size(2244, 147);
 			this->progressBar1->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
 			this->progressBar1->TabIndex = 2;
 			this->progressBar1->Value = 25;
@@ -213,9 +217,10 @@ namespace GUI {
 			// 
 			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->panel1->Location = System::Drawing::Point(355, 21);
+			this->panel1->Location = System::Drawing::Point(621, 38);
+			this->panel1->Margin = System::Windows::Forms::Padding(5);
 			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(21, 621);
+			this->panel1->Size = System::Drawing::Size(37, 1126);
 			this->panel1->TabIndex = 3;
 			// 
 			// panel2
@@ -241,9 +246,10 @@ namespace GUI {
 			this->panel2->Controls->Add(this->listBox4);
 			this->panel2->Controls->Add(this->label1);
 			this->panel2->Controls->Add(this->pictureBox1);
-			this->panel2->Location = System::Drawing::Point(373, 21);
+			this->panel2->Location = System::Drawing::Point(653, 38);
+			this->panel2->Margin = System::Windows::Forms::Padding(5);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(930, 621);
+			this->panel2->Size = System::Drawing::Size(1628, 1126);
 			this->panel2->TabIndex = 4;
 			// 
 			// listBox10
@@ -254,14 +260,15 @@ namespace GUI {
 			this->listBox10->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->listBox10->FormattingEnabled = true;
-			this->listBox10->ItemHeight = 27;
+			this->listBox10->ItemHeight = 50;
 			this->listBox10->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
 				L"Go", L"Asthenia", L"Always", L"Easy Target",
 					L"All of This", L"Here\'s Your Letter", L"I\'m Lost Without You"
 			});
-			this->listBox10->Location = System::Drawing::Point(573, 603);
+			this->listBox10->Location = System::Drawing::Point(1003, 1093);
+			this->listBox10->Margin = System::Windows::Forms::Padding(5);
 			this->listBox10->Name = L"listBox10";
-			this->listBox10->Size = System::Drawing::Size(261, 243);
+			this->listBox10->Size = System::Drawing::Size(457, 400);
 			this->listBox10->TabIndex = 15;
 			// 
 			// listBox11
@@ -273,12 +280,13 @@ namespace GUI {
 				static_cast<System::Byte>(0)));
 			this->listBox11->ForeColor = System::Drawing::SystemColors::GrayText;
 			this->listBox11->FormattingEnabled = true;
-			this->listBox11->ItemHeight = 27;
+			this->listBox11->ItemHeight = 50;
 			this->listBox11->Items->AddRange(gcnew cli::array< System::Object^  >(7) { L"8", L"9", L"10", L"11", L"12", L"13", L"14" });
-			this->listBox11->Location = System::Drawing::Point(531, 603);
+			this->listBox11->Location = System::Drawing::Point(929, 1093);
+			this->listBox11->Margin = System::Windows::Forms::Padding(5);
 			this->listBox11->Name = L"listBox11";
 			this->listBox11->SelectionMode = System::Windows::Forms::SelectionMode::None;
-			this->listBox11->Size = System::Drawing::Size(47, 243);
+			this->listBox11->Size = System::Drawing::Size(82, 400);
 			this->listBox11->TabIndex = 17;
 			// 
 			// listBox12
@@ -289,14 +297,15 @@ namespace GUI {
 			this->listBox12->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->listBox12->FormattingEnabled = true;
-			this->listBox12->ItemHeight = 27;
+			this->listBox12->ItemHeight = 50;
 			this->listBox12->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
 				L"Feeling This", L"Obvious", L"I Miss You", L"Violence",
 					L"Stockholm Syndrome", L"Down", L"The Fallen Interlude"
 			});
-			this->listBox12->Location = System::Drawing::Point(246, 603);
+			this->listBox12->Location = System::Drawing::Point(430, 1093);
+			this->listBox12->Margin = System::Windows::Forms::Padding(5);
 			this->listBox12->Name = L"listBox12";
-			this->listBox12->Size = System::Drawing::Size(261, 243);
+			this->listBox12->Size = System::Drawing::Size(457, 400);
 			this->listBox12->TabIndex = 13;
 			// 
 			// listBox13
@@ -308,12 +317,13 @@ namespace GUI {
 				static_cast<System::Byte>(0)));
 			this->listBox13->ForeColor = System::Drawing::SystemColors::GrayText;
 			this->listBox13->FormattingEnabled = true;
-			this->listBox13->ItemHeight = 27;
+			this->listBox13->ItemHeight = 50;
 			this->listBox13->Items->AddRange(gcnew cli::array< System::Object^  >(7) { L"1", L"2", L"3", L"4", L"5", L"6", L"7" });
-			this->listBox13->Location = System::Drawing::Point(216, 603);
+			this->listBox13->Location = System::Drawing::Point(378, 1093);
+			this->listBox13->Margin = System::Windows::Forms::Padding(5);
 			this->listBox13->Name = L"listBox13";
 			this->listBox13->SelectionMode = System::Windows::Forms::SelectionMode::None;
-			this->listBox13->Size = System::Drawing::Size(47, 243);
+			this->listBox13->Size = System::Drawing::Size(82, 400);
 			this->listBox13->TabIndex = 16;
 			// 
 			// label3
@@ -321,9 +331,10 @@ namespace GUI {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(209, 557);
+			this->label3->Location = System::Drawing::Point(366, 1010);
+			this->label3->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(243, 37);
+			this->label3->Size = System::Drawing::Size(432, 65);
 			this->label3->TabIndex = 14;
 			this->label3->Text = L"Neighborhoods";
 			// 
@@ -331,9 +342,10 @@ namespace GUI {
 			// 
 			this->pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->pictureBox3->ImageLocation = L"C:\\Users\\Dylan\\Music\\Blink 182\\(2011) Neighborhoods\\Album Artwork.png";
-			this->pictureBox3->Location = System::Drawing::Point(0, 552);
+			this->pictureBox3->Location = System::Drawing::Point(0, 1000);
+			this->pictureBox3->Margin = System::Windows::Forms::Padding(5);
 			this->pictureBox3->Name = L"pictureBox3";
-			this->pictureBox3->Size = System::Drawing::Size(200, 200);
+			this->pictureBox3->Size = System::Drawing::Size(350, 362);
 			this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox3->TabIndex = 12;
 			this->pictureBox3->TabStop = false;
@@ -346,14 +358,15 @@ namespace GUI {
 			this->listBox6->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->listBox6->FormattingEnabled = true;
-			this->listBox6->ItemHeight = 27;
+			this->listBox6->ItemHeight = 50;
 			this->listBox6->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
 				L"Go", L"Asthenia", L"Always", L"Easy Target", L"All of This",
 					L"Here\'s Your Letter", L"I\'m Lost Without You"
 			});
-			this->listBox6->Location = System::Drawing::Point(573, 331);
+			this->listBox6->Location = System::Drawing::Point(1003, 600);
+			this->listBox6->Margin = System::Windows::Forms::Padding(5);
 			this->listBox6->Name = L"listBox6";
-			this->listBox6->Size = System::Drawing::Size(261, 243);
+			this->listBox6->Size = System::Drawing::Size(457, 400);
 			this->listBox6->TabIndex = 9;
 			// 
 			// listBox7
@@ -365,12 +378,13 @@ namespace GUI {
 				static_cast<System::Byte>(0)));
 			this->listBox7->ForeColor = System::Drawing::SystemColors::GrayText;
 			this->listBox7->FormattingEnabled = true;
-			this->listBox7->ItemHeight = 27;
+			this->listBox7->ItemHeight = 50;
 			this->listBox7->Items->AddRange(gcnew cli::array< System::Object^  >(7) { L"8", L"9", L"10", L"11", L"12", L"13", L"14" });
-			this->listBox7->Location = System::Drawing::Point(531, 331);
+			this->listBox7->Location = System::Drawing::Point(929, 600);
+			this->listBox7->Margin = System::Windows::Forms::Padding(5);
 			this->listBox7->Name = L"listBox7";
 			this->listBox7->SelectionMode = System::Windows::Forms::SelectionMode::None;
-			this->listBox7->Size = System::Drawing::Size(47, 243);
+			this->listBox7->Size = System::Drawing::Size(82, 400);
 			this->listBox7->TabIndex = 11;
 			// 
 			// listBox8
@@ -381,14 +395,15 @@ namespace GUI {
 			this->listBox8->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->listBox8->FormattingEnabled = true;
-			this->listBox8->ItemHeight = 27;
+			this->listBox8->ItemHeight = 50;
 			this->listBox8->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
 				L"Feeling This", L"Obvious", L"I Miss You", L"Violence",
 					L"Stockholm Syndrome", L"Down", L"The Fallen Interlude"
 			});
-			this->listBox8->Location = System::Drawing::Point(246, 331);
+			this->listBox8->Location = System::Drawing::Point(430, 600);
+			this->listBox8->Margin = System::Windows::Forms::Padding(5);
 			this->listBox8->Name = L"listBox8";
-			this->listBox8->Size = System::Drawing::Size(261, 243);
+			this->listBox8->Size = System::Drawing::Size(457, 400);
 			this->listBox8->TabIndex = 7;
 			// 
 			// listBox9
@@ -400,12 +415,13 @@ namespace GUI {
 				static_cast<System::Byte>(0)));
 			this->listBox9->ForeColor = System::Drawing::SystemColors::GrayText;
 			this->listBox9->FormattingEnabled = true;
-			this->listBox9->ItemHeight = 27;
+			this->listBox9->ItemHeight = 50;
 			this->listBox9->Items->AddRange(gcnew cli::array< System::Object^  >(7) { L"1", L"2", L"3", L"4", L"5", L"6", L"7" });
-			this->listBox9->Location = System::Drawing::Point(216, 331);
+			this->listBox9->Location = System::Drawing::Point(378, 600);
+			this->listBox9->Margin = System::Windows::Forms::Padding(5);
 			this->listBox9->Name = L"listBox9";
 			this->listBox9->SelectionMode = System::Windows::Forms::SelectionMode::None;
-			this->listBox9->Size = System::Drawing::Size(47, 243);
+			this->listBox9->Size = System::Drawing::Size(82, 400);
 			this->listBox9->TabIndex = 10;
 			// 
 			// label2
@@ -413,9 +429,10 @@ namespace GUI {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(209, 285);
+			this->label2->Location = System::Drawing::Point(366, 517);
+			this->label2->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(467, 37);
+			this->label2->Size = System::Drawing::Size(851, 65);
 			this->label2->TabIndex = 8;
 			this->label2->Text = L"Take Off Your Pants and Jacket";
 			// 
@@ -424,9 +441,10 @@ namespace GUI {
 			this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->pictureBox2->ImageLocation = L"C:\\Users\\Dylan\\Music\\Blink 182\\(2001) Take Off Your Pants And Jacket\\albumart.png"
 				L"";
-			this->pictureBox2->Location = System::Drawing::Point(0, 280);
+			this->pictureBox2->Location = System::Drawing::Point(0, 508);
+			this->pictureBox2->Margin = System::Windows::Forms::Padding(5);
 			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(200, 200);
+			this->pictureBox2->Size = System::Drawing::Size(350, 362);
 			this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox2->TabIndex = 6;
 			this->pictureBox2->TabStop = false;
@@ -439,14 +457,15 @@ namespace GUI {
 			this->listBox3->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->listBox3->FormattingEnabled = true;
-			this->listBox3->ItemHeight = 27;
+			this->listBox3->ItemHeight = 50;
 			this->listBox3->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
 				L"Go", L"Asthenia", L"Always", L"Easy Target", L"All of This",
 					L"Here\'s Your Letter", L"I\'m Lost Without You"
 			});
-			this->listBox3->Location = System::Drawing::Point(573, 60);
+			this->listBox3->Location = System::Drawing::Point(1003, 109);
+			this->listBox3->Margin = System::Windows::Forms::Padding(5);
 			this->listBox3->Name = L"listBox3";
-			this->listBox3->Size = System::Drawing::Size(261, 243);
+			this->listBox3->Size = System::Drawing::Size(457, 400);
 			this->listBox3->TabIndex = 3;
 			// 
 			// listBox5
@@ -458,12 +477,13 @@ namespace GUI {
 				static_cast<System::Byte>(0)));
 			this->listBox5->ForeColor = System::Drawing::SystemColors::GrayText;
 			this->listBox5->FormattingEnabled = true;
-			this->listBox5->ItemHeight = 27;
+			this->listBox5->ItemHeight = 50;
 			this->listBox5->Items->AddRange(gcnew cli::array< System::Object^  >(7) { L"8", L"9", L"10", L"11", L"12", L"13", L"14" });
-			this->listBox5->Location = System::Drawing::Point(531, 60);
+			this->listBox5->Location = System::Drawing::Point(929, 109);
+			this->listBox5->Margin = System::Windows::Forms::Padding(5);
 			this->listBox5->Name = L"listBox5";
 			this->listBox5->SelectionMode = System::Windows::Forms::SelectionMode::None;
-			this->listBox5->Size = System::Drawing::Size(47, 243);
+			this->listBox5->Size = System::Drawing::Size(82, 400);
 			this->listBox5->TabIndex = 5;
 			// 
 			// listBox2
@@ -474,14 +494,15 @@ namespace GUI {
 			this->listBox2->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->listBox2->FormattingEnabled = true;
-			this->listBox2->ItemHeight = 27;
+			this->listBox2->ItemHeight = 50;
 			this->listBox2->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
 				L"Feeling This", L"Obvious", L"I Miss You", L"Violence",
 					L"Stockholm Syndrome", L"Down", L"The Fallen Interlude"
 			});
-			this->listBox2->Location = System::Drawing::Point(246, 60);
+			this->listBox2->Location = System::Drawing::Point(430, 109);
+			this->listBox2->Margin = System::Windows::Forms::Padding(5);
 			this->listBox2->Name = L"listBox2";
-			this->listBox2->Size = System::Drawing::Size(261, 243);
+			this->listBox2->Size = System::Drawing::Size(457, 400);
 			this->listBox2->TabIndex = 1;
 			// 
 			// listBox4
@@ -493,12 +514,13 @@ namespace GUI {
 				static_cast<System::Byte>(0)));
 			this->listBox4->ForeColor = System::Drawing::SystemColors::GrayText;
 			this->listBox4->FormattingEnabled = true;
-			this->listBox4->ItemHeight = 27;
+			this->listBox4->ItemHeight = 50;
 			this->listBox4->Items->AddRange(gcnew cli::array< System::Object^  >(7) { L"1", L"2", L"3", L"4", L"5", L"6", L"7" });
-			this->listBox4->Location = System::Drawing::Point(216, 60);
+			this->listBox4->Location = System::Drawing::Point(378, 109);
+			this->listBox4->Margin = System::Windows::Forms::Padding(5);
 			this->listBox4->Name = L"listBox4";
 			this->listBox4->SelectionMode = System::Windows::Forms::SelectionMode::None;
-			this->listBox4->Size = System::Drawing::Size(47, 243);
+			this->listBox4->Size = System::Drawing::Size(82, 400);
 			this->listBox4->TabIndex = 4;
 			// 
 			// label1
@@ -506,9 +528,10 @@ namespace GUI {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(209, 14);
+			this->label1->Location = System::Drawing::Point(366, 25);
+			this->label1->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(139, 37);
+			this->label1->Size = System::Drawing::Size(247, 65);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Blink 182";
 			// 
@@ -516,9 +539,10 @@ namespace GUI {
 			// 
 			this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->pictureBox1->ImageLocation = L"C:\\Users\\Dylan\\Music\\Blink 182\\(2003) Blink 182\\albumart.jpg";
-			this->pictureBox1->Location = System::Drawing::Point(0, 9);
+			this->pictureBox1->Location = System::Drawing::Point(0, 16);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(5);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(200, 200);
+			this->pictureBox1->Size = System::Drawing::Size(350, 362);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
@@ -532,11 +556,13 @@ namespace GUI {
 			this->roundButton->FlatAppearance->BorderColor = System::Drawing::Color::White;
 			this->roundButton->FlatAppearance->BorderSize = 0;
 			this->roundButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->roundButton->Location = System::Drawing::Point(581, 587);
+			this->roundButton->Location = System::Drawing::Point(1017, 1064);
+			this->roundButton->Margin = System::Windows::Forms::Padding(5);
 			this->roundButton->Name = L"roundButton";
-			this->roundButton->Size = System::Drawing::Size(115, 106);
+			this->roundButton->Size = System::Drawing::Size(201, 192);
 			this->roundButton->TabIndex = 19;
 			this->roundButton->UseVisualStyleBackColor = false;
+			this->roundButton->Click += gcnew System::EventHandler(this, &PlayerForm::roundButton_Click);
 			this->roundButton->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &PlayerForm::roundButton_Paint);
 			this->roundButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::roundButton_Release);
 			// 
@@ -565,9 +591,10 @@ namespace GUI {
 			this->skipButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
 				static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->skipButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->skipButton->Location = System::Drawing::Point(713, 608);
+			this->skipButton->Location = System::Drawing::Point(1248, 1102);
+			this->skipButton->Margin = System::Windows::Forms::Padding(5);
 			this->skipButton->Name = L"skipButton";
-			this->skipButton->Size = System::Drawing::Size(70, 65);
+			this->skipButton->Size = System::Drawing::Size(122, 118);
 			this->skipButton->TabIndex = 22;
 			this->skipButton->UseVisualStyleBackColor = true;
 			this->skipButton->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &PlayerForm::skipButton_Paint);
@@ -583,9 +610,10 @@ namespace GUI {
 			this->smartPlayButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
 			this->smartPlayButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->smartPlayButton->Location = System::Drawing::Point(526, 604);
+			this->smartPlayButton->Location = System::Drawing::Point(920, 1095);
+			this->smartPlayButton->Margin = System::Windows::Forms::Padding(5);
 			this->smartPlayButton->Name = L"smartPlayButton";
-			this->smartPlayButton->Size = System::Drawing::Size(70, 66);
+			this->smartPlayButton->Size = System::Drawing::Size(122, 120);
 			this->smartPlayButton->TabIndex = 23;
 			this->smartPlayButton->UseVisualStyleBackColor = false;
 			this->smartPlayButton->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &PlayerForm::smartPlayButton_Paint);
@@ -597,9 +625,10 @@ namespace GUI {
 			this->minimizeButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->minimizeButton->FlatAppearance->BorderSize = 0;
 			this->minimizeButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->minimizeButton->Location = System::Drawing::Point(1238, 1);
+			this->minimizeButton->Location = System::Drawing::Point(2166, 2);
+			this->minimizeButton->Margin = System::Windows::Forms::Padding(5);
 			this->minimizeButton->Name = L"minimizeButton";
-			this->minimizeButton->Size = System::Drawing::Size(18, 18);
+			this->minimizeButton->Size = System::Drawing::Size(32, 33);
 			this->minimizeButton->TabIndex = 24;
 			this->minimizeButton->UseVisualStyleBackColor = true;
 			this->minimizeButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::minimizeButton_Release);
@@ -617,9 +646,10 @@ namespace GUI {
 			this->importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
 				static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->importButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->importButton->Location = System::Drawing::Point(1242, 628);
+			this->importButton->Location = System::Drawing::Point(2174, 1138);
+			this->importButton->Margin = System::Windows::Forms::Padding(5);
 			this->importButton->Name = L"importButton";
-			this->importButton->Size = System::Drawing::Size(25, 25);
+			this->importButton->Size = System::Drawing::Size(44, 45);
 			this->importButton->TabIndex = 25;
 			this->importButton->UseVisualStyleBackColor = true;
 			// 
@@ -629,20 +659,21 @@ namespace GUI {
 				static_cast<System::Int32>(static_cast<System::Byte>(75)));
 			this->volume->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->volume->Location = System::Drawing::Point(1091, 629);
+			this->volume->Location = System::Drawing::Point(1909, 1140);
+			this->volume->Margin = System::Windows::Forms::Padding(5);
 			this->volume->Name = L"volume";
-			this->volume->Size = System::Drawing::Size(144, 22);
+			this->volume->Size = System::Drawing::Size(252, 40);
 			this->volume->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
 			this->volume->TabIndex = 26;
 			this->volume->Value = 50;
 			// 
 			// PlayerForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(14, 29);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->ClientSize = System::Drawing::Size(1280, 720);
+			this->ClientSize = System::Drawing::Size(2240, 1305);
 			this->Controls->Add(this->volume);
 			this->Controls->Add(this->importButton);
 			this->Controls->Add(this->minimizeButton);
@@ -656,6 +687,7 @@ namespace GUI {
 			this->Controls->Add(this->listBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Margin = System::Windows::Forms::Padding(5);
 			this->Name = L"PlayerForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"PlayerForm";
@@ -900,6 +932,20 @@ namespace GUI {
 	private: System::Void minimizeButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 		this->WindowState = FormWindowState::Minimized;
 	}
-
+	
+	//testing playbutton to start a music object
+	private: System::Void roundButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		sf::Music test;
+		std::string filepath = "../GUI/test/scholarships.flac";
+		if (!test.openFromFile(filepath)) {
+			Diagnostics::Debug::WriteLine("Unable to open music file");
+		}
+		else {
+			Diagnostics::Debug::WriteLine("Playing!");
+			test.setLoop(true);
+			test.setVolume(50);
+			test.play();
+		}
+	}
 };
 }

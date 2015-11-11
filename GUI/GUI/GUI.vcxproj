@@ -89,12 +89,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)GUI\GUI\lib\Boost\include\boost-1_59;$(SolutionDir)GUI\GUI\lib\taglib\include;$(SolutionDir)GUI\GUI\lib\SFML-2.3.2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies />
+      <AdditionalDependencies>tag.lib;tag_c.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
+      <AdditionalLibraryDirectories>$(SolutionDir)GUI\GUI\lib\Boost\lib;$(SolutionDir)GUI\GUI\lib\taglib\lib;$(SolutionDir)GUI\GUI\lib\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -131,8 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PlayerForm.cpp" />
-    <ClCompile Include="WinCLR2015.cpp" />
+    <ClCompile Include="src\PlayerForm.cpp" />
+    <ClCompile Include="src\WinCLR2015.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
