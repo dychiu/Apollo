@@ -2,12 +2,13 @@
 
 using namespace GUI; 
 
-[STAThreadAttribute]
+[STAThreadAttribute] // needed for folder dialog
+
 int main(array<System::String ^> ^args)
 {
-	//Application::EnableVisualStyles();
+	//Application::EnableVisualStyles(); // removing this allows for more custom styles in the form components
 	Application::SetCompatibleTextRenderingDefault(false);
-
 	Application::Run(gcnew PlayerForm());
 	return 0;
 }
+

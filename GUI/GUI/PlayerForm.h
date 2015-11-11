@@ -10,114 +10,84 @@ namespace GUI {
 	using namespace System::Drawing;
 	using namespace System::Runtime::InteropServices;
 
-	/// <summary>
-	/// Summary for PlayerForm
-	/// </summary>
-	public ref class PlayerForm : public System::Windows::Forms::Form
-	{
+	public ref class PlayerForm : public System::Windows::Forms::Form {
 	public:
-		PlayerForm(void)
-		{
-			InitializeComponent();			
-			//
-			//TODO: Add the constructor code here
-			//
-			roundButton->BackgroundImage = imageList1->Images[0];
-			play = false;
-
-			smartPlayButton->BackgroundImage = imageList1->Images[2];
-			smartPlayMode = false;
-
-			skipButton->BackgroundImage = imageList1->Images[4];
-
-			button1->BackgroundImage = imageList1->Images[6];
-
-			minimizeButton->BackgroundImage = imageList1->Images[8];
-
-			importButton->BackgroundImage = imageList1->Images[10];
-		}
+		PlayerForm();
 
 		const int WM_NCLBUTTONDOWN = 0xA1;
 
-	private: System::Windows::Forms::ListBox^  listBox1;
-	private: System::Windows::Forms::ProgressBar^  progressBar1;
-	private: System::Windows::Forms::Panel^  panel1;
-	private: System::Windows::Forms::Panel^  panel2;
-	private: System::Windows::Forms::PictureBox^  pictureBox1;
-	private: System::Windows::Forms::ListBox^  listBox2;
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::ListBox^  listBox3;
-	private: System::Windows::Forms::ListBox^  listBox5;
-	private: System::Windows::Forms::ListBox^  listBox4;
-	private: System::Windows::Forms::ListBox^  listBox6;
-	private: System::Windows::Forms::ListBox^  listBox7;
-	private: System::Windows::Forms::ListBox^  listBox8;
-	private: System::Windows::Forms::ListBox^  listBox9;
-	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::PictureBox^  pictureBox2;
-	private: System::Windows::Forms::ListBox^  listBox10;
-	private: System::Windows::Forms::ListBox^  listBox11;
-	private: System::Windows::Forms::ListBox^  listBox12;
-	private: System::Windows::Forms::ListBox^  listBox13;
-	private: System::Windows::Forms::Label^  label3;
-	private: System::Windows::Forms::PictureBox^  pictureBox3;
-	private: System::Windows::Forms::Button^  roundButton;
-	private: System::Windows::Forms::ImageList^  imageList1;
-
-
-
-	private: System::Windows::Forms::Button^  skipButton;
-	private: System::Windows::Forms::Button^  smartPlayButton;
-	private: System::Windows::Forms::Button^  minimizeButton;
-	private: System::Windows::Forms::NotifyIcon^  notifyIcon1;
-	private: System::Windows::Forms::Button^  importButton;
-	private: System::Windows::Forms::ProgressBar^  volume;
-	private: System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog1;
-
-
-
-
-
-
-
-
-
-
-
-	public:
-
-	public:
 		const int HT_CAPTION = 0x2;
 		[DllImportAttribute("user32.dll")]
 		static int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 		[DllImportAttribute("user32.dll")]
 		static bool ReleaseCapture();
 
-	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		~PlayerForm()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
-	private: System::Windows::Forms::Button^  button1;
-	private: System::ComponentModel::IContainer^  components;
-	protected:
+	private: 
+		System::Windows::Forms::ListBox^  listBox1;
+		System::Windows::Forms::ProgressBar^  progressBar1;
+		System::Windows::Forms::Panel^  panel1;
+		System::Windows::Forms::Panel^  panel2;
+		System::Windows::Forms::PictureBox^  pictureBox1;
+		System::Windows::Forms::ListBox^  listBox2;
+		System::Windows::Forms::Label^  label1;
+		System::Windows::Forms::ListBox^  listBox3;
+		System::Windows::Forms::ListBox^  listBox5;
+		System::Windows::Forms::ListBox^  listBox4;
+		System::Windows::Forms::ListBox^  listBox6;
+		System::Windows::Forms::ListBox^  listBox7;
+		System::Windows::Forms::ListBox^  listBox8;
+		System::Windows::Forms::ListBox^  listBox9;
+		System::Windows::Forms::Label^  label2;
+		System::Windows::Forms::PictureBox^  pictureBox2;
+		System::Windows::Forms::ListBox^  listBox10;
+		System::Windows::Forms::ListBox^  listBox11;
+		System::Windows::Forms::ListBox^  listBox12;
+		System::Windows::Forms::ListBox^  listBox13;
+		System::Windows::Forms::Label^  label3;
+		System::Windows::Forms::PictureBox^  pictureBox3;
+		System::Windows::Forms::Button^  roundButton;
+		System::Windows::Forms::ImageList^  imageList1;
+		System::Windows::Forms::Button^  skipButton;
+		System::Windows::Forms::Button^  smartPlayButton;
+		System::Windows::Forms::Button^  minimizeButton;
+		System::Windows::Forms::NotifyIcon^  notifyIcon1;
+		System::Windows::Forms::Button^  importButton;
+		System::Windows::Forms::ProgressBar^  volume;
+		System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog1;
+		System::Windows::Forms::Button^  button1;
+		System::ComponentModel::IContainer^  components;
+	
+		bool play;
+		bool smartPlayMode;
 
-	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
+		// closes window
+		System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
+		// moves window around by dragging on top bar
+		System::Void PlayerForm_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		// creates circle button for play button
+		System::Void roundButton_Paint(Object^ sender, System::Windows::Forms::PaintEventArgs^ e);
+		// play button click
+		System::Void roundButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		// creates cirlce button for smart play button
+		System::Void smartPlayButton_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e);
+		// smart play button click
+		System::Void smartPlayButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		// creates circle button for skip button
+		System::Void skipButton_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e);
+		// skip button click
+		System::Void skipButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		// minimizes window
+		System::Void minimizeButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		// opens folder browser dialog when clicking import button
+		System::Void importButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 
-#pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
+		// changes normal mode to smart mode
+		void changeToSmart();
+		// changes smart mode to normal mode
+		void changeToNormal();	
+
+		#pragma region Windows Form Designer generated code
+		
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
@@ -673,243 +643,9 @@ namespace GUI {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
-
 		}
-#pragma endregion
 
-	private: bool play;
-	private: bool smartPlayMode;
-
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		Close();
-	}
-
-	private: System::Void PlayerForm_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		ReleaseCapture();
-		SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-	}
-
-	private: void roundButton_Paint(Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-		System::Drawing::Drawing2D::GraphicsPath^ buttonPath = gcnew System::Drawing::Drawing2D::GraphicsPath;
-
-		// Set a new rectangle to the same size as the button's ClientRectangle property.
-		System::Drawing::Rectangle newRectangle = roundButton->ClientRectangle;
-
-		// Decrease the size of the rectangle.
-		// newRectangle.Inflate(0, 0);
-
-		// Draw the button's border.
-		//e->Graphics->DrawEllipse(gcnew Pen(Color::Black), newRectangle);
-
-		// Increase the size of the rectangle to include the border.
-		//newRectangle.Inflate(1,1);
-
-		// Create a circle within the new rectangle.
-		buttonPath->AddEllipse(newRectangle);
-
-		// Set the button's Region property to the newly created circle region.
-		roundButton->Region = gcnew System::Drawing::Region(buttonPath);		
-	}
-
-	// play button
-	private: System::Void roundButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		if (smartPlayMode == false) {
-			if (play == false) {
-				roundButton->BackgroundImage = imageList1->Images[1];
-				play = true;
-			}
-			else if (play == true) {
-				roundButton->BackgroundImage = imageList1->Images[0];
-				play = false;
-			}
-		} 
-		else if (smartPlayMode == true) {
-			if (play == false) {
-				roundButton->BackgroundImage = imageList1->Images[3];
-				play = true;
-			}
-			else if (play == true) {
-				roundButton->BackgroundImage = imageList1->Images[2];
-				play = false;
-			}
-		}
-	}
-
-	// smart play button
-	private: System::Void smartPlayButton_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-		System::Drawing::Drawing2D::GraphicsPath^ buttonPath = gcnew System::Drawing::Drawing2D::GraphicsPath;
-		System::Drawing::Rectangle newRectangle = smartPlayButton->ClientRectangle;
-		buttonPath->AddEllipse(newRectangle);
-		smartPlayButton->Region = gcnew System::Drawing::Region(buttonPath);
-	}
-
-	private: System::Void smartPlayButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		if (smartPlayMode == false) {
-			changeToSmart();
-			smartPlayMode = true;
-			play = false;
-		}
-		else if (smartPlayMode == true) {
-			changeToNormal();
-			smartPlayMode = false;
-			play = false;
-		}
-	}
-
-	private: void changeToSmart() {
-		roundButton->BackgroundImage = imageList1->Images[2];
-		roundButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)));
-
-		smartPlayButton->BackgroundImage = imageList1->Images[0];
-		smartPlayButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		smartPlayButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-
-		skipButton->BackgroundImage = imageList1->Images[5];
-		skipButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)));
-		skipButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
-		
-		button1->BackgroundImage = imageList1->Images[7];
-		button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)));
-
-		minimizeButton->BackgroundImage = imageList1->Images[9];
-		minimizeButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)));
-
-		importButton->BackgroundImage = imageList1->Images[11];
-		this->importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
-
-		notifyIcon1->Visible = true;
-
-		BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)));
-		progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)));
-
-		panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-
-		listBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-		listBox13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-			static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	}
-
-	private: void changeToNormal() {
-		roundButton->BackgroundImage = imageList1->Images[0];
-		roundButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-
-		smartPlayButton->BackgroundImage = imageList1->Images[2];
-		smartPlayButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)));
-		smartPlayButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
-		
-		skipButton->BackgroundImage = imageList1->Images[4];
-		skipButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		skipButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-
-		button1->BackgroundImage = imageList1->Images[6];
-		button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-
-		minimizeButton->BackgroundImage = imageList1->Images[8];
-		minimizeButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-
-		importButton->BackgroundImage = imageList1->Images[10];
-		this->importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
-			static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-
-		notifyIcon1->Visible = false;
-
-		BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-
-		panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-
-		listBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-		listBox13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-			static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	}
-
-	// skip button
-	private: System::Void skipButton_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-		System::Drawing::Drawing2D::GraphicsPath^ buttonPath = gcnew System::Drawing::Drawing2D::GraphicsPath;
-		System::Drawing::Rectangle newRectangle = skipButton->ClientRectangle;
-		buttonPath->AddEllipse(newRectangle);
-		skipButton->Region = gcnew System::Drawing::Region(buttonPath);
-	}
-
-	// skip button release method
-	private: System::Void skipButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		// put stuff in here
-	}
-
-	// minimize button
-	private: System::Void minimizeButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		this->WindowState = FormWindowState::Minimized;
-	}
-
-	private: System::Void importButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-		folderBrowserDialog1->ShowDialog();
-	}
-};
+		#pragma endregion
+	
+	};
 }
