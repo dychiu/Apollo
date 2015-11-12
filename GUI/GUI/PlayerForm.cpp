@@ -66,6 +66,7 @@ System::Void PlayerForm::roundButton_Release(System::Object^  sender, System::Wi
 			play = false;
 		}
 	}
+	;
 }
 
 System::Void PlayerForm::smartPlayButton_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {

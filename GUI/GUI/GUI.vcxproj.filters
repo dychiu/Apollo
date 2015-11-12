@@ -21,9 +21,15 @@
     <ClCompile Include="PlayerForm.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\MusicPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MusicPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
