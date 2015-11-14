@@ -1,8 +1,10 @@
 #include "PlayerForm.h"
+#include "boost/filesystem.hpp"
 
 using namespace GUI;
 
 PlayerForm::PlayerForm() {
+	boost::filesystem::path test;
 	InitializeComponent();
 	// initialize play button image
 	roundButton->BackgroundImage = imageList1->Images[0];
