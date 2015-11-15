@@ -4,5 +4,6 @@
 *.swp
 .~
 Thumbs.db
+Debug
 SFML_Test/Debug/*
 Debug/*
