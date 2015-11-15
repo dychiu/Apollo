@@ -134,6 +134,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PlayerForm.cpp" />
+    <ClCompile Include="src\Artist.cpp" />
+    <ClCompile Include="src\Library.cpp" />
     <ClCompile Include="src\MusicPlayer.cpp" />
     <ClCompile Include="WinCLR2015.cpp" />
   </ItemGroup>
@@ -148,6 +150,8 @@
     <ClInclude Include="PlayerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="src\Artist.h" />
+    <ClInclude Include="src\Library.h" />
     <ClInclude Include="src\MusicPlayer.h" />
   </ItemGroup>
   <ItemGroup>

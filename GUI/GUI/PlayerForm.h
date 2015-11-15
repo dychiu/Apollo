@@ -1,5 +1,9 @@
 #pragma once
 
+#include "src/MusicPlayer.h"
+
+ref class MusicPlayer;
+
 namespace GUI {
 
 	using namespace System;
@@ -59,6 +63,7 @@ namespace GUI {
 	
 		bool play;
 		bool smartPlayMode;
+		MusicPlayer^ musicPlayer;
 
 		// closes window
 		System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);

@@ -1,4 +1,3 @@
-#include "src/MusicPlayer.h"
 #include "PlayerForm.h"
 
 using namespace GUI; // needed for STATThreadAttribute
@@ -6,7 +5,7 @@ using namespace GUI; // needed for STATThreadAttribute
 
 int main(array<System::String ^> ^args)
 {
-	MusicPlayer* test = new MusicPlayer();
-	test->~MusicPlayer();	//call the destructor? is this needd
+	Application::SetCompatibleTextRenderingDefault(false);
+	Application::Run(gcnew PlayerForm());
 	return 0;
 }

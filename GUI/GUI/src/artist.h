@@ -1,17 +1,16 @@
 #pragma once
 
-#include <String>
-#include <vector>
-#include "album.h"
+public ref class Artist {
+public:
+	Artist();
+	Artist(System::String^ n);
 
-class Artist {
+	property System::String^ ArtistName {
+		System::String^ get() {
+			return name;
+		}
+	}
 
 private:
-	std::string name;
-	std::vector<Album> albums;
-
-public:
-	std::string getName();
-	void addAlbum(Album album);
+	System::String^ name;
 };
-

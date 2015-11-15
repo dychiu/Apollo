@@ -1,10 +1,8 @@
 #include "PlayerForm.h"
-#include "boost/filesystem.hpp"
 
 using namespace GUI;
 
 PlayerForm::PlayerForm() {
-	boost::filesystem::path test;
 	InitializeComponent();
 	// initialize play button image
 	roundButton->BackgroundImage = imageList1->Images[0];
@@ -20,6 +18,11 @@ PlayerForm::PlayerForm() {
 	minimizeButton->BackgroundImage = imageList1->Images[8];
 	// initialize import button image
 	importButton->BackgroundImage = imageList1->Images[10];
+
+	musicPlayer = gcnew MusicPlayer();
+
+	listBox1->DataSource = musicPlayer->getMusicLibrary()->getArtistList();
+	listBox1->DisplayMember = "ArtistName";
 }
 
 System::Void PlayerForm::button1_Click(System::Object^  sender, System::EventArgs^  e) {

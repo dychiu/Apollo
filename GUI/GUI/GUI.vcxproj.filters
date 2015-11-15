@@ -24,12 +24,24 @@
     <ClCompile Include="src\MusicPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Artist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\MusicPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Artist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
