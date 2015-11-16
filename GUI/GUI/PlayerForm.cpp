@@ -55,10 +55,12 @@ System::Void PlayerForm::roundButton_Release(System::Object^  sender, System::Wi
 		if (play == false) {
 			roundButton->BackgroundImage = imageList1->Images[1];
 			play = true;
+			musicPlayer->playSong();
 		}
 		else if (play == true) {
 			roundButton->BackgroundImage = imageList1->Images[0];
 			play = false;
+			musicPlayer->pauseSong();
 		}
 	}
 	else if (smartPlayMode == true) {
@@ -71,7 +73,6 @@ System::Void PlayerForm::roundButton_Release(System::Object^  sender, System::Wi
 			play = false;
 		}
 	}
-	;
 }
 
 System::Void PlayerForm::smartPlayButton_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
