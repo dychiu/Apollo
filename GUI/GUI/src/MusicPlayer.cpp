@@ -56,7 +56,7 @@ void MusicPlayer::setPlayingSong(std::string filepath) {
 	System::String^ managedPath = gcnew System::String(filepath.c_str());
 
 	if (!playingSong->openFromFile(filepath)) {
-		System::Diagnostics::Debug::WriteLine("Error: Can't open song at {1}", managedPath);
+		Debug::WriteLine("Error: Can't open song at {1}", managedPath);
 	}
 }
 
@@ -65,35 +65,73 @@ void MusicPlayer::setVolume(int value)
 	throw gcnew System::NotImplementedException();
 }
 
-/*
-void MusicPlayer::setSelectedSong(Song newSelection)
+void MusicPlayer::setCurrentSong(Song _currentSong)
 {
 	throw gcnew System::NotImplementedException();
 }
 
-void MusicPlayer::setSelectedAlbum(Album newSelection)
+void MusicPlayer::setCurrentAlbum(Album _currentAlbum)
 {
 	throw gcnew System::NotImplementedException();
 }
-*/
+
+void MusicPlayer::setCurrentArtist(Artist _currentArtist)
+{
+	throw gcnew System::NotImplementedException();
+}
+
+
+void MusicPlayer::setSelectedSong(Song newSelection)
+{
+	throw gcnew System::NotImplementedException();
+}
+/*
+void MusicPlayer::setSelectedAlbum(Album newSelection)
+{
+	throw gcnew System::NotImplementedException();
+}*/
+
 void MusicPlayer::setSelectedArtist(Artist newSelection)
 {
 	throw gcnew System::NotImplementedException();
 }
 
-/*
 Song MusicPlayer::getSelectedSong()
-{
-	return Song();
+{	
+	throw gcnew System::NotImplementedException();
+	//Needs Song to have a copy constructor
+	//return selectedSong;
 }
 
-Album MusicPlayer::getSelectedAlbum()
+/*Album MusicPlayer::getSelectedAlbum()
 {
-	return Album();
-}
-*/
+	//return Album();
+}*/
+
 Artist MusicPlayer::getSelectedArtist()
 {
 	throw gcnew System::NotImplementedException();
-	//return Artist();
+	//Needs Artist to have a copy constructor
+	//return selectedArtist;
+}
+
+Song MusicPlayer::getCurrentSong()
+{
+	throw gcnew System::NotImplementedException();
+	//Needs Song to have a copy constructor
+	//return currentSong;
+}
+
+Album MusicPlayer::getCurrentAlbum()
+{
+	throw gcnew System::NotImplementedException();
+	//Needs Album to have a copy constructor
+	//return currentAlbum;
+}
+
+Artist MusicPlayer::getCurrentArtist()
+{
+	throw gcnew System::NotImplementedException();
+	//Needs Artist to have a copy constructor
+	//return currentArtist;
 }

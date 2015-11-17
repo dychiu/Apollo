@@ -5,8 +5,10 @@
 #include "artist.h"
 #include "Album.h"
 #include "Song.h"
-
 #include "SFML/Audio.hpp"
+
+using namespace System;
+using namespace System::Diagnostics;
 
 public ref class MusicPlayer {
 public:
@@ -20,13 +22,19 @@ public:
 	void closeSong();
 	void setVolume(int value);
 
-	//void setSelectedSong(Song newSelection);
+	void setCurrentSong(Song _currentSong);
+	void setCurrentAlbum(Album _currentAlbum);
+	void setCurrentArtist(Artist _currentArtist);
+	void setSelectedSong(Song newSelection);
 	//void setSelectedAlbum(Album newSelection);
 	void setSelectedArtist(Artist newSelection);
 
-	//Song getSelectedSong();
+	Song getSelectedSong();
 	//Album getSelectedAlbum();
 	Artist getSelectedArtist();
+	Song getCurrentSong();
+	Album getCurrentAlbum();
+	Artist getCurrentArtist();
 private:
 	sf::Music* playingSong;
 	Library^ musicLibrary;
