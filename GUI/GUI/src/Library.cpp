@@ -15,61 +15,72 @@ List<Artist^>^ Library::getArtistList() {
 }
 
 
-void Library::import(String dir) {
-	array<String^>^ files = Directory::GetFiles(dir, "*.*", SearchOption::AllDirectories);
+void Library::import(String^ dir) {
+	array<String^>^ validExtentions = { "*.flac", "*.wav", "*.ogg" };
+	List<String^>^ files;
 
-
-
-	// for (iterate through all files)
-	std::string artist; // = getArtistMetadata();
-	std::string album; // = getAlbumMetadata();
-	std::string song; // = getSongMetadata();
-
-	bool artistExists = false;
-	bool albumExists = false;
-	bool songExists = false;
-
-	for (int i = 0; i < artistList.length(); i++) {
-		if (artistList[i].name == artist) {
-			Artist tempArtist = artistList[i];
-			artistExists = true;
-			break;
+	for each (String^ s in validExtentions) {
+		array<String^>^ temp = Directory::GetFiles(dir, s, SearchOption::AllDirectories);
+		for each (String^ file in temp) {
+			files->Add(file);
 		}
 	}
 
-	if (artistExists == false) {
-		Artist tempArtist(artist); // creates Artist object with the metadata as the parameters
-		artistList.push_back(tempArtist);
-	}
+	for each (String^ file in files) {
+		String^ artistName; // = getArtistMetadata();
+		String^ albumName; // = getAlbumMetadata();
+		String^ songName; // = getSongMetadata();
 
-	for (int i = 0; i < albumList.length(); i++) {
-		if (albumList[i].name == album) {
-			Album tempAlbum = albumList[i];
-			albumExists = true;
-			break;
+		Artist^ tempArtist;
+		Album^ tempAlbum;
+		Song^ tempSong;
+
+		bool artistExists = false;
+		bool albumExists = false;
+		bool songExists = false;
+
+		for (int i = 0; i < artistList->Count; i++) {
+			if (artistList[i]->ArtistName == artistName) {
+				Artist^ tempArtist = artistList[i];
+				artistExists = true;
+				break;
+			}
+		}
+
+		if (!artistExists) {
+			Artist^ tempArtist = gcnew Artist(artistName); // creates Artist object with the metadata as the parameters
+			artistList->Add(tempArtist);
+		}
+
+		for (int i = 0; i < albumList->Count; i++) {
+			if (albumList[i]->AlbumName == albumName) {
+				Album^ tempAlbum = albumList[i];
+				albumExists = true;
+				break;
+			}
+		}
+
+		if (!albumExists) {
+			Album^ tempAlbum = gcnew Album(albumName); // creates Artist object with the metadata as the parameters
+			tempAlbum->setParentArtist(tempArtist);
+			tempArtist->addAlbum(tempAlbum);
+			albumList->Add(tempAlbum);
+		}
+
+		for (int i = 0; i < songList->Count; i++) {
+			if (songList[i]->SongName == songName) {
+				Song^ songName = songList[i];
+				songExists = true;
+				break;
+			}
+		}
+
+		if (!songExists) {
+			Song^ tempSong = gcnew Song(songName); // creates Artist object with the metadata as the parameters
+			tempSong->setParentArtist(tempArtist);
+			tempSong->setParentAlbum(tempAlbum);
+			tempAlbum->addSong(tempSong);
+			songList->Add(tempSong);
 		}
 	}
-
-	if (albumExists == false) {
-		Album tempAlbum(album); // creates Artist object with the metadata as the parameters
-		tempAlbum.parentArtist = tempArtist;
-		tempArtist.albums.push_back(tempAlbum);
-		albumList.push_back(tempAlbum);
-	}
-
-	for (int i = 0; i < songList.length(); i++) {
-		if (songList[i].name == song) {
-			Song tempSong = songList[i];
-			songExists = true;
-			break;
-		}
-	}
-
-	if (songExists == false) {
-		Song tempSong(song); // creates Artist object with the metadata as the parameters
-		tempSong.parentArtist = tempArtist;
-		tempSong.parentAlbum = tempAlbum;
-		tempAlbum.songs.push_back(tempSong);
-		songList.push_back(tempSong);
-	}
-
+}
