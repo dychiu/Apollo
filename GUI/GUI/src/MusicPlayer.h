@@ -2,6 +2,9 @@
 
 #include "../PlayerForm.h"
 #include "Library.h"
+#include "artist.h"
+#include "Album.h"
+#include "Song.h"
 
 #include "SFML/Audio.hpp"
 
@@ -9,6 +12,7 @@ public ref class MusicPlayer {
 public:
 	MusicPlayer();
 	Library^ getMusicLibrary();
+
 
 	void playSong();
 	void pauseSong();
@@ -24,10 +28,16 @@ public:
 	//Album getSelectedAlbum();
 	Artist getSelectedArtist();
 private:
-	sf::Music* currentSong;
+	sf::Music* playingSong;
 	Library^ musicLibrary;
+	Song currentSong;
+	Album currentAlbum;
+	Artist currentArtist;
 
 	Artist selectedArtist;
 	//Album selectedAlbum;
-	//Song selectedSong;
+	Song selectedSong;
+	
+	void setPlayingSong(std::string filepath);
+
 };
