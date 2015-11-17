@@ -1,11 +1,23 @@
 #pragma once
 
 #include "Artist.h"
+#include "Album.h"
+#include "Song.h"
+
+using namespace System;
+using namespace System::IO;
+using namespace System::Collections::Generic;
 
 public ref class Library {
 public:
 	Library();
-	System::Collections::Generic::List<Artist^>^ getArtistList();
+	List<Artist^>^ getArtistList();
+	void import(String dir);
+	void load();
+	void save();
+	void updateLibrary();
 private:
-	System::Collections::Generic::List<Artist^>^ artistList;
+	List<Artist^>^ artistList;
+	List<Album^>^ albumList;
+	List<Song^>^ songList;
 };
