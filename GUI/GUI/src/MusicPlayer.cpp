@@ -16,19 +16,22 @@ Library^ MusicPlayer::getMusicLibrary() {
 //will be changed later
 void MusicPlayer::playSong()
 {
+	//Note how taglib# accepts System::String^ and SFML accepts std::string
+	//Use String() to convert
 	std::string filepath = "../GUI/test/scholarships.flac";
+	System::String^ managedPath = gcnew System::String(filepath.c_str());
 	if (!currentSong->openFromFile(filepath)) {
-		System::Diagnostics::Debug::WriteLine("Error: Can't open song!");
+		System::Diagnostics::Debug::WriteLine("Error: Can't open song at {1}", managedPath);
 	}
 	else {
 		currentSong->play();
 		System::Diagnostics::Debug::WriteLine("Playing song!");
 
 		//TagLib# example
-		System::String^ managedPath = "../GUI/test/scholarships.flac";
 		TagLib::File^ tagFile = TagLib::File::Create(managedPath);
 		System::String^ name = tagFile->Tag->Title;
-		System::Diagnostics::Debug::WriteLine(name);
+		System::String^ artist = tagFile->Tag->FirstArtist;
+		System::Diagnostics::Debug::WriteLine("Song: " + name + " - Artist: " + artist);
 	}
 }
 
