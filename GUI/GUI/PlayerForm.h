@@ -63,7 +63,15 @@ namespace GUI {
 	
 		bool play;
 		bool smartPlayMode;
+		bool artistSelectionsCleared;
+		bool songSelectionChanged;
 		MusicPlayer^ musicPlayer;
+		Generic::List<PictureBox^>^ artwork;
+		Generic::List<Label^>^ album;
+		Generic::List<ListBox^>^ leftNumbers;
+		Generic::List<ListBox^>^ rightNumbers;
+		Generic::List<ListBox^>^ leftSongs;
+		Generic::List<ListBox^>^ rightSongs;
 
 		// closes window
 		System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);
@@ -85,11 +93,19 @@ namespace GUI {
 		System::Void minimizeButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 		// opens folder browser dialog when clicking import button
 		System::Void importButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
-
+		// selection change in artist list
+		System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
+		System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
+		
 		// changes normal mode to smart mode
 		void changeToSmart();
 		// changes smart mode to normal mode
 		void changeToNormal();	
+		// displays the albums and songs for the selected artist
+		void changeArtist();
+		void removeComponents();
+		void createComponents();
+		void populateComponents();
 
 		#pragma region Windows Form Designer generated code
 		
@@ -160,18 +176,13 @@ namespace GUI {
 			this->listBox1->FormattingEnabled = true;
 			this->listBox1->IntegralHeight = false;
 			this->listBox1->ItemHeight = 37;
-			this->listBox1->Items->AddRange(gcnew cli::array< System::Object^  >(27) {
-				L"A Day To Remember", L"The All-American Rejects",
-					L"Arcade Fire", L"Awolnation", L"Bastille", L"Billy Talent", L"Blink 182", L"Bowling For Soup", L"Cage the Elephant ", L"Down With Webster",
-					L"Ed Sheeran", L"Faber Drive", L"Fall Out Boy ", L"Foster the People", L"Fountains of Wayne", L"Artist Test", L"Artist Test",
-					L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test", L"Artist Test",
-					L"Artist Test", L"Artist Test"
-			});
 			this->listBox1->Location = System::Drawing::Point(0, 21);
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			this->listBox1->Size = System::Drawing::Size(376, 621);
+			this->listBox1->Sorted = true;
 			this->listBox1->TabIndex = 1;
+			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &PlayerForm::listBox1_SelectedIndexChanged);
 			// 
 			// progressBar1
 			// 
@@ -200,24 +211,24 @@ namespace GUI {
 			this->panel2->AutoScroll = true;
 			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
-			this->panel2->Controls->Add(this->listBox10);
-			this->panel2->Controls->Add(this->listBox11);
-			this->panel2->Controls->Add(this->listBox12);
-			this->panel2->Controls->Add(this->listBox13);
-			this->panel2->Controls->Add(this->label3);
-			this->panel2->Controls->Add(this->pictureBox3);
-			this->panel2->Controls->Add(this->listBox6);
-			this->panel2->Controls->Add(this->listBox7);
-			this->panel2->Controls->Add(this->listBox8);
-			this->panel2->Controls->Add(this->listBox9);
-			this->panel2->Controls->Add(this->label2);
-			this->panel2->Controls->Add(this->pictureBox2);
-			this->panel2->Controls->Add(this->listBox3);
-			this->panel2->Controls->Add(this->listBox5);
-			this->panel2->Controls->Add(this->listBox2);
-			this->panel2->Controls->Add(this->listBox4);
-			this->panel2->Controls->Add(this->label1);
-			this->panel2->Controls->Add(this->pictureBox1);
+			//this->panel2->Controls->Add(this->listBox10);
+			//this->panel2->Controls->Add(this->listBox11);
+			//this->panel2->Controls->Add(this->listBox12);
+			//this->panel2->Controls->Add(this->listBox13);
+			//this->panel2->Controls->Add(this->label3);
+			//this->panel2->Controls->Add(this->pictureBox3);
+			//this->panel2->Controls->Add(this->listBox6);
+			//this->panel2->Controls->Add(this->listBox7);
+			//this->panel2->Controls->Add(this->listBox8);
+			//this->panel2->Controls->Add(this->listBox9);
+			//this->panel2->Controls->Add(this->label2);
+			//this->panel2->Controls->Add(this->pictureBox2);
+			//this->panel2->Controls->Add(this->listBox3);
+			//this->panel2->Controls->Add(this->listBox5);
+			//this->panel2->Controls->Add(this->listBox2);
+			//this->panel2->Controls->Add(this->listBox4);
+			//this->panel2->Controls->Add(this->label1);
+			//this->panel2->Controls->Add(this->pictureBox1);
 			this->panel2->Location = System::Drawing::Point(373, 21);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(930, 621);
@@ -225,7 +236,7 @@ namespace GUI {
 			// 
 			// listBox10
 			// 
-			this->listBox10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
+			/*this->listBox10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->listBox10->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->listBox10->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -473,9 +484,9 @@ namespace GUI {
 			this->listBox4->ItemHeight = 27;
 			this->listBox4->Items->AddRange(gcnew cli::array< System::Object^  >(7) { L"1", L"2", L"3", L"4", L"5", L"6", L"7" });
 			this->listBox4->Location = System::Drawing::Point(216, 60);
-			this->listBox4->Name = L"listBox4";
+			this->listBox4->Name = L"listBox4";			
 			this->listBox4->SelectionMode = System::Windows::Forms::SelectionMode::None;
-			this->listBox4->Size = System::Drawing::Size(47, 243);
+			this->listBox4->Size = System::Drawing::Size(24, 243);
 			this->listBox4->TabIndex = 4;
 			// 
 			// label1
@@ -498,7 +509,7 @@ namespace GUI {
 			this->pictureBox1->Size = System::Drawing::Size(200, 200);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox1->TabIndex = 0;
-			this->pictureBox1->TabStop = false;
+			this->pictureBox1->TabStop = false;*/
 			// 
 			// roundButton
 			// 
@@ -644,13 +655,13 @@ namespace GUI {
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::PlayerForm_MouseDown);
 			this->panel2->ResumeLayout(false);
 			this->panel2->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			//(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
+			//(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
+			//(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
+
 		}
 
 		#pragma endregion
-	
-	};
+};
 }
