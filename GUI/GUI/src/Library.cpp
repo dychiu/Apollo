@@ -26,9 +26,10 @@ void Library::import(String^ dir) {
 	}	
 
 	for each (String^ file in files) {
-		String^ artistName; // = getArtistMetadata();
-		String^ albumName; // = getAlbumMetadata();
-		String^ songName; // = getSongMetadata();
+		TagLib::File^ tagFile = TagLib::File::Create(file);
+		String^ artistName = tagFile->Tag->FirstArtist;
+		String^ albumName = tagFile->Tag->Album;
+		String^ songName = tagFile->Tag->Title;
 
 		Artist^ tempArtist;
 		Album^ tempAlbum;
