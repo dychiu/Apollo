@@ -14,7 +14,6 @@ List<Artist^>^ Library::getArtistList() {
 	return artistList;
 }
 
-
 void Library::import(String^ dir) {
 	array<String^>^ validExtentions = { "*.flac", "*.wav", "*.ogg" };
 	List<String^>^ files;
@@ -84,3 +83,4 @@ void Library::import(String^ dir) {
 		}
 	}
 }
+

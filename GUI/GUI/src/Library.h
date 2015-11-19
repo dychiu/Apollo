@@ -12,10 +12,12 @@ public ref class Library {
 public:
 	Library();
 	List<Artist^>^ getArtistList();
+
 	void import(String ^dir);
 	void load();
 	void save();
 	void updateLibrary();
+
 private:
 	List<Artist^>^ artistList;
 	List<Album^>^ albumList;
