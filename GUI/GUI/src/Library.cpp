@@ -24,7 +24,7 @@ void Library::import(String^ dir) {
 		for each (String^ file in temp) {
 			files->Add(file);
 		}
-	}
+	}	
 
 	for each (String^ file in files) {
 		String^ artistName; // = getArtistMetadata();

@@ -5,11 +5,12 @@ public:
 	Album();
 	Album(System::String^ n);
 
-	property System::String^ ArtistName {
+	property System::String^ AlbumName {
 		System::String^ get() {
 			return name;
 		}
 	}
+
 
 private:
 	System::String^ name;

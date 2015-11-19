@@ -5,7 +5,7 @@ public:
 	Song();
 	Song(System::String^ n);
 
-	property System::String^ ArtistName {
+	property System::String^ SongName {
 		System::String^ get() {
 			return name;
 		}
