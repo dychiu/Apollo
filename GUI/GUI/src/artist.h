@@ -1,16 +1,23 @@
 #pragma once
+#include "Album.h"
+using namespace System;
+using namespace System::Collections::Generic;
 
 public ref class Artist {
 public:
 	Artist();
-	Artist(System::String^ n);
+	Artist(String^ name);
 
-	property System::String^ ArtistName {
-		System::String^ get() {
+	String^ getName();
+	void addAlbum(Album^ album);
+
+	property String^ ArtistName {
+		String^ get() {
 			return name;
 		}
 	}
 
 private:
-	System::String^ name;
+	String^ name;
+	List<Album^>^ albums;
 };
