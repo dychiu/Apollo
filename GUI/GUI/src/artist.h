@@ -9,6 +9,7 @@ public:
 	Artist(String^ name);
 
 	String^ getName();
+	List<Album^>^ getAlbums();
 	void addAlbum(Album^ album);
 
 	property String^ ArtistName {
