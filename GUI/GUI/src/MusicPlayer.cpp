@@ -3,6 +3,7 @@
 MusicPlayer::MusicPlayer() {
 	musicLibrary = gcnew Library();
 	
+
 	playingSong = new sf::Music();
 	playingSong->setLoop(false);
 	playingSong->setVolume(50);
