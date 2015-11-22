@@ -53,7 +53,7 @@ void Library::import(String^ dir) {
 		}
 
 		for (int i = 0; i < albumList->Count; i++) {
-			if (albumList[i]->AlbumName == albumName) {
+			if (albumList[i]->getName() == albumName) {
 				Album^ tempAlbum = albumList[i];
 				albumExists = true;
 				break;
@@ -68,7 +68,7 @@ void Library::import(String^ dir) {
 		}
 
 		for (int i = 0; i < songList->Count; i++) {
-			if (songList[i]->SongName == songName) {
+			if (songList[i]->getSongName() == songName) {
 				Song^ songName = songList[i];
 				songExists = true;
 				break;

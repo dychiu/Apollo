@@ -3,6 +3,8 @@
 #include "Artist.h"
 #include "Album.h"
 
+ref class Artist;
+ref class Album;
 public ref class Song {
 public:
 	Song();
