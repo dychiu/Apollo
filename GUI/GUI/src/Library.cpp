@@ -1,4 +1,5 @@
 #include "Library.h"
+#include "music-objs.h"
 
 Library::Library() {
 	artistList = gcnew List<Artist^>();

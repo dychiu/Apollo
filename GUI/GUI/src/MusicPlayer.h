@@ -2,9 +2,7 @@
 
 #include "../PlayerForm.h"
 #include "Library.h"
-#include "artist.h"
-#include "Album.h"
-#include "Song.h"
+#include "music-objs.h"
 #include "SFML/Audio.hpp"
 
 using namespace System;
