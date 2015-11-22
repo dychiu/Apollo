@@ -37,3 +37,12 @@ void Album::addSong(Song^ s) {
 	//Maybe sort by track number?
 	songList.Add(s);
 }
+
+void Album::setParentArtist(Artist^ artist) {
+	parentArtist = artist;
+	return;
+}
+
+Artist^ Album::getParentArtist() {
+	return parentArtist;
+}
