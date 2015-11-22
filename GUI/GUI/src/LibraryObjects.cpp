@@ -1,6 +1,8 @@
-#include "music-objs.h"
+#include "LibraryObjects.h"
 
-Artist::Artist() {}
+Artist::Artist() {
+	albums = gcnew List<Album^>();
+}
 
 Artist::Artist(System::String^ n) {
 	name = n;
@@ -26,6 +28,7 @@ Album::Album() {}
 
 Album::Album(TagLib::File^ tagFile) {
 	name = tagFile->Tag->Album;
+	songList = gcnew List<Song^>();
 	//Get album art
 	if (tagFile->Tag->Pictures->Length > 0) {
 		/*array<TagLib::IPicture^>^ pics = gcnew array<TagLib::IPicture^>[1];
@@ -37,10 +40,6 @@ Album::Album(TagLib::File^ tagFile) {
 	else {
 
 	}
-}
-
-Album::Album(System::String^ _name) {
-	name = _name;
 }
 
 System::String^ Album::getName() {
@@ -57,7 +56,7 @@ System::String^ Album::getArtworkLocation() {
 
 void Album::addSong(Song^ s) {
 	//Maybe sort by track number?
-	songList.Add(s);
+	songList->Add(s);
 }
 
 void Album::setParentArtist(Artist^ artist) {
@@ -67,6 +66,10 @@ void Album::setParentArtist(Artist^ artist) {
 
 Artist^ Album::getParentArtist() {
 	return parentArtist;
+}
+
+List<Song^>^ Album::getSongs() {
+	return songList;
 }
 
 Song::Song() {

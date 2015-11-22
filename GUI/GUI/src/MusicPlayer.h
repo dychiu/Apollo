@@ -2,7 +2,7 @@
 
 #include "../PlayerForm.h"
 #include "Library.h"
-#include "music-objs.h"
+#include "LibraryObjects.h"
 #include "SFML/Audio.hpp"
 
 using namespace System;
@@ -12,8 +12,7 @@ public ref class MusicPlayer {
 public:
 	MusicPlayer();
 	Library^ getMusicLibrary();
-
-
+	
 	void playSong();
 	void pauseSong();
 	void seekSong(int value);
@@ -24,12 +23,10 @@ public:
 	void setCurrentAlbum(Album _currentAlbum);
 	void setCurrentArtist(Artist _currentArtist);
 	void setSelectedSong(Song newSelection);
-	//void setSelectedAlbum(Album newSelection);
-	void setSelectedArtist(Artist newSelection);
+	void setSelectedArtist(Artist^ newSelection);
 
 	Song getSelectedSong();
-	//Album getSelectedAlbum();
-	Artist getSelectedArtist();
+	Artist^ getSelectedArtist();
 	Song getCurrentSong();
 	Album getCurrentAlbum();
 	Artist getCurrentArtist();
@@ -40,8 +37,7 @@ private:
 	Album currentAlbum;
 	Artist currentArtist;
 
-	Artist selectedArtist;
-	//Album selectedAlbum;
+	Artist^ selectedArtist;
 	Song selectedSong;
 	
 	void setPlayingSong(std::string filepath);

@@ -1,5 +1,5 @@
 #pragma once
-#include "music-objs.h"
+#include "LibraryObjects.h"
 
 using namespace System;
 using namespace System::IO;
@@ -9,7 +9,7 @@ public ref class Library {
 public:
 	Library();
 	List<Artist^>^ getArtistList();
-
+	
 	void import(String ^dir);
 	//void load();
 	//void save();

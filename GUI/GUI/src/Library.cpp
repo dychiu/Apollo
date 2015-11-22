@@ -1,23 +1,19 @@
 #include "Library.h"
-#include "music-objs.h"
 
 Library::Library() {
 	artistList = gcnew List<Artist^>();
-
-	artistList->Add(gcnew Artist("Atest"));
-	artistList->Add(gcnew Artist("Ctest"));
-	artistList->Add(gcnew Artist("Dtest"));
-	artistList->Add(gcnew Artist("Etest"));
-	artistList->Add(gcnew Artist("Btest"));
+	albumList = gcnew List<Album^>();
+	songList = gcnew List<Song^>();
 }
 
 List<Artist^>^ Library::getArtistList() {
 	return artistList;
 }
 
+// remember to include try catch block for when there are no files of extension .flac, .wav, or .ogg
 void Library::import(String^ dir) {
 	array<String^>^ validExtentions = { "*.flac", "*.wav", "*.ogg" };
-	List<String^>^ files;
+	List<String^>^ files = gcnew List<String^>();
 
 	for each (String^ s in validExtentions) {
 		array<String^>^ temp = Directory::GetFiles(dir, s, SearchOption::AllDirectories);
@@ -28,7 +24,7 @@ void Library::import(String^ dir) {
 
 	for each (String^ file in files) {
 		TagLib::File^ tagFile = TagLib::File::Create(file);
-		String^ artistName = tagFile->Tag->FirstArtist;
+		String^ artistName = tagFile->Tag->FirstAlbumArtist;
 		String^ albumName = tagFile->Tag->Album;
 		String^ songName = tagFile->Tag->Title;
 
@@ -42,27 +38,27 @@ void Library::import(String^ dir) {
 
 		for (int i = 0; i < artistList->Count; i++) {
 			if (artistList[i]->ArtistName == artistName) {
-				Artist^ tempArtist = artistList[i];
+				tempArtist = artistList[i];
 				artistExists = true;
 				break;
 			}
 		}
 
 		if (!artistExists) {
-			Artist^ tempArtist = gcnew Artist(artistName); // creates Artist object with the metadata as the parameters
+			tempArtist = gcnew Artist(artistName); // creates Artist object with the metadata as the parameters
 			artistList->Add(tempArtist);
 		}
 
 		for (int i = 0; i < albumList->Count; i++) {
 			if (albumList[i]->getName() == albumName) {
-				Album^ tempAlbum = albumList[i];
+				tempAlbum = albumList[i];
 				albumExists = true;
 				break;
 			}
 		}
 
 		if (!albumExists) {
-			Album^ tempAlbum = gcnew Album(albumName); // creates Artist object with the metadata as the parameters
+			tempAlbum = gcnew Album(tagFile); // creates Artist object with the metadata as the parameters
 			tempAlbum->setParentArtist(tempArtist);
 			tempArtist->addAlbum(tempAlbum);
 			albumList->Add(tempAlbum);
@@ -70,14 +66,14 @@ void Library::import(String^ dir) {
 
 		for (int i = 0; i < songList->Count; i++) {
 			if (songList[i]->getSongName() == songName) {
-				Song^ songName = songList[i];
+				tempSong = songList[i];
 				songExists = true;
 				break;
 			}
 		}
 
 		if (!songExists) {
-			Song^ tempSong = gcnew Song(tagFile, file); // creates Artist object with the metadata as the parameters
+			tempSong = gcnew Song(tagFile, file); // creates Artist object with the metadata as the parameters
 			tempSong->setParentArtist(tempArtist);
 			tempSong->setParentAlbum(tempAlbum);
 			tempAlbum->addSong(tempSong);

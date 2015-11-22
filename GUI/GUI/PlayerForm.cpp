@@ -158,33 +158,6 @@ void PlayerForm::changeToSmart() {
 		rightSongs[i]->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
 			static_cast<System::Int32>(static_cast<System::Byte>(210)));		
 	}
-
-	/*
-	listBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	listBox13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
-		static_cast<System::Int32>(static_cast<System::Byte>(210)));
-	*/
 }
 
 void PlayerForm::changeToNormal() {
@@ -238,33 +211,6 @@ void PlayerForm::changeToNormal() {
 		rightSongs[i]->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 			static_cast<System::Int32>(static_cast<System::Byte>(255)));
 	}
-
-	/*
-	listBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	listBox13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
-		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	*/
 }
 
 System::Void PlayerForm::skipButton_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
@@ -284,11 +230,15 @@ System::Void PlayerForm::minimizeButton_Release(System::Object^  sender, System:
 
 System::Void PlayerForm::importButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	folderBrowserDialog1->ShowDialog();
+	musicPlayer->getMusicLibrary()->import(folderBrowserDialog1->SelectedPath);
+	listBox1->DataSource = nullptr;
+	listBox1->DataSource = musicPlayer->getMusicLibrary()->getArtistList();
+	listBox1->DisplayMember = "ArtistName";
 }
 
 System::Void PlayerForm::listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (artistSelectionsCleared == true) {
-		//musicPlayer->setSelectedArtist(listBox1->SelectedItem);
+		musicPlayer->setSelectedArtist(musicPlayer->getMusicLibrary()->getArtistList()[listBox1->SelectedIndex]);
 		changeArtist();
 	}
 }
@@ -296,7 +246,6 @@ System::Void PlayerForm::listBox1_SelectedIndexChanged(System::Object^  sender, 
 void PlayerForm::changeArtist() {
 	removeComponents();
 	createComponents();
-	//populateComponents();
 }
 
 void PlayerForm::removeComponents() {
@@ -319,35 +268,46 @@ void PlayerForm::removeComponents() {
 void PlayerForm::createComponents() {
 	int offset = 0;
 
-	//for (int i = 0; i < musicPlayer->getSelectedArtist()->getAlbums()->Count; i++) {}
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < musicPlayer->getSelectedArtist()->getAlbums()->Count; i++) {
 
-		//int listSize = ceil(musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count / 2);
-		int listSize = ceil(14 / 2);
+		int listSize = ceil(musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count / 2.0);
 
+		//
 		// album artwork
+		//
 		System::Windows::Forms::PictureBox^ tempArtwork = (gcnew System::Windows::Forms::PictureBox());
-		tempArtwork->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-		tempArtwork->ImageLocation = L"C:\\Users\\Dylan\\Music\\Blink 182\\(2001) Take Off Your Pants And Jacket\\albumart.png";
-		//tempArtwork->ImageLocation = musicPlayer->getSelectedArtist()->getAlbums()[i]->urlLocation;
+		tempArtwork->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;		
 		tempArtwork->Location = System::Drawing::Point(0, offset + 9);
 		tempArtwork->Size = System::Drawing::Size(150, 150);
 		tempArtwork->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+		
+		/*
+		if ()
+		tempArtwork->ImageLocation = musicPlayer->getSelectedArtist()->getAlbums()[i]->urlLocation;
+		else
+		*/
+		tempArtwork->Image = imageList1->Images[12];
+
 		panel2->Controls->Add(tempArtwork);
 		artwork->Add(tempArtwork);
 
+		//
 		// album title
+		//
 		System::Windows::Forms::Label^ tempAlbum = (gcnew System::Windows::Forms::Label());
 		tempAlbum->AutoSize = true;
 		tempAlbum->Font = (gcnew System::Drawing::Font(L"Century Gothic", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
 		tempAlbum->Location = System::Drawing::Point(156, offset + 10);
-		tempAlbum->Text = L"BTESTTTTTTTTTTTTTTTTTTT!";
-		//tempAlbum->Text = musicPlayer->getSelectedArtist()->getAlbums()[i]->name;
+
+		tempAlbum->Text = musicPlayer->getSelectedArtist()->getAlbums()[i]->getName();
+
 		panel2->Controls->Add(tempAlbum);
 		album->Add(tempAlbum);
 
+		//
 		// left track numbers
+		//
 		System::Windows::Forms::ListBox^ tempLeftNumbers = (gcnew System::Windows::Forms::ListBox());
 		if (smartPlayMode == false)
 			tempLeftNumbers->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
@@ -358,16 +318,21 @@ void PlayerForm::createComponents() {
 		tempLeftNumbers->BorderStyle = System::Windows::Forms::BorderStyle::None;
 		tempLeftNumbers->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		tempLeftNumbers->ForeColor = System::Drawing::SystemColors::GrayText;
-		tempLeftNumbers->Items->AddRange(gcnew cli::array< System::Object^  >(7) { L"1", L"2", L"3", L"4", L"5", L"6", L"7" });
+		tempLeftNumbers->ForeColor = System::Drawing::SystemColors::GrayText;		
 		tempLeftNumbers->Location = System::Drawing::Point(152, offset + 45);
 		tempLeftNumbers->SelectionMode = System::Windows::Forms::SelectionMode::None;
 		tempLeftNumbers->Size = System::Drawing::Size(22, 21 * listSize);
 		tempLeftNumbers->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
+
+		for (int j = 0; j < listSize; j++)
+			tempLeftNumbers->Items->Add(j + 1);
+
 		panel2->Controls->Add(tempLeftNumbers);
 		leftNumbers->Add(tempLeftNumbers);
 
+		//
 		// right track numbers
+		//
 		System::Windows::Forms::ListBox^ tempRightNumbers = (gcnew System::Windows::Forms::ListBox());
 		if (smartPlayMode == false)
 			tempRightNumbers->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
@@ -378,16 +343,21 @@ void PlayerForm::createComponents() {
 		tempRightNumbers->BorderStyle = System::Windows::Forms::BorderStyle::None;
 		tempRightNumbers->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));
-		tempRightNumbers->ForeColor = System::Drawing::SystemColors::GrayText;
-		tempRightNumbers->Items->AddRange(gcnew cli::array< System::Object^  >(7) { L"8", L"9", L"10", L"11", L"12", L"13", L"14" });
+		tempRightNumbers->ForeColor = System::Drawing::SystemColors::GrayText;		
 		tempRightNumbers->Location = System::Drawing::Point(400, offset + 45);
 		tempRightNumbers->SelectionMode = System::Windows::Forms::SelectionMode::None;
 		tempRightNumbers->Size = System::Drawing::Size(22, 21 * listSize);
 		tempRightNumbers->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
+
+		for (int j = 0; j < musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count - listSize; j++)
+			tempRightNumbers->Items->Add(j + listSize + 1);
+
 		panel2->Controls->Add(tempRightNumbers);
 		rightNumbers->Add(tempRightNumbers);
 
+		//
 		// left songs
+		//
 		System::Windows::Forms::ListBox^ tempLeftSongs = (gcnew System::Windows::Forms::ListBox());
 		if (smartPlayMode == false)
 			tempLeftSongs->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
@@ -397,18 +367,21 @@ void PlayerForm::createComponents() {
 				static_cast<System::Int32>(static_cast<System::Byte>(210)));
 		tempLeftSongs->BorderStyle = System::Windows::Forms::BorderStyle::None;
 		tempLeftSongs->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-		tempLeftSongs->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
-			L"Feeling This", L"Obvious", L"I Miss You", L"Violence",
-				L"Stockholm Syndrome", L"Down", L"The Fallen Interlude"
-		});
+			static_cast<System::Byte>(0)));		
 		tempLeftSongs->Location = System::Drawing::Point(180, offset + 45);
 		tempLeftSongs->Size = System::Drawing::Size(210, 21 * listSize);
 		tempLeftSongs->SelectedIndexChanged += gcnew System::EventHandler(this, &PlayerForm::songs_SelectedIndexChanged);
-		panel2->Controls->Add(tempLeftSongs);
-		leftSongs->Add(tempLeftSongs);
+		
+		tempLeftSongs->DataSource = musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->GetRange(0, listSize);
+		tempLeftSongs->DisplayMember = "SongName";
 
+		panel2->Controls->Add(tempLeftSongs);
+		tempLeftSongs->ClearSelected();
+		leftSongs->Add(tempLeftSongs);
+				
+		//
 		// right songs
+		//
 		System::Windows::Forms::ListBox^ tempRightSongs = (gcnew System::Windows::Forms::ListBox());
 		if (smartPlayMode == false)
 			tempRightSongs->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
@@ -418,26 +391,23 @@ void PlayerForm::createComponents() {
 				static_cast<System::Int32>(static_cast<System::Byte>(210)));
 		tempRightSongs->BorderStyle = System::Windows::Forms::BorderStyle::None;
 		tempRightSongs->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-		tempRightSongs->Items->AddRange(gcnew cli::array< System::Object^  >(7) {
-			L"Feeling This", L"Obvious", L"I Miss You", L"Violence",
-				L"Stockholm Syndrome", L"Down", L"The Fallen Interlude"
-		});
+			static_cast<System::Byte>(0)));		
 		tempRightSongs->Location = System::Drawing::Point(428, offset + 45);
-		if (i != 3-1)
+		if (i != musicPlayer->getSelectedArtist()->getAlbums()->Count-1)
 			tempRightSongs->Size = System::Drawing::Size(210, 21 * listSize);
 		else
 			tempRightSongs->Size = System::Drawing::Size(210, 21 * listSize + 75);
 		tempRightSongs->SelectedIndexChanged += gcnew System::EventHandler(this, &PlayerForm::songs_SelectedIndexChanged);
-		panel2->Controls->Add(tempRightSongs);
-		rightSongs->Add(tempRightSongs);
 		
+		tempRightSongs->DataSource = musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->GetRange(listSize, musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count - listSize);
+		tempRightSongs->DisplayMember = "SongName";		
+
+		panel2->Controls->Add(tempRightSongs);
+		tempRightSongs->ClearSelected();
+		rightSongs->Add(tempRightSongs);		
+					
 		offset = tempRightSongs->Location.Y + tempRightSongs->Size.Height + 45;
 	}	
-}
-
-void PlayerForm::populateComponents() {
-
 }
 
 System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {

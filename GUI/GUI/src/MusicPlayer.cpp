@@ -3,7 +3,6 @@
 MusicPlayer::MusicPlayer() {
 	musicLibrary = gcnew Library();
 	
-
 	playingSong = new sf::Music();
 	playingSong->setLoop(false);
 	playingSong->setVolume(50);
@@ -86,15 +85,10 @@ void MusicPlayer::setSelectedSong(Song newSelection)
 {
 	throw gcnew System::NotImplementedException();
 }
-/*
-void MusicPlayer::setSelectedAlbum(Album newSelection)
-{
-	throw gcnew System::NotImplementedException();
-}*/
 
-void MusicPlayer::setSelectedArtist(Artist newSelection)
+void MusicPlayer::setSelectedArtist(Artist^ newSelection)
 {
-	throw gcnew System::NotImplementedException();
+	selectedArtist = newSelection;
 }
 
 Song MusicPlayer::getSelectedSong()
@@ -104,16 +98,9 @@ Song MusicPlayer::getSelectedSong()
 	//return selectedSong;
 }
 
-/*Album MusicPlayer::getSelectedAlbum()
+Artist^ MusicPlayer::getSelectedArtist()
 {
-	//return Album();
-}*/
-
-Artist MusicPlayer::getSelectedArtist()
-{
-	throw gcnew System::NotImplementedException();
-	//Needs Artist to have a copy constructor
-	//return selectedArtist;
+	return selectedArtist;
 }
 
 Song MusicPlayer::getCurrentSong()

@@ -31,17 +31,17 @@ public ref class Album {
 public:
 	Album();
 	Album(TagLib::File^ tagFile);
-	Album(System::String^ _name);
 	System::String^ getName();
 	Drawing::Image^ getAlbumArt();
 	System::String^ getArtworkLocation();
 	void addSong(Song^ s);
 	void setParentArtist(Artist^ artist);
 	Artist^ getParentArtist();
+	List<Song^>^ getSongs();
 private:
 	System::String^ name;
 	System::String^ artworkLocation;
-	List<Song^> songList;
+	List<Song^>^ songList;
 	Drawing::Image^ art;
 	Artist^ parentArtist;
 };
@@ -62,6 +62,12 @@ public:
 	int getBPM();
 	Artist^ getParentArtist();
 	Album^ getParentAlbum();
+
+	property String^ SongName {
+		String^ get() {
+			return songName;
+		}
+	}
 private:
 	System::String^ songName;
 	System::String^ genre;
