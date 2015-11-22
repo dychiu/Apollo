@@ -6,9 +6,11 @@ Album::Album(TagLib::File^ tagFile) {
 	name = tagFile->Tag->Album;
 	//Get album art
 	if (tagFile->Tag->Pictures->Length > 0) {
-		//tagFile->Tag->Pictures[0]->Data->Data);
+		/*array<TagLib::IPicture^>^ pics = gcnew array<TagLib::IPicture^>[1];
+		pic = tagFile->Tag->Pictures;
 		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
 		art = Drawing::Image::FromStream(ms);
+		*/
 	}
 	else {
 

@@ -1,9 +1,11 @@
 #pragma once
-#include "Library.h"
-#include "artist.h"
+//#include "Library.h"
+#include "Artist.h"
 #include "Song.h"
 
-public ref class Album {
+ref class Artist;
+ref class Song;
+ref class Album {
 public:
 	Album();
 	Album(TagLib::File^ tagFile);
