@@ -76,7 +76,7 @@ void Library::import(String^ dir) {
 		}
 
 		if (!songExists) {
-			Song^ tempSong = gcnew Song(songName); // creates Artist object with the metadata as the parameters
+			Song^ tempSong = gcnew Song(tagFile, file); // creates Artist object with the metadata as the parameters
 			tempSong->setParentArtist(tempArtist);
 			tempSong->setParentAlbum(tempAlbum);
 			tempAlbum->addSong(tempSong);
