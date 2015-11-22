@@ -3,6 +3,8 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
+ref class Album;
+ref class Song;
 public ref class Artist {
 public:
 	Artist();

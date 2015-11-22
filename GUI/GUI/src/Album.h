@@ -3,6 +3,8 @@
 #include "Artist.h"
 #include "Song.h"
 
+using namespace System;
+
 ref class Artist;
 ref class Song;
 ref class Album {
