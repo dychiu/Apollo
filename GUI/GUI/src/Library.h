@@ -1,8 +1,5 @@
 #pragma once
-
-#include "Artist.h"
-#include "Album.h"
-#include "Song.h"
+#include "music-objs.h"
 
 using namespace System;
 using namespace System::IO;
@@ -14,9 +11,9 @@ public:
 	List<Artist^>^ getArtistList();
 
 	void import(String ^dir);
-	void load();
-	void save();
-	void updateLibrary();
+	//void load();
+	//void save();
+    //void updateLibrary();
 
 private:
 	List<Artist^>^ artistList;
