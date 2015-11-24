@@ -16,11 +16,21 @@ void Library::import(String^ dir) {
 	List<String^>^ files = gcnew List<String^>();
 
 	for each (String^ s in validExtentions) {
-		array<String^>^ temp = Directory::GetFiles(dir, s, SearchOption::AllDirectories);
-		for each (String^ file in temp) {
-			files->Add(file);
+		try {
+			array<String^>^ temp = Directory::GetFiles(dir, s, SearchOption::AllDirectories);
+			for each (String^ file in temp) {
+				files->Add(file);
+			}
+		}
+		catch (ArgumentException^ e) {
+			//Cancel button was pressed
+			return;
 		}
 	}	
+
+	if (files->Count <= 0) {
+		return;
+	}
 
 	for each (String^ file in files) {
 		TagLib::File^ tagFile = TagLib::File::Create(file);
