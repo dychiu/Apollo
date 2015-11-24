@@ -292,12 +292,7 @@ void PlayerForm::createComponents() {
 		tempArtwork->Location = System::Drawing::Point(0, offset + 9);
 		tempArtwork->Size = System::Drawing::Size(150, 150);
 		tempArtwork->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-		
-		/*
-		if ()
-		tempArtwork->ImageLocation = musicPlayer->getSelectedArtist()->getAlbums()[i]->urlLocation;
-		else
-		*/
+				
 		Image^ pic = musicPlayer->getSelectedArtist()->getAlbums()[i]->getAlbumArt();
 		if (pic == nullptr)
 			tempArtwork->Image = imageList1->Images[12];
@@ -421,8 +416,11 @@ void PlayerForm::createComponents() {
 		panel2->Controls->Add(tempRightSongs);
 		tempRightSongs->ClearSelected();
 		rightSongs->Add(tempRightSongs);		
-					
-		offset = tempRightSongs->Location.Y + tempRightSongs->Size.Height + 45;
+		
+		if (listSize > 5)
+			offset = tempRightSongs->Location.Y + tempRightSongs->Size.Height + 45;
+		else
+			offset = tempArtwork->Location.Y + tempArtwork->Size.Height + 45;
 	}	
 }
 
