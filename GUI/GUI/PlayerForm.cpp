@@ -47,8 +47,6 @@ PlayerForm::PlayerForm() {
 }
 
 System::Void PlayerForm::button1_Click(System::Object^  sender, System::EventArgs^  e) {
-	//Save the library before closing
-	musicPlayer->getMusicLibrary()->save();
 	Close();
 }
 
@@ -245,6 +243,9 @@ System::Void PlayerForm::importButton_Release(System::Object^  sender, System::W
 	listBox1->DataSource = nullptr;
 	listBox1->DataSource = musicPlayer->getMusicLibrary()->getArtistList();
 	listBox1->DisplayMember = "ArtistName";
+
+	//Save the library before 
+	musicPlayer->getMusicLibrary()->save();
 }
 
 System::Void PlayerForm::listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {

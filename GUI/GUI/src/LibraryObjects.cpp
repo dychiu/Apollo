@@ -30,7 +30,9 @@ List<Album^>^ Artist::getAlbums() {
 	return albums;
 }
 
-Album::Album() {}
+Album::Album() {
+	songList = gcnew List<Song^>();
+}
 
 Album::Album(TagLib::File^ tagFile) {
 	name = tagFile->Tag->Album;

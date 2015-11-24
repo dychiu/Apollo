@@ -155,9 +155,12 @@ void Library::load() {
 		return;
 	}
 	XmlNode^ root = xmlFile->DocumentElement;
-	Diagnostics::Debug::WriteLine(root->ChildNodes[1]->ChildNodes->Count);
-	if (root->ChildNodes[1]->ChildNodes->Count <= 1 ) {
-		//empty library
+	//maybe not needed
+	try {
+		xmlFile->SelectSingleNode("artist");
+	}
+	catch (XmlException^ e) {
+		//no artists listed
 		return;
 	}
 	for each (XmlNode^ artist in root->ChildNodes[1]->ChildNodes) {
@@ -174,7 +177,7 @@ void Library::load() {
 			tempArtist->addAlbum(tempAlbum);
 			albumList->Add(tempAlbum);
 			for each (XmlNode^ song in album->SelectNodes("song")) {
-				//Diagnostics::Debug::WriteLine(song->SelectSingleNode("name")->InnerText);
+				Diagnostics::Debug::WriteLine(song->SelectSingleNode("name")->InnerText);
 				Song^ tempSong = gcnew Song();
 				tempSong->setSongName(song->SelectSingleNode("name")->InnerText);
 				tempSong->setBPM(song->SelectSingleNode("bpm")->InnerText);
@@ -182,12 +185,21 @@ void Library::load() {
 				tempSong->setGenre(song->SelectSingleNode("genre")->InnerText);
 				tempSong->setFilepath(song->SelectSingleNode("filepath")->InnerText);
 
-				tempSong->setParentAlbum(tempAlbum);
+				Diagnostics::Debug::WriteLine(tempSong->getBPM());
+				Diagnostics::Debug::WriteLine(tempSong->getFilePath());
+				Diagnostics::Debug::WriteLine(tempSong->getGenre());
+				Diagnostics::Debug::WriteLine(tempSong->getSongName());
+				Diagnostics::Debug::WriteLine(tempSong->getTrackNumber());
+
+				//Diagnostics::Debug::WriteLine(tempAlbum->getSongs()->Count);
+
+
+				//BROKEN//
 				tempSong->setParentArtist(tempArtist);
+				tempSong->setParentAlbum(tempAlbum);
 				tempAlbum->addSong(tempSong);
 				songList->Add(tempSong);
 			}
-			
 		}
 	}
 }
