@@ -177,7 +177,6 @@ void Library::load() {
 			tempArtist->addAlbum(tempAlbum);
 			albumList->Add(tempAlbum);
 			for each (XmlNode^ song in album->SelectNodes("song")) {
-				Diagnostics::Debug::WriteLine(song->SelectSingleNode("name")->InnerText);
 				Song^ tempSong = gcnew Song();
 				tempSong->setSongName(song->SelectSingleNode("name")->InnerText);
 				tempSong->setBPM(song->SelectSingleNode("bpm")->InnerText);
@@ -185,16 +184,6 @@ void Library::load() {
 				tempSong->setGenre(song->SelectSingleNode("genre")->InnerText);
 				tempSong->setFilepath(song->SelectSingleNode("filepath")->InnerText);
 
-				Diagnostics::Debug::WriteLine(tempSong->getBPM());
-				Diagnostics::Debug::WriteLine(tempSong->getFilePath());
-				Diagnostics::Debug::WriteLine(tempSong->getGenre());
-				Diagnostics::Debug::WriteLine(tempSong->getSongName());
-				Diagnostics::Debug::WriteLine(tempSong->getTrackNumber());
-
-				//Diagnostics::Debug::WriteLine(tempAlbum->getSongs()->Count);
-
-
-				//BROKEN//
 				tempSong->setParentArtist(tempArtist);
 				tempSong->setParentAlbum(tempAlbum);
 				tempAlbum->addSong(tempSong);
