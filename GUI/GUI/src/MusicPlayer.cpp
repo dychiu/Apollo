@@ -34,6 +34,49 @@ void MusicPlayer::playSong()
 		System::Diagnostics::Debug::WriteLine("Song: " + name + " - Artist: " + artist);
 	}*/
 	playingSong->play();
+
+	//Test XML Reader
+	/*XmlReader^ xmlDoc = XmlReader::Create("http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml");
+	while (xmlDoc->Read()){
+	if ((xmlDoc->NodeType == XmlNodeType::Element) && (xmlDoc->Name == "Cube"))
+	{
+	if (xmlDoc->HasAttributes)
+	Diagnostics::Debug::WriteLine(xmlDoc->GetAttribute("currency") + ": " + xmlDoc->GetAttribute("rate"));
+	}
+	}
+	Diagnostics::Debug::WriteLine("");
+	*/
+
+	//Test XML reading using XmlDocument --preferred
+	/*XmlDocument^ xmlDoc = gcnew XmlDocument();
+	xmlDoc->Load("http://www.ecb.int/stats/eurofxref/eurofxref-daily.xml");
+	XmlNode^ root = xmlDoc->DocumentElement;
+
+	Diagnostics::Debug::WriteLine(root->ChildNodes[2]->ChildNodes[0]->ChildNodes->Count);
+	for each (XmlNode^ node in root->ChildNodes[2]->ChildNodes[0]->ChildNodes) {
+		Diagnostics::Debug::WriteLine(node->Attributes["currency"]->Value + ": " + node->Attributes["rate"]->Value);
+	}*/
+
+	//Test XML writing
+	/*XmlDocument^ xmlD = gcnew XmlDocument();
+	//Example layout
+	xmlD->LoadXml(L"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+		L"<Apollo><settings>"
+		L"</settings>"
+		L"<library>"
+		L"<artist><name>Drake</name>"
+		L"<album><name>Fire</name>"
+		L"<song><name>Scholarships</name>"
+		L"<bpm>132</bpm>"
+		L"<genre>Hip-Hop</genre>"
+		L"<filepath>C:\\Users\\jonat\\...</filepath>"
+		L"</song><song><name>Another Drake Song</name>"
+		L"<genre>Hip-Hop</genre></song>"
+		L"</album></artist>"
+		L"</library></Apollo>");
+
+	xmlD->Save(saveFileLoc); //exception when empty*/
+	
 }
 
 void MusicPlayer::pauseSong()

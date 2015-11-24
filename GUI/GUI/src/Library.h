@@ -3,6 +3,7 @@
 
 using namespace System;
 using namespace System::IO;
+using namespace System::Xml;
 using namespace System::Collections::Generic;
 
 public ref class Library {
@@ -11,8 +12,8 @@ public:
 	List<Artist^>^ getArtistList();
 	
 	void import(String ^dir);
-	//void load();
-	//void save();
+	void load();
+	void save();
     //void updateLibrary();
 
 private:

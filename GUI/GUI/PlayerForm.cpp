@@ -35,9 +35,20 @@ PlayerForm::PlayerForm() {
 	rightNumbers = gcnew List<ListBox^>();
 	leftSongs = gcnew List<ListBox^>();
 	rightSongs = gcnew List<ListBox^>();
+
+	//load existing xml file
+	//for now from current directory
+	if (File::Exists(Directory::GetCurrentDirectory() + "\\apollo.xml")) {
+		musicPlayer->getMusicLibrary()->load();
+		listBox1->DataSource = nullptr;
+		listBox1->DataSource = musicPlayer->getMusicLibrary()->getArtistList();
+		listBox1->DisplayMember = "ArtistName";
+	}
 }
 
 System::Void PlayerForm::button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	//Save the library before closing
+	musicPlayer->getMusicLibrary()->save();
 	Close();
 }
 
@@ -286,7 +297,11 @@ void PlayerForm::createComponents() {
 		tempArtwork->ImageLocation = musicPlayer->getSelectedArtist()->getAlbums()[i]->urlLocation;
 		else
 		*/
-		tempArtwork->Image = imageList1->Images[12];
+		Image^ pic = musicPlayer->getSelectedArtist()->getAlbums()[i]->getAlbumArt();
+		if (pic == nullptr)
+			tempArtwork->Image = imageList1->Images[12];
+		else
+			tempArtwork->Image = pic;
 
 		panel2->Controls->Add(tempArtwork);
 		artwork->Add(tempArtwork);

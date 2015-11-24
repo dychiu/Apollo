@@ -17,6 +17,12 @@ void Artist::addAlbum(Album^ a) {
 	albums->Add(a);
 }
 
+void Artist::setName(String ^ _name)
+{
+	name = _name;
+	return;
+}
+
 // potentially dangerous! getAlbums() currently returns a reference instead
 // of a deep clone. Keep this in mind when using it and don't modify any elements
 // in the array unless you want to mess up the object
@@ -29,16 +35,15 @@ Album::Album() {}
 Album::Album(TagLib::File^ tagFile) {
 	name = tagFile->Tag->Album;
 	songList = gcnew List<Song^>();
+
 	//Get album art
 	if (tagFile->Tag->Pictures->Length > 0) {
-		/*array<TagLib::IPicture^>^ pics = gcnew array<TagLib::IPicture^>[1];
-		pic = tagFile->Tag->Pictures;
-		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream();
+		TagLib::IPicture^ pic = (TagLib::IPicture^)tagFile->Tag->Pictures[0];
+		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream(pic->Data->Data);
 		art = Drawing::Image::FromStream(ms);
-		*/
 	}
 	else {
-
+		art = nullptr;
 	}
 }
 
@@ -61,6 +66,27 @@ void Album::addSong(Song^ s) {
 
 void Album::setParentArtist(Artist^ artist) {
 	parentArtist = artist;
+	return;
+}
+
+void Album::setName(String^ _name)
+{
+	name = _name;
+	return;
+}
+
+void Album::setAlbumArt(String ^ filepath)
+{
+	TagLib::File^ tagFile = TagLib::File::Create(filepath);
+	//Get album art
+	if (tagFile->Tag->Pictures->Length > 0) {
+		TagLib::IPicture^ pic = (TagLib::IPicture^)tagFile->Tag->Pictures[0];
+		System::IO::MemoryStream^ ms = gcnew System::IO::MemoryStream(pic->Data->Data);
+		art = Drawing::Image::FromStream(ms);
+	}
+	else {
+		art = nullptr;
+	}
 	return;
 }
 
@@ -91,6 +117,36 @@ void Song::setParentArtist(Artist^ artist) {
 
 void Song::setParentAlbum(Album^ album) {
 	parentAlbum = album;
+	return;
+}
+
+void Song::setSongName(String ^ _name)
+{
+	songName = _name;
+	return;
+}
+
+void Song::setGenre(String ^ _genre)
+{
+	genre = _genre;
+	return;
+}
+
+void Song::setFilepath(String ^ path)
+{
+	filePath = path;
+	return;
+}
+
+void Song::setTrackNumber(String^ num)
+{
+	trackNumber = Convert::ToInt32(num);
+	return;
+}
+
+void Song::setBPM(String^ beats)
+{
+	bpm = Convert::ToInt32(beats);
 	return;
 }
 

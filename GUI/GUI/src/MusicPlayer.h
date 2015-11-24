@@ -7,6 +7,7 @@
 
 using namespace System;
 using namespace System::Diagnostics;
+using namespace System::Xml;
 
 public ref class MusicPlayer {
 public:
