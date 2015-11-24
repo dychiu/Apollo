@@ -78,7 +78,7 @@ namespace GUI {
 		// selection change in artist list
 		System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 		System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
-		System::Void PlayerForm::songs_OnDoubleClick(System::Object^  sender, System::EventArgs^  e);
+		System::Void PlayerForm::songs_DoubleClick(System::Object^  sender, System::EventArgs^  e);
 		
 		// changes normal mode to smart mode
 		void changeToSmart();

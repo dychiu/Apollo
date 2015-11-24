@@ -126,7 +126,7 @@ void MusicPlayer::setCurrentArtist()
 
 void MusicPlayer::setSelectedSong(Song^ newSelection)
 {
-	throw gcnew System::NotImplementedException();
+	selectedSong = newSelection;
 }
 
 void MusicPlayer::setSelectedArtist(Artist^ newSelection)

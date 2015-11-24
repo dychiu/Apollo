@@ -382,12 +382,13 @@ void PlayerForm::createComponents() {
 		tempLeftSongs->Location = System::Drawing::Point(180, offset + 45);
 		tempLeftSongs->Size = System::Drawing::Size(210, 21 * listSize);
 		tempLeftSongs->SelectedIndexChanged += gcnew System::EventHandler(this, &PlayerForm::songs_SelectedIndexChanged);
-		tempLeftSongs->OnDoubleClick += gcnew System::EventHandler(this, &PlayerForm::songs_OnDoubleClick);
+		tempLeftSongs->DoubleClick += gcnew System::EventHandler(this, &PlayerForm::songs_DoubleClick);
 
 		tempLeftSongs->DataSource = musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->GetRange(0, listSize);
 		tempLeftSongs->DisplayMember = "SongName";
 
 		panel2->Controls->Add(tempLeftSongs);
+		songSelectionChanged = false;
 		tempLeftSongs->ClearSelected();
 		leftSongs->Add(tempLeftSongs);
 				
@@ -410,11 +411,13 @@ void PlayerForm::createComponents() {
 		else
 			tempRightSongs->Size = System::Drawing::Size(210, 21 * listSize + 75);
 		tempRightSongs->SelectedIndexChanged += gcnew System::EventHandler(this, &PlayerForm::songs_SelectedIndexChanged);
-		
+		tempRightSongs->DoubleClick += gcnew System::EventHandler(this, &PlayerForm::songs_DoubleClick);
+
 		tempRightSongs->DataSource = musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->GetRange(listSize, musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count - listSize);
 		tempRightSongs->DisplayMember = "SongName";		
 
 		panel2->Controls->Add(tempRightSongs);
+		songSelectionChanged = false;
 		tempRightSongs->ClearSelected();
 		rightSongs->Add(tempRightSongs);		
 		
@@ -461,6 +464,6 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 	songSelectionChanged = true;
 }
 
-System::Void PlayerForm::songs_OnDoubleClick(System::Object^  sender, System::EventArgs^  e) {
+System::Void PlayerForm::songs_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 	musicPlayer->setCurrentSong();
 }
