@@ -5,7 +5,7 @@ MusicPlayer::MusicPlayer() {
 	
 	playingSong = new sf::Music();
 	playingSong->setLoop(false);
-	playingSong->setVolume(50);
+	playingSong->setVolume(100);
 }
 
 Library^ MusicPlayer::getMusicLibrary() {
@@ -108,23 +108,23 @@ void MusicPlayer::setVolume(int value)
 	throw gcnew System::NotImplementedException();
 }
 
-void MusicPlayer::setCurrentSong(Song _currentSong)
+void MusicPlayer::setCurrentSong()
 {
 	throw gcnew System::NotImplementedException();
 }
 
-void MusicPlayer::setCurrentAlbum(Album _currentAlbum)
+void MusicPlayer::setCurrentAlbum()
 {
 	throw gcnew System::NotImplementedException();
 }
 
-void MusicPlayer::setCurrentArtist(Artist _currentArtist)
+void MusicPlayer::setCurrentArtist()
 {
 	throw gcnew System::NotImplementedException();
 }
 
 
-void MusicPlayer::setSelectedSong(Song newSelection)
+void MusicPlayer::setSelectedSong(Song^ newSelection)
 {
 	throw gcnew System::NotImplementedException();
 }
@@ -134,7 +134,7 @@ void MusicPlayer::setSelectedArtist(Artist^ newSelection)
 	selectedArtist = newSelection;
 }
 
-Song MusicPlayer::getSelectedSong()
+Song^ MusicPlayer::getSelectedSong()
 {	
 	throw gcnew System::NotImplementedException();
 	//Needs Song to have a copy constructor
@@ -146,21 +146,21 @@ Artist^ MusicPlayer::getSelectedArtist()
 	return selectedArtist;
 }
 
-Song MusicPlayer::getCurrentSong()
+Song^ MusicPlayer::getCurrentSong()
 {
 	throw gcnew System::NotImplementedException();
 	//Needs Song to have a copy constructor
 	//return currentSong;
 }
 
-Album MusicPlayer::getCurrentAlbum()
+Album^ MusicPlayer::getCurrentAlbum()
 {
 	throw gcnew System::NotImplementedException();
 	//Needs Album to have a copy constructor
 	//return currentAlbum;
 }
 
-Artist MusicPlayer::getCurrentArtist()
+Artist^ MusicPlayer::getCurrentArtist()
 {
 	throw gcnew System::NotImplementedException();
 	//Needs Artist to have a copy constructor

@@ -20,26 +20,26 @@ public:
 	void closeSong();
 	void setVolume(int value);
 
-	void setCurrentSong(Song _currentSong);
-	void setCurrentAlbum(Album _currentAlbum);
-	void setCurrentArtist(Artist _currentArtist);
-	void setSelectedSong(Song newSelection);
+	void setCurrentSong();
+	void setCurrentAlbum();
+	void setCurrentArtist();
+	void setSelectedSong(Song^ newSelection);
 	void setSelectedArtist(Artist^ newSelection);
 
-	Song getSelectedSong();
+	Song^ getSelectedSong();
 	Artist^ getSelectedArtist();
-	Song getCurrentSong();
-	Album getCurrentAlbum();
-	Artist getCurrentArtist();
+	Song^ getCurrentSong();
+	Album^ getCurrentAlbum();
+	Artist^ getCurrentArtist();
 private:
 	sf::Music* playingSong;
 	Library^ musicLibrary;
-	Song currentSong;
-	Album currentAlbum;
-	Artist currentArtist;
+	Song^ currentSong;
+	Album^ currentAlbum;
+	Artist^ currentArtist;
 
 	Artist^ selectedArtist;
-	Song selectedSong;
+	Song^ selectedSong;
 	
 	void setPlayingSong(std::string filepath);
 
