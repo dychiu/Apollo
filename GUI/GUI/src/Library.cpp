@@ -174,12 +174,13 @@ void Library::load() {
 		return;
 	}
 	for each (XmlNode^ artist in root->ChildNodes[1]->ChildNodes) {
-		//Get the artist name
 		Artist^ tempArtist = gcnew Artist();
+		//Get the artist metadata
 		tempArtist->setName(artist->SelectSingleNode("name")->InnerText);
 		artistList->Add(tempArtist);
 		for each (XmlNode^ album in artist->SelectNodes("album")) {
 			Album^ tempAlbum = gcnew Album();
+			//Get the album metadata
 			tempAlbum->setName(album->FirstChild->InnerText);
 			//Art requires filepath, take the first song and use that for the art?
 			tempAlbum->setAlbumArt(album->ChildNodes[1]->SelectSingleNode("filepath")->InnerText);
@@ -188,12 +189,13 @@ void Library::load() {
 			albumList->Add(tempAlbum);
 			for each (XmlNode^ song in album->SelectNodes("song")) {
 				Song^ tempSong = gcnew Song();
+				//Get song metadata
 				tempSong->setSongName(song->SelectSingleNode("name")->InnerText);
 				tempSong->setBPM(song->SelectSingleNode("bpm")->InnerText);
 				tempSong->setTrackNumber(song->SelectSingleNode("track")->InnerText);
 				tempSong->setGenre(song->SelectSingleNode("genre")->InnerText);
 				tempSong->setFilepath(song->SelectSingleNode("filepath")->InnerText);
-
+				//Add to song lists
 				tempSong->setParentArtist(tempArtist);
 				tempSong->setParentAlbum(tempAlbum);
 				tempAlbum->addSong(tempSong);

@@ -74,14 +74,10 @@ System::Void PlayerForm::roundButton_Paint(Object^ sender, System::Windows::Form
 System::Void PlayerForm::roundButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	if (smartPlayMode == false) {
 		if (play == false) {
-			roundButton->BackgroundImage = imageList1->Images[1];
-			play = true;
-			musicPlayer->playSong();
+			playSong();
 		}
 		else if (play == true) {
-			roundButton->BackgroundImage = imageList1->Images[0];
-			play = false;
-			musicPlayer->pauseSong();
+			pauseSong();
 		}
 	}
 	else if (smartPlayMode == true) {
@@ -244,7 +240,7 @@ System::Void PlayerForm::importButton_Release(System::Object^  sender, System::W
 	listBox1->DataSource = musicPlayer->getMusicLibrary()->getArtistList();
 	listBox1->DisplayMember = "ArtistName";
 
-	//Save the library before 
+	//Save the library after importing
 	musicPlayer->getMusicLibrary()->save();
 }
 
@@ -428,6 +424,7 @@ void PlayerForm::createComponents() {
 	}	
 }
 
+//I think this might be executing even when you change the selected artist and not the song
 System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (songSelectionChanged == true) {
 		int index = -1;
@@ -465,5 +462,21 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 }
 
 System::Void PlayerForm::songs_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
+	//Throws an exception sometimes when double clicking too quickly?
 	musicPlayer->setCurrentSong();
+	playSong();
+}
+
+//Needed in order to change the play button to pause when playing a song
+System::Void PlayerForm::playSong() {
+	play = true;
+	roundButton->BackgroundImage = imageList1->Images[1];
+	musicPlayer->playSong();
+}
+
+//Needed in order to change the pause button back into a play button
+System::Void PlayerForm::pauseSong() {
+	play = false;
+	roundButton->BackgroundImage = imageList1->Images[0];
+	musicPlayer->pauseSong();
 }

@@ -37,10 +37,8 @@ private:
 	Song^ currentSong;
 	Album^ currentAlbum;
 	Artist^ currentArtist;
-
 	Artist^ selectedArtist;
 	Song^ selectedSong;
 	
-	void setPlayingSong(std::string filepath);
-
+	void setPlayingSong(Song^ song);
 };

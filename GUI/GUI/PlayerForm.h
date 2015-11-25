@@ -77,9 +77,12 @@ namespace GUI {
 		System::Void importButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 		// selection change in artist list
 		System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
-		System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
-		System::Void PlayerForm::songs_DoubleClick(System::Object^  sender, System::EventArgs^  e);
-		
+		System::Void songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
+		System::Void songs_DoubleClick(System::Object^  sender, System::EventArgs^  e);
+		//plays a song (for button change)
+		System::Void playSong();
+		//pauses a song (for button change)
+		System::Void pauseSong();
 		// changes normal mode to smart mode
 		void changeToSmart();
 		// changes smart mode to normal mode
