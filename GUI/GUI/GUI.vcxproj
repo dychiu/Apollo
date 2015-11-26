@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PlayerForm.cpp" />
+    <ClCompile Include="PreferencesForm.cpp" />
     <ClCompile Include="src\LibraryObjects.cpp" />
     <ClCompile Include="src\Library.cpp" />
     <ClCompile Include="src\MusicPlayer.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="PlayerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PreferencesForm.h" />
     <ClInclude Include="src\LibraryObjects.h" />
     <ClInclude Include="src\Library.h" />
     <ClInclude Include="src\MusicPlayer.h" />
@@ -164,6 +166,7 @@
     <EmbeddedResource Include="PlayerForm.resx">
       <DependentUpon>PlayerForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PreferencesForm.resx" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\pausebutton.jpg" />
