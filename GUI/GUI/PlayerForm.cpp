@@ -36,6 +36,8 @@ PlayerForm::PlayerForm() {
 	leftSongs = gcnew List<ListBox^>();
 	rightSongs = gcnew List<ListBox^>();
 
+	selectedList = nullptr;
+
 	//load existing xml file
 	//for now from current directory
 	if (File::Exists(Directory::GetCurrentDirectory() + "\\apollo.xml")) {
@@ -74,6 +76,8 @@ System::Void PlayerForm::roundButton_Paint(Object^ sender, System::Windows::Form
 System::Void PlayerForm::roundButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	if (smartPlayMode == false) {
 		if (play == false) {
+			if (musicPlayer->getCurrentSong() == nullptr && musicPlayer->getSelectedSong() != nullptr)
+				musicPlayer->setCurrentSong();
 			playSongNormal();
 		}
 		else if (play == true) {
@@ -422,11 +426,11 @@ void PlayerForm::createComponents() {
 	}	
 }
 
-//I think this might be executing even when you change the selected artist and not the song
 System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (songSelectionChanged == true) {
 		int index = -1;
 		int list = -1;
+		/*
 		for (int i = 0; i < leftSongs->Count; i++) {
 			if (leftSongs[i] != sender) {
 				songSelectionChanged = false;
@@ -439,7 +443,15 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 				rightSongs[i]->ClearSelected();				
 			}
 		}	
-
+		*/
+		
+		
+		if (selectedList != nullptr) {
+			songSelectionChanged = false;
+			selectedList->ClearSelected();
+		}
+		selectedList = (ListBox^)sender;
+		
 		for (int i = 0; i < leftSongs->Count; i++) {
 			if (leftSongs[i]->SelectedIndex != -1) {
 				index = leftSongs[i]->SelectedIndex;
@@ -451,10 +463,13 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 			}
 		}
 
+		// setting selected song
+		// this will get affected by the size of the text in the song lists
 		if (list%2 == 0)
 			musicPlayer->setSelectedSong(musicPlayer->getSelectedArtist()->getAlbums()[list / 2]->getSongs()[index]);
 		else if (list%2 == 1)
 			musicPlayer->setSelectedSong(musicPlayer->getSelectedArtist()->getAlbums()[(list-1) / 2]->getSongs()[index + leftSongs[(list-1) / 2]->Size.Height/21]);
+		System::Diagnostics::Debug::WriteLine(musicPlayer->getSelectedSong()->getSongName());
 	}
 	songSelectionChanged = true;
 }

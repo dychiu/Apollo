@@ -54,6 +54,7 @@ namespace GUI {
 		Generic::List<ListBox^>^ rightNumbers;
 		Generic::List<ListBox^>^ leftSongs;
 		Generic::List<ListBox^>^ rightSongs;
+		System::Windows::Forms::ListBox^ selectedList;
 
 		// closes window
 		System::Void button1_Click(System::Object^  sender, System::EventArgs^  e);

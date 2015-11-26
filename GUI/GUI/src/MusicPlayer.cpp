@@ -6,6 +6,9 @@ MusicPlayer::MusicPlayer() {
 	playingSong = new sf::Music();
 	playingSong->setLoop(false);
 	playingSong->setVolume(100);
+
+	currentSong = nullptr;
+	selectedSong = nullptr;
 }
 
 Library^ MusicPlayer::getMusicLibrary() {
