@@ -80,9 +80,11 @@ namespace GUI {
 		System::Void songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 		System::Void songs_DoubleClick(System::Object^  sender, System::EventArgs^  e);
 		//plays a song (for button change)
-		System::Void playSong();
+		void playSongNormal();
+		void playSongSmart();
 		//pauses a song (for button change)
-		System::Void pauseSong();
+		void pauseSongNormal();
+		void pauseSongSmart();
 		// changes normal mode to smart mode
 		void changeToSmart();
 		// changes smart mode to normal mode

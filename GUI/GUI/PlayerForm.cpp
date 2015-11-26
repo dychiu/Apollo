@@ -74,20 +74,18 @@ System::Void PlayerForm::roundButton_Paint(Object^ sender, System::Windows::Form
 System::Void PlayerForm::roundButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	if (smartPlayMode == false) {
 		if (play == false) {
-			playSong();
+			playSongNormal();
 		}
 		else if (play == true) {
-			pauseSong();
+			pauseSongNormal();
 		}
 	}
 	else if (smartPlayMode == true) {
 		if (play == false) {
-			roundButton->BackgroundImage = imageList1->Images[3];
-			play = true;
+			playSongSmart();			
 		}
 		else if (play == true) {
-			roundButton->BackgroundImage = imageList1->Images[2];
-			play = false;
+			pauseSongSmart();			
 		}
 	}
 }
@@ -464,19 +462,34 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 System::Void PlayerForm::songs_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 	//Throws an exception sometimes when double clicking too quickly?
 	musicPlayer->setCurrentSong();
-	playSong();
+	if (smartPlayMode == false)
+		playSongNormal();
+	else
+		playSongSmart();
 }
 
 //Needed in order to change the play button to pause when playing a song
-System::Void PlayerForm::playSong() {
-	play = true;
+void PlayerForm::playSongNormal() {
 	roundButton->BackgroundImage = imageList1->Images[1];
 	musicPlayer->playSong();
+	play = true;
 }
 
 //Needed in order to change the pause button back into a play button
-System::Void PlayerForm::pauseSong() {
-	play = false;
+void PlayerForm::pauseSongNormal() {
 	roundButton->BackgroundImage = imageList1->Images[0];
 	musicPlayer->pauseSong();
+	play = false;
+}
+
+void PlayerForm::playSongSmart() {
+	roundButton->BackgroundImage = imageList1->Images[3];
+	musicPlayer->playSong();
+	play = true;
+}
+
+void PlayerForm::pauseSongSmart() {
+	roundButton->BackgroundImage = imageList1->Images[2];
+	musicPlayer->pauseSong();
+	play = false;
 }
