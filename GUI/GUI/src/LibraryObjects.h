@@ -22,6 +22,8 @@ public:
 			return name;
 		}
 	}
+	//Comparison function for artist
+	static int sortArtist(Artist^ x, Artist^ y);
 
 private:
 	String^ name;

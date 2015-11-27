@@ -14,6 +14,16 @@ String^ Artist::getName() {
 }
 
 void Artist::addAlbum(Album^ a) {
+	if (albums->Count == 0) {
+		albums->Add(a);
+		return;
+	}
+	for (int i = 0; i < albums->Count; i++) {
+		if (String::Compare(a->getName(),albums[i]->getName()) < 0) {
+			albums->Insert(i, a);
+			return;
+		}
+	}
 	albums->Add(a);
 }
 
@@ -28,6 +38,10 @@ void Artist::setName(String ^ _name)
 // in the array unless you want to mess up the object
 List<Album^>^ Artist::getAlbums() {
 	return albums;
+}
+
+int Artist::sortArtist(Artist^ x, Artist^ y) {
+	return String::Compare(x->getName(),y->getName());
 }
 
 Album::Album() {
@@ -62,7 +76,16 @@ System::String^ Album::getArtworkLocation() {
 }
 
 void Album::addSong(Song^ s) {
-	//Maybe sort by track number?
+	if (songList->Count == 0) {
+		songList->Add(s);
+		return;
+	}
+	for (int i = 0; i < songList->Count; i++) {
+		if (s->getTrackNumber() < songList[i]->getTrackNumber()) {
+			songList->Insert(i, s);
+			return;
+		}
+	}
 	songList->Add(s);
 }
 
