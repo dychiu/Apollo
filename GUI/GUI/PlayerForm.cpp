@@ -458,7 +458,7 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 			musicPlayer->setSelectedSong(musicPlayer->getSelectedArtist()->getAlbums()[list / 2]->getSongs()[index]);
 		else if (list%2 == 1)
 			musicPlayer->setSelectedSong(musicPlayer->getSelectedArtist()->getAlbums()[(list-1) / 2]->getSongs()[index + leftSongs[(list-1) / 2]->Size.Height/21]);
-		System::Diagnostics::Debug::WriteLine(musicPlayer->getSelectedSong()->getSongName());
+		//System::Diagnostics::Debug::WriteLine(musicPlayer->getSelectedSong()->getSongName());
 	}
 }
 
@@ -473,6 +473,8 @@ System::Void PlayerForm::songs_DoubleClick(System::Object^  sender, System::Even
 
 //Needed in order to change the play button to pause when playing a song
 void PlayerForm::playSongNormal() {
+	if (backgroundWorker1->IsBusy == false)
+		backgroundWorker1->RunWorkerAsync(1);
 	roundButton->BackgroundImage = imageList1->Images[1];
 	musicPlayer->playSong();
 	play = true;
@@ -495,4 +497,22 @@ void PlayerForm::pauseSongSmart() {
 	roundButton->BackgroundImage = imageList1->Images[2];
 	musicPlayer->pauseSong();
 	play = false;
+}
+
+System::Void PlayerForm::backgroundWorker1_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e) {
+	while (true)
+	{
+		if (backgroundWorker1->CancellationPending) //if it was cancelled
+		{
+			e->Cancel = true;
+			break;
+		}
+		if (progressBar1->Value == progressBar1->Maximum)  //if the progress bar value reached maximum
+		{
+			break;
+		}
+
+		backgroundWorker1->ReportProgress(10);  //reporting progress
+		System::Threading::Thread::Sleep(1000);   //wait for 1 second
+	}
 }

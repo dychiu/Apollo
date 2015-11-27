@@ -19,6 +19,8 @@ namespace GUI {
 		PlayerForm();
 
 		const int WM_NCLBUTTONDOWN = 0xA1;
+	private: System::ComponentModel::BackgroundWorker^  backgroundWorker1;
+	public:
 
 		const int HT_CAPTION = 0x2;
 		[DllImportAttribute("user32.dll")]
@@ -80,6 +82,8 @@ namespace GUI {
 		System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 		System::Void songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 		System::Void songs_DoubleClick(System::Object^  sender, System::EventArgs^  e);
+		System::Void backgroundWorker1_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e);
+		
 		//plays a song (for button change)
 		void playSongNormal();
 		void playSongSmart();
@@ -115,6 +119,7 @@ namespace GUI {
 			this->importButton = (gcnew System::Windows::Forms::Button());
 			this->volume = (gcnew System::Windows::Forms::ProgressBar());
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
+			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -179,7 +184,7 @@ namespace GUI {
 			this->panel2->Location = System::Drawing::Point(373, 21);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(930, 621);
-			this->panel2->TabIndex = 4;			
+			this->panel2->TabIndex = 4;
 			// 
 			// roundButton
 			// 
@@ -300,6 +305,12 @@ namespace GUI {
 			// 
 			this->folderBrowserDialog1->Description = L"Please select a directory to import all of the songs within it.  ";
 			// 
+			// backgroundWorker1
+			// 
+			this->backgroundWorker1->WorkerReportsProgress = true;
+			this->backgroundWorker1->WorkerSupportsCancellation = true;
+			this->backgroundWorker1->DoWork += gcnew System::ComponentModel::DoWorkEventHandler(this, &PlayerForm::backgroundWorker1_DoWork);
+			// 
 			// PlayerForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -329,5 +340,6 @@ namespace GUI {
 		}
 
 		#pragma endregion
+
 };
 }
