@@ -103,6 +103,8 @@ void Library::import(String^ dir) {
 			songList->Add(tempSong);
 		}
 	}
+
+	artistList->Sort(gcnew Comparison<Artist^>(Artist::sortArtist));
 }
 
 //n^3 so room for improvement
