@@ -388,6 +388,7 @@ void PlayerForm::createComponents() {
 		panel2->Controls->Add(tempLeftSongs);
 		songSelectionChanged = false;
 		tempLeftSongs->ClearSelected();
+		songSelectionChanged = true;
 		leftSongs->Add(tempLeftSongs);
 				
 		//
@@ -417,6 +418,7 @@ void PlayerForm::createComponents() {
 		panel2->Controls->Add(tempRightSongs);
 		songSelectionChanged = false;
 		tempRightSongs->ClearSelected();
+		songSelectionChanged = true;
 		rightSongs->Add(tempRightSongs);		
 		
 		if (listSize > 5)
@@ -430,25 +432,12 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 	if (songSelectionChanged == true) {
 		int index = -1;
 		int list = -1;
-		/*
-		for (int i = 0; i < leftSongs->Count; i++) {
-			if (leftSongs[i] != sender) {
-				songSelectionChanged = false;
-				leftSongs[i]->ClearSelected();				
-			}
-		}
-		for (int i = 0; i < rightSongs->Count; i++) {
-			if (rightSongs[i] != sender) {
-				songSelectionChanged = false;
-				rightSongs[i]->ClearSelected();				
-			}
-		}	
-		*/
 		
-		
-		if (selectedList != nullptr) {
+		if (selectedList != nullptr && selectedList != (ListBox^)sender) {
 			songSelectionChanged = false;
 			selectedList->ClearSelected();
+			selectedList->ClearSelected();
+			songSelectionChanged = true;
 		}
 		selectedList = (ListBox^)sender;
 		
@@ -471,7 +460,6 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 			musicPlayer->setSelectedSong(musicPlayer->getSelectedArtist()->getAlbums()[(list-1) / 2]->getSongs()[index + leftSongs[(list-1) / 2]->Size.Height/21]);
 		System::Diagnostics::Debug::WriteLine(musicPlayer->getSelectedSong()->getSongName());
 	}
-	songSelectionChanged = true;
 }
 
 System::Void PlayerForm::songs_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
