@@ -1,5 +1,6 @@
 #pragma once
 #include "LibraryObjects.h"
+#include <set>
 
 using namespace System;
 using namespace System::IO;
@@ -10,7 +11,8 @@ public ref class Library {
 public:
 	Library();
 	List<Artist^>^ getArtistList();
-	
+	SortedDictionary<String^, bool>^ getGenreList();
+
 	void import(String ^dir);
 	void load();
 	void save();

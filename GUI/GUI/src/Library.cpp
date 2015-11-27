@@ -10,6 +10,19 @@ List<Artist^>^ Library::getArtistList() {
 	return artistList;
 }
 
+SortedDictionary<String^, bool>^ Library::getGenreList() {
+	SortedDictionary<String^, bool>^ genres = gcnew SortedDictionary<String^, bool>();
+	for each (Song^ song in songList) {
+		try {
+			genres->Add(song->getGenre(), true);
+		}
+		catch (ArgumentException ^e) {
+			//already in the list, don't add
+		}
+	}
+	return genres;
+}
+
 // remember to include try catch block for when there are no files of extension .flac, .wav, or .ogg
 void Library::import(String^ dir) {
 	array<String^>^ validExtentions = { "*.flac", "*.wav", "*.ogg" };
