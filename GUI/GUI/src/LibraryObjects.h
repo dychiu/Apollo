@@ -80,6 +80,11 @@ public:
 			return songName;
 		}
 	}
+	property int SongNumber {
+		int get() {
+			return trackNumber;
+		}
+	}
 private:
 	System::String^ songName;
 	System::String^ genre;

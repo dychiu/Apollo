@@ -333,8 +333,8 @@ void PlayerForm::createComponents() {
 		tempLeftNumbers->Size = System::Drawing::Size(22, 21 * listSize);
 		tempLeftNumbers->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
 
-		for (int j = 0; j < listSize; j++)
-			tempLeftNumbers->Items->Add(j + 1);
+		tempLeftNumbers->DataSource = musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->GetRange(0, listSize);
+		tempLeftNumbers->DisplayMember = "SongNumber";
 
 		panel2->Controls->Add(tempLeftNumbers);
 		leftNumbers->Add(tempLeftNumbers);
@@ -358,9 +358,12 @@ void PlayerForm::createComponents() {
 		tempRightNumbers->Size = System::Drawing::Size(22, 21 * listSize);
 		tempRightNumbers->RightToLeft = System::Windows::Forms::RightToLeft::Yes;
 
-		for (int j = 0; j < musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count - listSize; j++)
-			tempRightNumbers->Items->Add(j + listSize + 1);
+		tempRightNumbers->DataSource = musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->GetRange(listSize, musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count - listSize);
+		tempRightNumbers->DisplayMember = "SongNumber";
 
+		/*for (int j = 0; j < musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count - listSize; j++)
+			tempRightNumbers->Items->Add(j + listSize + 1);
+*/
 		panel2->Controls->Add(tempRightNumbers);
 		rightNumbers->Add(tempRightNumbers);
 
