@@ -20,6 +20,7 @@ Library^ MusicPlayer::getMusicLibrary() {
 
 void MusicPlayer::playSong()
 {
+	if (currentSong == nullptr) { return; }
 	if (isMP3(selectedSong)) {
 		mp3Player->Play();
 	}
@@ -133,8 +134,9 @@ void MusicPlayer::playNextSong() {
 		if (currentAlbum->getSongs()[currentAlbum->getSongs()->Count - 1] == currentSong) {
 			//If the current album is the last album as well
 			if (currentArtist->getAlbums()[currentArtist->getAlbums()->Count - 1] == currentAlbum) {
-				//Not working
 				//Won't change pause button back to play button though!
+				//Causes a crash if playbutton is clicked now.
+				Diagnostics::Debug::WriteLine("End of artist!");
 				closeSong();
 			}
 			else {

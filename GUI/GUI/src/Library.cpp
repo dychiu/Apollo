@@ -73,7 +73,8 @@ void Library::import(String^ dir) {
 		}
 
 		for (int i = 0; i < albumList->Count; i++) {
-			if (albumList[i]->getName() == albumName) {
+			if (albumList[i]->getName() == albumName &&
+					albumList[i]->getParentArtist()->getName() == tempArtist->getName()) {
 				tempAlbum = albumList[i];
 				albumExists = true;
 				break;
@@ -103,7 +104,6 @@ void Library::import(String^ dir) {
 			songList->Add(tempSong);
 		}
 	}
-
 	artistList->Sort(gcnew Comparison<Artist^>(Artist::sortArtist));
 }
 
@@ -117,7 +117,9 @@ void Library::save()
 	xmlFile->WriteStartElement("apollo");
 
 	xmlFile->WriteStartElement("settings");
-	//put settings between these
+	//////////////////////////////
+	//put settings between these//
+	//////////////////////////////
 	xmlFile->WriteEndElement();
 
 	xmlFile->WriteStartElement("library");
