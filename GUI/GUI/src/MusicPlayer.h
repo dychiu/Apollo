@@ -5,9 +5,13 @@
 #include "LibraryObjects.h"
 #include "SFML/Audio.hpp"
 
+#using "../../packages/NAudio-Release/NAudio.dll"
+#using "../../packages/NAudio-Release/NAudio.WindowsMediaFormat.dll"
+
 using namespace System;
 using namespace System::Diagnostics;
 using namespace System::Xml;
+namespace naudio = NAudio::Wave;
 
 public ref class MusicPlayer {
 public:
@@ -33,6 +37,9 @@ public:
 	Artist^ getCurrentArtist();
 private:
 	sf::Music* playingSong;
+	naudio::IWavePlayer^ mp3Player;
+	naudio::AudioFileReader^ mp3FileReader;
+
 	Library^ musicLibrary;
 	Song^ currentSong;
 	Album^ currentAlbum;
@@ -41,4 +48,5 @@ private:
 	Song^ selectedSong;
 	
 	void setPlayingSong(Song^ song);
+	bool isMP3(Song^ song);
 };

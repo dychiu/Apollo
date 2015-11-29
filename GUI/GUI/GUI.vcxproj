@@ -141,6 +141,12 @@
     <ClCompile Include="WinCLR2015.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="NAudio">
+      <HintPath>..\..\packages\NAudio-Release\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.WindowsMediaFormat">
+      <HintPath>..\..\packages\NAudio-Release\NAudio.WindowsMediaFormat.dll</HintPath>
+    </Reference>
     <Reference Include="policy.2.0.taglib-sharp">
       <HintPath>..\..\packages\taglib.2.1.0.0\lib\policy.2.0.taglib-sharp.dll</HintPath>
     </Reference>

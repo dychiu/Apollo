@@ -25,7 +25,7 @@ SortedDictionary<String^, bool>^ Library::getGenreList() {
 
 // remember to include try catch block for when there are no files of extension .flac, .wav, or .ogg
 void Library::import(String^ dir) {
-	array<String^>^ validExtentions = { "*.flac", "*.wav", "*.ogg" };
+	array<String^>^ validExtentions = { "*.mp3", "*.flac", "*.wav", "*.ogg" };
 	List<String^>^ files = gcnew List<String^>();
 
 	for each (String^ s in validExtentions) {
