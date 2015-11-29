@@ -46,7 +46,6 @@ namespace GUI {
 		System::ComponentModel::IContainer^  components;
 	
 		bool play;
-		bool smartPlayMode;
 		bool artistSelectionsCleared;
 		bool songSelectionChanged;
 		MusicPlayer^ musicPlayer;

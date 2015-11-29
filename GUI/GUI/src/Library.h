@@ -1,6 +1,5 @@
 #pragma once
 #include "LibraryObjects.h"
-#include <set>
 
 using namespace System;
 using namespace System::IO;

@@ -23,18 +23,21 @@ public:
 	void seekSong(int value);
 	void closeSong();
 	void setVolume(int value);
+	void playNextSong();
 
 	void setCurrentSong();
 	void setCurrentAlbum();
 	void setCurrentArtist();
 	void setSelectedSong(Song^ newSelection);
 	void setSelectedArtist(Artist^ newSelection);
+	void setSmartPlay(bool smartPlay);
 
 	Song^ getSelectedSong();
 	Artist^ getSelectedArtist();
 	Song^ getCurrentSong();
 	Album^ getCurrentAlbum();
 	Artist^ getCurrentArtist();
+	bool getSmartPlay();
 private:
 	sf::Music* playingSong;
 	naudio::IWavePlayer^ mp3Player;
@@ -46,6 +49,7 @@ private:
 	Artist^ currentArtist;
 	Artist^ selectedArtist;
 	Song^ selectedSong;
+	bool smartPlayMode;
 	
 	void setPlayingSong(Song^ song);
 	bool isMP3(Song^ song);

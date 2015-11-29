@@ -11,6 +11,7 @@ MusicPlayer::MusicPlayer() {
 
 	currentSong = nullptr;
 	selectedSong = nullptr;
+	smartPlayMode = false;
 }
 
 Library^ MusicPlayer::getMusicLibrary() {
@@ -122,6 +123,40 @@ void MusicPlayer::setSelectedArtist(Artist^ newSelection)
 	selectedArtist = newSelection;
 }
 
+void MusicPlayer::setSmartPlay(bool smartPlay) {
+	smartPlayMode = smartPlay;
+}
+
+void MusicPlayer::playNextSong() {
+	if (!smartPlayMode) {
+		//If current song is last in album
+		if (currentAlbum->getSongs()[currentAlbum->getSongs()->Count - 1] == currentSong) {
+			//If the current album is the last album as well
+			if (currentArtist->getAlbums()[currentArtist->getAlbums()->Count - 1] == currentAlbum) {
+				//Not working
+				//Won't change pause button back to play button though!
+				closeSong();
+			}
+			else {
+				//Otherwise start next album with first song
+				currentAlbum = currentArtist->getAlbums()[currentArtist->getAlbums()->IndexOf(currentAlbum) + 1];
+				setSelectedSong(currentAlbum->getSongs()[0]);
+				setCurrentSong();
+				playSong();
+			}
+		}
+		else {
+			//Otherwise just play the next song in the album
+			setSelectedSong(currentAlbum->getSongs()[currentAlbum->getSongs()->IndexOf(currentSong) + 1]);
+			setCurrentSong();
+			playSong();
+		}
+	}
+	else {
+		//Smartplay integration goes here
+	}
+}
+
 bool MusicPlayer::isMP3(Song^ song) {
 	if (Path::GetExtension(song->getFilePath()) == ".mp3")
 		return true;
@@ -152,4 +187,8 @@ Album^ MusicPlayer::getCurrentAlbum()
 Artist^ MusicPlayer::getCurrentArtist()
 {
 	return currentArtist;
+}
+
+bool MusicPlayer::getSmartPlay() {
+	return smartPlayMode;
 }

@@ -9,7 +9,6 @@ PlayerForm::PlayerForm() {
 	play = false;
 	// initialize smart play button image
 	smartPlayButton->BackgroundImage = imageList1->Images[2];
-	smartPlayMode = false;
 	// initialize skip button image
 	skipButton->BackgroundImage = imageList1->Images[4];
 	// initialize close button image
@@ -74,22 +73,25 @@ System::Void PlayerForm::roundButton_Paint(Object^ sender, System::Windows::Form
 }
 
 System::Void PlayerForm::roundButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-	if (smartPlayMode == false) {
-		if (play == false) {
-			if (musicPlayer->getCurrentSong() == nullptr && musicPlayer->getSelectedSong() != nullptr)
-				musicPlayer->setCurrentSong();
-			playSongNormal();
+	if (musicPlayer->getSelectedSong() != nullptr) {
+		if (musicPlayer->getSmartPlay() == false) {
+			if (play == false) {
+				//If selection has been changed and user clicks play again, start new song
+				if (musicPlayer->getCurrentSong() != musicPlayer->getSelectedSong())
+					musicPlayer->setCurrentSong();
+				playSongNormal();
+			}
+			else if (play == true) {
+				pauseSongNormal();
+			}
 		}
-		else if (play == true) {
-			pauseSongNormal();
-		}
-	}
-	else if (smartPlayMode == true) {
-		if (play == false) {
-			playSongSmart();			
-		}
-		else if (play == true) {
-			pauseSongSmart();			
+		else if (musicPlayer->getSmartPlay() == true) {
+			if (play == false) {
+				playSongSmart();
+			}
+			else if (play == true) {
+				pauseSongSmart();
+			}
 		}
 	}
 }
@@ -102,20 +104,23 @@ System::Void PlayerForm::smartPlayButton_Paint(System::Object^  sender, System::
 }
 
 System::Void PlayerForm::smartPlayButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-	if (smartPlayMode == false) {
+	if (musicPlayer->getSmartPlay() == false) {
 		changeToSmart();
-		smartPlayMode = true;
-		play = false;
+		musicPlayer->setSmartPlay(true);
+		//play = false;
 	}
-	else if (smartPlayMode == true) {
+	else if (musicPlayer->getSmartPlay() == true) {
 		changeToNormal();
-		smartPlayMode = false;
-		play = false;
+		musicPlayer->setSmartPlay(false);
+		//play = false;
 	}
 }
 
 void PlayerForm::changeToSmart() {
-	roundButton->BackgroundImage = imageList1->Images[2];
+	if (play == false)
+		roundButton->BackgroundImage = imageList1->Images[2];
+	else
+		roundButton->BackgroundImage = imageList1->Images[3];
 	roundButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(100)));
 
@@ -168,7 +173,10 @@ void PlayerForm::changeToSmart() {
 }
 
 void PlayerForm::changeToNormal() {
-	roundButton->BackgroundImage = imageList1->Images[0];
+	if (play == false)
+		roundButton->BackgroundImage = imageList1->Images[0];
+	else
+		roundButton->BackgroundImage = imageList1->Images[1];
 	roundButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
 
@@ -228,7 +236,7 @@ System::Void PlayerForm::skipButton_Paint(System::Object^  sender, System::Windo
 }
 
 System::Void PlayerForm::skipButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-	// put stuff in here
+	musicPlayer->playNextSong();
 }
 
 System::Void PlayerForm::minimizeButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
@@ -318,7 +326,7 @@ void PlayerForm::createComponents() {
 		// left track numbers
 		//
 		System::Windows::Forms::ListBox^ tempLeftNumbers = (gcnew System::Windows::Forms::ListBox());
-		if (smartPlayMode == false)
+		if (musicPlayer->getSmartPlay() == false)
 			tempLeftNumbers->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 		else
@@ -343,7 +351,7 @@ void PlayerForm::createComponents() {
 		// right track numbers
 		//
 		System::Windows::Forms::ListBox^ tempRightNumbers = (gcnew System::Windows::Forms::ListBox());
-		if (smartPlayMode == false)
+		if (musicPlayer->getSmartPlay() == false)
 			tempRightNumbers->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 		else
@@ -361,9 +369,6 @@ void PlayerForm::createComponents() {
 		tempRightNumbers->DataSource = musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->GetRange(listSize, musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count - listSize);
 		tempRightNumbers->DisplayMember = "SongNumber";
 
-		/*for (int j = 0; j < musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()->Count - listSize; j++)
-			tempRightNumbers->Items->Add(j + listSize + 1);
-*/
 		panel2->Controls->Add(tempRightNumbers);
 		rightNumbers->Add(tempRightNumbers);
 
@@ -371,7 +376,7 @@ void PlayerForm::createComponents() {
 		// left songs
 		//
 		System::Windows::Forms::ListBox^ tempLeftSongs = (gcnew System::Windows::Forms::ListBox());
-		if (smartPlayMode == false)
+		if (musicPlayer->getSmartPlay() == false)
 			tempLeftSongs->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 		else
@@ -398,7 +403,7 @@ void PlayerForm::createComponents() {
 		// right songs
 		//
 		System::Windows::Forms::ListBox^ tempRightSongs = (gcnew System::Windows::Forms::ListBox());
-		if (smartPlayMode == false)
+		if (musicPlayer->getSmartPlay() == false)
 			tempRightSongs->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 		else
@@ -468,7 +473,7 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 System::Void PlayerForm::songs_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 	//Throws an exception sometimes when double clicking too quickly?
 	musicPlayer->setCurrentSong();
-	if (smartPlayMode == false)
+	if (musicPlayer->getSmartPlay() == false)
 		playSongNormal();
 	else
 		playSongSmart();
