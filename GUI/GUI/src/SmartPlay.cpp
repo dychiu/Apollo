@@ -1,9 +1,19 @@
 #include "Windows.h"
 #include "SmartPlay.h"
+#include "LibraryObjects.h"
 
-SmartPlay::SmartPlay(List<Song^>^ sList)
-{
-	throw gcnew System::NotImplementedException();
+SmartPlay::SmartPlay(List<Song^>^ pool) {
+	songPool = gcnew List<Song^>;
+	genreMap = gcnew Dictionary<String^, String^>;
+	work = gcnew List<String^>;
+	gaming = gcnew List<String^>;
+
+	for (int i = 0; i < pool->Count; i++) {
+		songPool->Add(pool[i]);
+	}
+
+	initializePreferences();
+	refreshValidSongs();
 }
 
 String^ SmartPlay::getActiveWindow() {
@@ -18,36 +28,62 @@ String^ SmartPlay::getActiveWindow() {
 		return "";
 }
 
-String ^ SmartPlay::getCurrentApplication()
-{
-	throw gcnew System::NotImplementedException();
-	// TODO: insert return statement here
+String ^ SmartPlay::getActiveApplication() {
+	return activeApplication;
 }
 
-String ^ SmartPlay::getValidSongs()
-{
-	throw gcnew System::NotImplementedException();
-	// TODO: insert return statement here
+List<Song^>^ SmartPlay::getValidSongs() {
+	refreshValidSongs();
+	return validSongs;
 }
 
 void SmartPlay::changePreference(String ^ category, String ^ genre)
 {
-	throw gcnew System::NotImplementedException();
 }
 
 void SmartPlay::refreshValidSongs()
 {
-	throw gcnew System::NotImplementedException();
+	refreshActiveApplication();
+	refreshCategory();
+
 }
 
 void SmartPlay::refreshCategory()
 {
-	throw gcnew System::NotImplementedException();
+	activeCategory = "other";
+	for (int i = 0; i < work->Count; i++) {
+		if (activeApplication->Contains(work[i])) {
+			activeCategory = "work";
+		}
+	}
+
+	for (int i = 0; i < gaming->Count; i++) {
+		if (activeApplication->Contains(work[i])) {
+			activeCategory = "gaming";
+		}
+	}
 }
 
 void SmartPlay::refreshActiveApplication()
 {
-	throw gcnew System::NotImplementedException();
+	activeApplication = getActiveApplication()->ToLower();
+}
+
+void SmartPlay::initializePreferences() {
+	// work applications
+	work->Add("outlook");
+	work->Add("word");
+	work->Add("excel");
+	work->Add("powerpoint");
+	work->Add("visual studio");
+	work->Add("eclipse");
+
+	// gaming applications
+	gaming->Add("solitaire");
+	gaming->Add("minesweeper");
+
+	genreMap["work"] = "default";
+	genreMap["gaming"] = "default";
 }
 
 
