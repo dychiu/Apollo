@@ -138,6 +138,7 @@
     <ClCompile Include="src\LibraryObjects.cpp" />
     <ClCompile Include="src\Library.cpp" />
     <ClCompile Include="src\MusicPlayer.cpp" />
+    <ClCompile Include="src\SmartPlay.cpp" />
     <ClCompile Include="WinCLR2015.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="src\LibraryObjects.h" />
     <ClInclude Include="src\Library.h" />
     <ClInclude Include="src\MusicPlayer.h" />
+    <ClInclude Include="src\SmartPlay.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PlayerForm.resx">
