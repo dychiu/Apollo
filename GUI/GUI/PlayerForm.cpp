@@ -471,13 +471,21 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 }
 
 System::Void PlayerForm::songs_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
-	//Throws an exception sometimes when double clicking too quickly?
 	musicPlayer->setCurrentSong();
 	if (musicPlayer->getSmartPlay() == false)
 		playSongNormal();
 	else
 		playSongSmart();
 }
+
+System::Void PlayerForm::artists_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
+	musicPlayer->setCurrentArtist();
+	if (musicPlayer->getSmartPlay() == false)
+		playSongNormal();
+	else
+		playSongSmart();
+}
+
 
 //Needed in order to change the play button to pause when playing a song
 void PlayerForm::playSongNormal() {

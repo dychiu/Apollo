@@ -81,6 +81,7 @@ namespace GUI {
 		System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 		System::Void songs_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
 		System::Void songs_DoubleClick(System::Object^  sender, System::EventArgs^  e);
+		System::Void artists_DoubleClick(System::Object^  sender, System::EventArgs^  e);
 		System::Void backgroundWorker1_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e);
 		
 		//plays a song (for button change)
@@ -152,6 +153,8 @@ namespace GUI {
 			this->listBox1->Size = System::Drawing::Size(376, 621);
 			this->listBox1->TabIndex = 1;
 			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &PlayerForm::listBox1_SelectedIndexChanged);
+			this->listBox1->DoubleClick += gcnew System::EventHandler(this, &PlayerForm::artists_DoubleClick);
+
 			// 
 			// progressBar1
 			// 

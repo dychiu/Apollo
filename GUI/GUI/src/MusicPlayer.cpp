@@ -105,11 +105,10 @@ void MusicPlayer::setCurrentAlbum()
 
 void MusicPlayer::setCurrentArtist()
 {
-	//Set the artist, and then default to the first song
-	//of the first album
 	currentArtist = selectedArtist;
 	currentAlbum = currentArtist->getAlbums()[0];
 	currentSong = currentAlbum->getSongs()[0];
+	setSelectedSong(currentSong);
 	setPlayingSong(currentSong);
 }
 
