@@ -1,5 +1,9 @@
 #pragma once
 
+#include "src/Library.h"
+
+ref class Library;
+
 namespace GUI {
 
 	using namespace System;
@@ -8,148 +12,130 @@ namespace GUI {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
 
-	/// <summary>
-	/// Summary for PreferencesForm
-	/// </summary>
 	public ref class PreferencesForm : public System::Windows::Forms::Form
 	{
 	public:
-		PreferencesForm(void)
-		{
-			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
-		}
-
-	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		~PreferencesForm()
-		{
-			if (components)
-			{
-				delete components;
-			}
-		}
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::ComboBox^  comboBox1;
-	private: System::Windows::Forms::ComboBox^  comboBox2;
-	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::ComboBox^  comboBox3;
-	private: System::Windows::Forms::Label^  label3;
-	protected:
+		PreferencesForm(SortedDictionary<String^, bool>^ genres);
 
 	private:
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
+		System::Windows::Forms::Button^  okButton;
+		System::Windows::Forms::Button^  cancelButton;
+		System::Windows::Forms::Label^  workLabel;
+		System::Windows::Forms::Label^  gamingLabel;
+		System::Windows::Forms::Label^  otherLabel;
+		System::Windows::Forms::CheckedListBox^  workBox;
+		System::Windows::Forms::CheckedListBox^  gamingBox;
+		System::Windows::Forms::CheckedListBox^  otherBox;
 		System::ComponentModel::Container ^components;
 
+		Generic::List<String^>^ workPreferences;
+		Generic::List<String^>^ gamingPreferences;
+		Generic::List<String^>^ otherPreferences;
+
+		System::Void cancelButton_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void okButton_Click(System::Object^  sender, System::EventArgs^  e);
+		System::Void workBox_ItemCheck(System::Object^ sender, System::Windows::Forms::ItemCheckEventArgs^ e);
+
 #pragma region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
+
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->okButton = (gcnew System::Windows::Forms::Button());
+			this->cancelButton = (gcnew System::Windows::Forms::Button());
+			this->workLabel = (gcnew System::Windows::Forms::Label());
+			this->gamingLabel = (gcnew System::Windows::Forms::Label());
+			this->otherLabel = (gcnew System::Windows::Forms::Label());
+			this->workBox = (gcnew System::Windows::Forms::CheckedListBox());
+			this->gamingBox = (gcnew System::Windows::Forms::CheckedListBox());
+			this->otherBox = (gcnew System::Windows::Forms::CheckedListBox());
 			this->SuspendLayout();
 			// 
-			// button1
+			// okButton
 			// 
-			this->button1->Location = System::Drawing::Point(71, 303);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"OK";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &PreferencesForm::button1_Click);
+			this->okButton->Location = System::Drawing::Point(71, 303);
+			this->okButton->Name = L"okButton";
+			this->okButton->Size = System::Drawing::Size(75, 23);
+			this->okButton->TabIndex = 0;
+			this->okButton->Text = L"OK";
+			this->okButton->UseVisualStyleBackColor = true;
+			this->okButton->Click += gcnew System::EventHandler(this, &PreferencesForm::okButton_Click);
 			// 
-			// button2
+			// cancelButton
 			// 
-			this->button2->Location = System::Drawing::Point(199, 303);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 1;
-			this->button2->Text = L"Cancel";
-			this->button2->UseVisualStyleBackColor = true;
+			this->cancelButton->Location = System::Drawing::Point(199, 303);
+			this->cancelButton->Name = L"cancelButton";
+			this->cancelButton->Size = System::Drawing::Size(75, 23);
+			this->cancelButton->TabIndex = 1;
+			this->cancelButton->Text = L"Cancel";
+			this->cancelButton->UseVisualStyleBackColor = true;
+			this->cancelButton->Click += gcnew System::EventHandler(this, &PreferencesForm::cancelButton_Click);
 			// 
-			// label1
+			// workLabel
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(3, 21);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(33, 13);
-			this->label1->TabIndex = 2;
-			this->label1->Text = L"Work";
+			this->workLabel->AutoSize = true;
+			this->workLabel->Location = System::Drawing::Point(3, 9);
+			this->workLabel->Name = L"workLabel";
+			this->workLabel->Size = System::Drawing::Size(33, 13);
+			this->workLabel->TabIndex = 2;
+			this->workLabel->Text = L"Work";
 			// 
-			// comboBox1
+			// gamingLabel
 			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Location = System::Drawing::Point(6, 37);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(332, 21);
-			this->comboBox1->TabIndex = 3;
+			this->gamingLabel->AutoSize = true;
+			this->gamingLabel->Location = System::Drawing::Point(3, 102);
+			this->gamingLabel->Name = L"gamingLabel";
+			this->gamingLabel->Size = System::Drawing::Size(43, 13);
+			this->gamingLabel->TabIndex = 4;
+			this->gamingLabel->Text = L"Gaming";
 			// 
-			// comboBox2
+			// otherLabel
 			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Location = System::Drawing::Point(6, 125);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(332, 21);
-			this->comboBox2->TabIndex = 5;
+			this->otherLabel->AutoSize = true;
+			this->otherLabel->Location = System::Drawing::Point(3, 201);
+			this->otherLabel->Name = L"otherLabel";
+			this->otherLabel->Size = System::Drawing::Size(33, 13);
+			this->otherLabel->TabIndex = 6;
+			this->otherLabel->Text = L"Other";
 			// 
-			// label2
+			// workBox
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(3, 109);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(40, 13);
-			this->label2->TabIndex = 4;
-			this->label2->Text = L"Coding";
+			this->workBox->FormattingEnabled = true;
+			this->workBox->Location = System::Drawing::Point(6, 25);
+			this->workBox->Name = L"workBox";
+			this->workBox->Size = System::Drawing::Size(330, 64);
+			this->workBox->TabIndex = 7;
 			// 
-			// comboBox3
+			// gamingBox
 			// 
-			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Location = System::Drawing::Point(6, 217);
-			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(332, 21);
-			this->comboBox3->TabIndex = 7;
+			this->gamingBox->FormattingEnabled = true;
+			this->gamingBox->Location = System::Drawing::Point(6, 118);
+			this->gamingBox->Name = L"gamingBox";
+			this->gamingBox->Size = System::Drawing::Size(330, 64);
+			this->gamingBox->TabIndex = 8;
 			// 
-			// label3
+			// otherBox
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(3, 201);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(33, 13);
-			this->label3->TabIndex = 6;
-			this->label3->Text = L"Other";
+			this->otherBox->FormattingEnabled = true;
+			this->otherBox->Location = System::Drawing::Point(6, 217);
+			this->otherBox->Name = L"otherBox";
+			this->otherBox->Size = System::Drawing::Size(330, 64);
+			this->otherBox->TabIndex = 9;
 			// 
 			// PreferencesForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(348, 340);
-			this->Controls->Add(this->comboBox3);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->comboBox2);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->comboBox1);
-			this->Controls->Add(this->label1);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(343, 340);
+			this->Controls->Add(this->otherBox);
+			this->Controls->Add(this->gamingBox);
+			this->Controls->Add(this->workBox);
+			this->Controls->Add(this->otherLabel);
+			this->Controls->Add(this->gamingLabel);
+			this->Controls->Add(this->workLabel);
+			this->Controls->Add(this->cancelButton);
+			this->Controls->Add(this->okButton);
 			this->Name = L"PreferencesForm";
 			this->Text = L"Preferences";
 			this->ResumeLayout(false);
@@ -157,7 +143,6 @@ namespace GUI {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
+
 	};
 }

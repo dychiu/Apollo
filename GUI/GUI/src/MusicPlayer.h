@@ -38,6 +38,7 @@ public:
 	Album^ getCurrentAlbum();
 	Artist^ getCurrentArtist();
 	bool getSmartPlay();
+	bool isMP3(Song^ song);
 private:
 	sf::Music* playingSong;
 	naudio::IWavePlayer^ mp3Player;
@@ -52,5 +53,8 @@ private:
 	bool smartPlayMode;
 	
 	void setPlayingSong(Song^ song);
-	bool isMP3(Song^ song);
+
+	List<String^>^ workPreferences;
+	List<String^>^ gamingPreferences;
+	List<String^>^ otherPreferences;
 };
