@@ -1,8 +1,8 @@
 #pragma once
 
-#include "src/Library.h"
+#include "src/MusicPlayer.h"
 
-ref class Library;
+ref class MusicPlayer;
 
 namespace GUI {
 

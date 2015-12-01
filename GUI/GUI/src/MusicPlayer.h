@@ -31,12 +31,17 @@ public:
 	void setSelectedSong(Song^ newSelection);
 	void setSelectedArtist(Artist^ newSelection);
 	void setSmartPlay(bool smartPlay);
+	void setWorkPreferences(List<String^>^ _workPreferences);
+	void setGamingPreferences(List<String^>^ _gamingPreferences);
+	void setOtherPreferences(List<String^>^ _otherPreferences);
 
 	Song^ getSelectedSong();
 	Artist^ getSelectedArtist();
 	Song^ getCurrentSong();
 	Album^ getCurrentAlbum();
 	Artist^ getCurrentArtist();
+	sf::Music* getSFML();
+	naudio::IWavePlayer^ getNAudio();
 	bool getSmartPlay();
 	bool isMP3(Song^ song);
 private:

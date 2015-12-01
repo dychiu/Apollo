@@ -21,7 +21,7 @@ Library^ MusicPlayer::getMusicLibrary() {
 void MusicPlayer::playSong()
 {
 	if (currentSong == nullptr) { return; }
-	if (isMP3(selectedSong)) {
+	if (isMP3(currentSong)) {
 		mp3Player->Play();
 	}
 	else {
@@ -127,6 +127,18 @@ void MusicPlayer::setSmartPlay(bool smartPlay) {
 	smartPlayMode = smartPlay;
 }
 
+void MusicPlayer::setWorkPreferences(List<String^>^ _workPreferences) {
+	workPreferences = _workPreferences;
+}
+
+void MusicPlayer::setGamingPreferences(List<String^>^ _gamingPreferences) {
+	gamingPreferences = _gamingPreferences;
+}
+
+void MusicPlayer::setOtherPreferences(List<String^>^ _otherPreferences) {
+	otherPreferences = _otherPreferences;
+}
+
 void MusicPlayer::playNextSong() {
 	if (!smartPlayMode) {
 		//If current song is last in album
@@ -192,4 +204,14 @@ Artist^ MusicPlayer::getCurrentArtist()
 
 bool MusicPlayer::getSmartPlay() {
 	return smartPlayMode;
+}
+
+//Danger, aliasing
+sf::Music* MusicPlayer::getSFML() {
+	return playingSong;
+}
+
+//Danger, aliasing
+naudio::IWavePlayer^ MusicPlayer::getNAudio() {
+	return mp3Player;
 }
