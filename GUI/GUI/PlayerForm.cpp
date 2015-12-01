@@ -540,7 +540,9 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 } 
 
 System::Void PlayerForm::progressBar1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-
+	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+		musicPlayer->getNAudioReader()->Skip((e->Location.X / 960.0) * musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
+	
 }
 
 System::Void PlayerForm::button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
