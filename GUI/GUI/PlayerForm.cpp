@@ -75,10 +75,7 @@ System::Void PlayerForm::roundButton_Paint(Object^ sender, System::Windows::Form
 System::Void PlayerForm::roundButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	if (musicPlayer->getSelectedSong() != nullptr) {
 		if (musicPlayer->getSmartPlay() == false) {
-			if (play == false) {
-				//If selection has been changed and user clicks play again, start new song
-				if (musicPlayer->getCurrentSong() != musicPlayer->getSelectedSong())
-					musicPlayer->setCurrentSong();
+			if (play == false) {				
 				playSongNormal();
 			}
 			else if (play == true) {
@@ -489,7 +486,6 @@ System::Void PlayerForm::artists_DoubleClick(System::Object^  sender, System::Ev
 		playSongSmart();
 }
 
-
 //Needed in order to change the play button to pause when playing a song
 void PlayerForm::playSongNormal() {
 	if (backgroundWorker1->IsBusy == false)
@@ -521,17 +517,20 @@ void PlayerForm::pauseSongSmart() {
 System::Void PlayerForm::backgroundWorker1_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e) {
 	while (true)
 	{
-		if (backgroundWorker1->CancellationPending) //if it was cancelled
-		{
-			e->Cancel = true;
-			break;
-		}
 		if (progressBar1->Value == progressBar1->Maximum)  //if the progress bar value reached maximum
 		{
 			break;
 		}
 
-		backgroundWorker1->ReportProgress(10);  //reporting progress
-		System::Threading::Thread::Sleep(1000);   //wait for 1 second
+		backgroundWorker1->ReportProgress(1);  //reporting progress
+		System::Threading::Thread::Sleep(1);   //wait for 1 second
 	}
 }
+
+System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  sender, System::ComponentModel::ProgressChangedEventArgs^  e) {
+	//progressBar1->Value += e->ProgressPercentage;
+	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+		progressBar1->Value = 100000 * musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds / musicPlayer->getNAudioReader()->TotalTime.TotalSeconds;
+	else
+		progressBar1->Value = 100000 * musicPlayer->getSFML()->getPlayingOffset().asSeconds() / musicPlayer->getSFML()->getDuration().asSeconds();
+} 

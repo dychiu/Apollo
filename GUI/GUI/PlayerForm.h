@@ -83,6 +83,7 @@ namespace GUI {
 		System::Void songs_DoubleClick(System::Object^  sender, System::EventArgs^  e);
 		System::Void artists_DoubleClick(System::Object^  sender, System::EventArgs^  e);
 		System::Void backgroundWorker1_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e);
+		System::Void backgroundWorker1_ProgressChanged(System::Object^  sender, System::ComponentModel::ProgressChangedEventArgs^  e);
 		
 		//plays a song (for button change)
 		void playSongNormal();
@@ -162,7 +163,7 @@ namespace GUI {
 			this->progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->progressBar1->Location = System::Drawing::Point(-1, 640);
-			this->progressBar1->Maximum = 10000;
+			this->progressBar1->Maximum = 100000;
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(1282, 81);
 			this->progressBar1->Step = 1;
@@ -312,6 +313,7 @@ namespace GUI {
 			this->backgroundWorker1->WorkerReportsProgress = true;
 			this->backgroundWorker1->WorkerSupportsCancellation = true;
 			this->backgroundWorker1->DoWork += gcnew System::ComponentModel::DoWorkEventHandler(this, &PlayerForm::backgroundWorker1_DoWork);
+			this->backgroundWorker1->ProgressChanged += gcnew System::ComponentModel::ProgressChangedEventHandler(this, &PlayerForm::backgroundWorker1_ProgressChanged);
 			// 
 			// PlayerForm
 			// 
@@ -342,6 +344,6 @@ namespace GUI {
 		}
 
 		#pragma endregion
-
-};
+		
+	};
 }
