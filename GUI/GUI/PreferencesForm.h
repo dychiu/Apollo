@@ -17,6 +17,7 @@ namespace GUI {
 	public ref class PreferencesForm : public System::Windows::Forms::Form
 	{
 	public:
+		PreferencesForm(MusicPlayer^ _player);
 		PreferencesForm(SortedDictionary<String^, bool>^ genres, MusicPlayer^ _player);
 
 	private:
