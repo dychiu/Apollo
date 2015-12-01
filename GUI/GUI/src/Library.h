@@ -9,6 +9,7 @@ using namespace System::Collections::Generic;
 public ref class Library {
 public:
 	Library();
+	List<Song^>^ getSongList();
 	List<Artist^>^ getArtistList();
 	SortedDictionary<String^, bool>^ getGenreList();
 
