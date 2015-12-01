@@ -17,15 +17,15 @@ SmartPlay::SmartPlay(List<Song^>^ pool) {
 }
 
 String^ SmartPlay::getActiveWindow() {
-		const int buffSize = 256;
-		wchar_t buffer[buffSize];
-		HWND handle = GetForegroundWindow();
+	const int buffSize = 256;
+	wchar_t buffer[buffSize];
+	HWND handle = GetForegroundWindow();
 
-		if (GetWindowText(handle, buffer, buffSize) > 0)
-		{
-			return gcnew System::String(buffer);
-		}
-		return "";
+	if (GetWindowText(handle, buffer, buffSize) > 0)
+	{
+		return gcnew String(buffer);
+	}
+	return "";
 }
 
 String ^ SmartPlay::getActiveApplication() {
@@ -39,6 +39,7 @@ List<Song^>^ SmartPlay::getValidSongs() {
 
 void SmartPlay::changePreference(String ^ category, String ^ genre)
 {
+	genreMap[category] = genre;
 }
 
 void SmartPlay::refreshValidSongs()
@@ -46,6 +47,16 @@ void SmartPlay::refreshValidSongs()
 	refreshActiveApplication();
 	refreshCategory();
 
+	String^ activeGenre = genreMap[activeCategory];
+	List<Song^>^ newValidSongs = gcnew List<Song^>;
+
+	// add the song to our new list of valid songs if it matches the selected genres
+	for (int i = 0; i < songPool->Count; i++) {
+		if (activeGenre->Equals(songPool[i]->getGenre()->ToLower()) || activeGenre->Equals("default")) {
+			newValidSongs->Add(songPool[i]);
+		}
+	}
+	validSongs = newValidSongs;
 }
 
 void SmartPlay::refreshCategory()
@@ -66,7 +77,7 @@ void SmartPlay::refreshCategory()
 
 void SmartPlay::refreshActiveApplication()
 {
-	activeApplication = getActiveApplication()->ToLower();
+	activeApplication = getActiveWindow()->ToLower();
 }
 
 void SmartPlay::initializePreferences() {
@@ -84,6 +95,7 @@ void SmartPlay::initializePreferences() {
 
 	genreMap["work"] = "default";
 	genreMap["gaming"] = "default";
+	genreMap["other"] = "default";
 }
 
 
