@@ -2,6 +2,12 @@
 
 using namespace GUI;
 
+PreferencesForm::PreferencesForm(MusicPlayer^ _player) {
+	InitializeComponent();
+	player = _player;
+}
+
+
 PreferencesForm::PreferencesForm(SortedDictionary<String^, bool>^ genres, MusicPlayer^ _player) {
 	InitializeComponent();
 	player = _player;
