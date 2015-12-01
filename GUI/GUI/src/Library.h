@@ -10,7 +10,7 @@ public ref class Library {
 public:
 	Library();
 	List<Artist^>^ getArtistList();
-	SortedDictionary<String^, bool>^ getGenreList();
+	List<String^>^ getGenreList();
 
 	void import(String ^dir);
 	void load();
