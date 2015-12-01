@@ -46,8 +46,18 @@ void Library::import(String^ dir) {
 	}
 
 	for each (String^ file in files) {
-		TagLib::File^ tagFile = TagLib::File::Create(file);
+		TagLib::File^ tagFile = TagLib::File::Create(file);		
 		String^ artistName = tagFile->Tag->FirstAlbumArtist;
+
+		//If no album artist tag, check artist and use that if present
+		//otherwise set as 'Unknown'
+		if (artistName == nullptr || artistName == " ") {
+			if (tagFile->Tag->FirstArtist == nullptr || tagFile->Tag->FirstArtist == " ") {
+				artistName = "Unknown";
+			}
+			artistName = tagFile->Tag->FirstArtist;
+		}
+
 		String^ albumName = tagFile->Tag->Album;
 		String^ songName = tagFile->Tag->Title;
 
