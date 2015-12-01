@@ -5,6 +5,9 @@ Library::Library() {
 	albumList = gcnew List<Album^>();
 	songList = gcnew List<Song^>();
 }
+List<Song^>^ Library::getSongList() {
+	return songList;
+}
 
 List<Artist^>^ Library::getArtistList() {
 	return artistList;
