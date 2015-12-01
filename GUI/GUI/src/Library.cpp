@@ -13,15 +13,16 @@ List<Artist^>^ Library::getArtistList() {
 	return artistList;
 }
 
-SortedDictionary<String^, bool>^ Library::getGenreList() {
-	SortedDictionary<String^, bool>^ genres = gcnew SortedDictionary<String^, bool>();
+List<String^>^ Library::getGenreList() {
+	//SortedDictionary<String^, bool>^ genres = gcnew SortedDictionary<String^, bool>();
+	HashSet<String^>^ genreHash = gcnew HashSet<String^>();
 	for each (Song^ song in songList) {
-		try {
-			genres->Add(song->getGenre(), true);
-		}
-		catch (ArgumentException ^e) {
-			//already in the list, don't add
-		}
+		genreHash->Add(song->getGenre());
+	}
+	List<String^>^ genres = gcnew List<String^>(genreHash);
+	genres->Sort();
+	for each (String^ genre in genres) {
+		System::Diagnostics::Debug::WriteLine(genre);
 	}
 	return genres;
 }

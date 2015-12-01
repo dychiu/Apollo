@@ -5,6 +5,19 @@ using namespace GUI;
 PreferencesForm::PreferencesForm(MusicPlayer^ _player) {
 	InitializeComponent();
 	player = _player;
+	genres = player->getMusicLibrary()->getGenreList();
+
+	for each (String^ s in genres) {
+		workBox->Items->Add(s);
+	}
+
+	for each (String^ s in genres) {
+		gamingBox->Items->Add(s);
+	}
+
+	for each (String^ s in genres) {
+		otherBox->Items->Add(s);
+	}
 }
 
 

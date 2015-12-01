@@ -11,7 +11,7 @@ public:
 	Library();
 	List<Song^>^ getSongList();
 	List<Artist^>^ getArtistList();
-	SortedDictionary<String^, bool>^ getGenreList();
+	List<String^>^ getGenreList();
 
 	void import(String ^dir);
 	void load();

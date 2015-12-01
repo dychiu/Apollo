@@ -18,7 +18,6 @@ namespace GUI {
 	{
 	public:
 		PreferencesForm(MusicPlayer^ _player);
-		PreferencesForm(SortedDictionary<String^, bool>^ genres, MusicPlayer^ _player);
 
 	private:
 		System::Windows::Forms::Button^  okButton;
@@ -31,6 +30,7 @@ namespace GUI {
 		System::Windows::Forms::CheckedListBox^  otherBox;
 		System::ComponentModel::Container ^components;
 
+		Generic::List<String^>^ genres;
 		Generic::List<String^>^ workPreferences;
 		Generic::List<String^>^ gamingPreferences;
 		Generic::List<String^>^ otherPreferences;
