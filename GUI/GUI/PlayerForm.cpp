@@ -413,8 +413,11 @@ void PlayerForm::createComponents() {
 		tempRightSongs->Font = (gcnew System::Drawing::Font(L"Century Gothic", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 			static_cast<System::Byte>(0)));		
 		tempRightSongs->Location = System::Drawing::Point(428, offset + 45);
-		if (i != musicPlayer->getSelectedArtist()->getAlbums()->Count-1)
+		if (i != musicPlayer->getSelectedArtist()->getAlbums()->Count - 1)
 			tempRightSongs->Size = System::Drawing::Size(210, 21 * listSize);
+		// in the case that it is the last song list and has a list size that is smaller than the music artwork
+		else if (listSize < 6)
+			tempRightSongs->Size = System::Drawing::Size(210, 21 * 6 + 75);
 		else
 			tempRightSongs->Size = System::Drawing::Size(210, 21 * listSize + 75);
 		tempRightSongs->SelectedIndexChanged += gcnew System::EventHandler(this, &PlayerForm::songs_SelectedIndexChanged);

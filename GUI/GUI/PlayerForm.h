@@ -154,7 +154,6 @@ namespace GUI {
 			this->listBox1->TabIndex = 1;
 			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &PlayerForm::listBox1_SelectedIndexChanged);
 			this->listBox1->DoubleClick += gcnew System::EventHandler(this, &PlayerForm::artists_DoubleClick);
-
 			// 
 			// progressBar1
 			// 
@@ -163,11 +162,12 @@ namespace GUI {
 			this->progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->progressBar1->Location = System::Drawing::Point(-1, 640);
+			this->progressBar1->Maximum = 10000;
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(1282, 81);
+			this->progressBar1->Step = 1;
 			this->progressBar1->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
 			this->progressBar1->TabIndex = 2;
-			this->progressBar1->Value = 25;
 			// 
 			// panel1
 			// 
