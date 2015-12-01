@@ -21,9 +21,6 @@ List<String^>^ Library::getGenreList() {
 	}
 	List<String^>^ genres = gcnew List<String^>(genreHash);
 	genres->Sort();
-	for each (String^ genre in genres) {
-		System::Diagnostics::Debug::WriteLine(genre);
-	}
 	return genres;
 }
 

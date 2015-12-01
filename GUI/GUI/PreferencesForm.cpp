@@ -21,26 +21,6 @@ PreferencesForm::PreferencesForm(MusicPlayer^ _player) {
 }
 
 
-PreferencesForm::PreferencesForm(SortedDictionary<String^, bool>^ genres, MusicPlayer^ _player) {
-	InitializeComponent();
-	player = _player;
-	//How do I get the genres .. ?
-
-	for each (String^ s in genres->Keys) {
-		workBox->Items->Add(s);
-	}
-
-	for each (String^ s in genres->Keys) {
-		gamingBox->Items->Add(s);
-	}
-
-	for each (String^ s in genres->Keys) {
-		otherBox->Items->Add(s);
-	}
-
-
-}
-
 System::Void PreferencesForm::cancelButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	Close();
 }
