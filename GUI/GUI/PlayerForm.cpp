@@ -466,7 +466,10 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 			musicPlayer->setSelectedSong(musicPlayer->getSelectedArtist()->getAlbums()[list / 2]->getSongs()[index]);
 		else if (list%2 == 1)
 			musicPlayer->setSelectedSong(musicPlayer->getSelectedArtist()->getAlbums()[(list-1) / 2]->getSongs()[index + leftSongs[(list-1) / 2]->Size.Height/21]);
-		//System::Diagnostics::Debug::WriteLine(musicPlayer->getSelectedSong()->getSongName());
+		
+		if (musicPlayer->getCurrentSong() == nullptr)
+			musicPlayer->setCurrentSong();
+		
 	}
 }
 

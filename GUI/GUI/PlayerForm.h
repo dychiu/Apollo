@@ -20,6 +20,7 @@ namespace GUI {
 
 		const int WM_NCLBUTTONDOWN = 0xA1;
 	private: System::ComponentModel::BackgroundWorker^  backgroundWorker1;
+
 	public:
 
 		const int HT_CAPTION = 0x2;
@@ -223,6 +224,7 @@ namespace GUI {
 			this->imageList1->Images->SetKeyName(10, L"importblue.jpg");
 			this->imageList1->Images->SetKeyName(11, L"importred.jpg");
 			this->imageList1->Images->SetKeyName(12, L"default.png");
+			this->imageList1->Images->SetKeyName(13, L"play.png");
 			// 
 			// skipButton
 			// 
