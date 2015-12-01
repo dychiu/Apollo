@@ -49,11 +49,7 @@ void MusicPlayer::closeSong()
 		mp3Player->Stop();
 		delete mp3Player;
 	}
-	else {
-		//Don't think SFML can actually close a song
-		//Stop it for now
-		playingSong->stop();
-	}
+	playingSong->stop();
 }
 
 void MusicPlayer::setPlayingSong(Song^ song) {

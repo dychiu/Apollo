@@ -503,6 +503,8 @@ void PlayerForm::pauseSongNormal() {
 }
 
 void PlayerForm::playSongSmart() {
+	if (backgroundWorker1->IsBusy == false)
+		backgroundWorker1->RunWorkerAsync(1);
 	roundButton->BackgroundImage = imageList1->Images[3];
 	musicPlayer->playSong();
 	play = true;
@@ -517,13 +519,9 @@ void PlayerForm::pauseSongSmart() {
 System::Void PlayerForm::backgroundWorker1_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e) {
 	while (true)
 	{
-		if (progressBar1->Value == progressBar1->Maximum)  //if the progress bar value reached maximum
-		{
-			break;
-		}
-
-		backgroundWorker1->ReportProgress(1);  //reporting progress
-		System::Threading::Thread::Sleep(1);   //wait for 1 second
+		// if (progressBar1->Value == progressBar1->Maximum) 			
+		backgroundWorker1->ReportProgress(1);  
+		System::Threading::Thread::Sleep(1);   
 	}
 }
 
@@ -533,4 +531,7 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 		progressBar1->Value = 100000 * musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds / musicPlayer->getNAudioReader()->TotalTime.TotalSeconds;
 	else
 		progressBar1->Value = 100000 * musicPlayer->getSFML()->getPlayingOffset().asSeconds() / musicPlayer->getSFML()->getDuration().asSeconds();
+	if (progressBar1->Value == progressBar1->Maximum)
+		musicPlayer->playNextSong();
+
 } 
