@@ -538,3 +538,12 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 		musicPlayer->playNextSong();
 
 } 
+
+System::Void PlayerForm::progressBar1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+
+}
+
+System::Void PlayerForm::button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	Form^ prefWindow = gcnew PreferencesForm(musicPlayer);
+	prefWindow->Show();
+}

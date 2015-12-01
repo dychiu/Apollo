@@ -1,6 +1,7 @@
 #pragma once
 
 #include "src/MusicPlayer.h"
+#include "PreferencesForm.h"
 
 ref class MusicPlayer;
 
@@ -20,6 +21,7 @@ namespace GUI {
 
 		const int WM_NCLBUTTONDOWN = 0xA1;
 	private: System::ComponentModel::BackgroundWorker^  backgroundWorker1;
+	private: System::Windows::Forms::Button^  button2;
 
 	public:
 
@@ -85,6 +87,8 @@ namespace GUI {
 		System::Void artists_DoubleClick(System::Object^  sender, System::EventArgs^  e);
 		System::Void backgroundWorker1_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e);
 		System::Void backgroundWorker1_ProgressChanged(System::Object^  sender, System::ComponentModel::ProgressChangedEventArgs^  e);
+		System::Void progressBar1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		System::Void button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 		
 		//plays a song (for button change)
 		void playSongNormal();
@@ -122,6 +126,7 @@ namespace GUI {
 			this->volume = (gcnew System::Windows::Forms::ProgressBar());
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// button1
@@ -170,6 +175,7 @@ namespace GUI {
 			this->progressBar1->Step = 1;
 			this->progressBar1->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
 			this->progressBar1->TabIndex = 2;
+			this->progressBar1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::progressBar1_MouseDown);
 			// 
 			// panel1
 			// 
@@ -317,6 +323,16 @@ namespace GUI {
 			this->backgroundWorker1->DoWork += gcnew System::ComponentModel::DoWorkEventHandler(this, &PlayerForm::backgroundWorker1_DoWork);
 			this->backgroundWorker1->ProgressChanged += gcnew System::ComponentModel::ProgressChangedEventHandler(this, &PlayerForm::backgroundWorker1_ProgressChanged);
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(1008, 628);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 23);
+			this->button2->TabIndex = 27;
+			this->button2->Text = L"Preferences";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::button2_Release);
+			// 
 			// PlayerForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -324,6 +340,7 @@ namespace GUI {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->ClientSize = System::Drawing::Size(1280, 720);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->volume);
 			this->Controls->Add(this->importButton);
 			this->Controls->Add(this->minimizeButton);
@@ -347,5 +364,5 @@ namespace GUI {
 
 		#pragma endregion
 		
-	};
+};
 }
