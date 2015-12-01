@@ -42,6 +42,7 @@ public:
 	Artist^ getCurrentArtist();
 	sf::Music* getSFML();
 	naudio::IWavePlayer^ getNAudio();
+	naudio::AudioFileReader^ getNAudioReader();
 	bool getSmartPlay();
 	bool isMP3(Song^ song);
 private:

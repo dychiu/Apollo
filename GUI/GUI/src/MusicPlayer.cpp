@@ -215,3 +215,8 @@ sf::Music* MusicPlayer::getSFML() {
 naudio::IWavePlayer^ MusicPlayer::getNAudio() {
 	return mp3Player;
 }
+
+//Danger, aliasing
+naudio::AudioFileReader^ MusicPlayer::getNAudioReader() {
+	return mp3FileReader;
+}

@@ -17,7 +17,7 @@ namespace GUI {
 	public ref class PreferencesForm : public System::Windows::Forms::Form
 	{
 	public:
-		PreferencesForm(SortedDictionary<String^, bool>^ genres);
+		PreferencesForm(SortedDictionary<String^, bool>^ genres, MusicPlayer^ _player);
 
 	private:
 		System::Windows::Forms::Button^  okButton;
@@ -33,6 +33,8 @@ namespace GUI {
 		Generic::List<String^>^ workPreferences;
 		Generic::List<String^>^ gamingPreferences;
 		Generic::List<String^>^ otherPreferences;
+
+		MusicPlayer^ player;
 
 		System::Void cancelButton_Click(System::Object^  sender, System::EventArgs^  e);
 		System::Void okButton_Click(System::Object^  sender, System::EventArgs^  e);

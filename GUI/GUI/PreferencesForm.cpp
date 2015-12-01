@@ -2,9 +2,9 @@
 
 using namespace GUI;
 
-PreferencesForm::PreferencesForm(SortedDictionary<String^, bool>^ genres) {
+PreferencesForm::PreferencesForm(SortedDictionary<String^, bool>^ genres, MusicPlayer^ _player) {
 	InitializeComponent();
-
+	player = _player;
 	//How do I get the genres .. ?
 
 	for each (String^ s in genres->Keys) {
@@ -40,7 +40,11 @@ System::Void PreferencesForm::okButton_Click(System::Object^  sender, System::Ev
 	for each (String^ item in workBox->CheckedItems) {
 		otherPreferences->Add(item);
 	}
-	//Close();
+	player->setWorkPreferences(workPreferences);
+	player->setGamingPreferences(gamingPreferences);
+	player->setOtherPreferences(otherPreferences);
+
+	Close();
 }
 
 System::Void PreferencesForm::workBox_ItemCheck(System::Object^ sender, System::Windows::Forms::ItemCheckEventArgs^ e) {
