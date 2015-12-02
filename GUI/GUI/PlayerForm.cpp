@@ -20,6 +20,8 @@ PlayerForm::PlayerForm() {
 
 	musicPlayer = gcnew MusicPlayer();
 	
+	offsetSFML = 0;
+
 	artistSelectionsCleared = false;
 	songSelectionChanged = true;
 
@@ -532,19 +534,28 @@ System::Void PlayerForm::backgroundWorker1_DoWork(System::Object^  sender, Syste
 
 System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  sender, System::ComponentModel::ProgressChangedEventArgs^  e) {
 	//progressBar1->Value += e->ProgressPercentage;
-	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+	if (musicPlayer->isMP3(musicPlayer->getCurrentSong())) {
 		progressBar1->Value = 100000 * musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds / musicPlayer->getNAudioReader()->TotalTime.TotalSeconds;
-	else
-		progressBar1->Value = 100000 * musicPlayer->getSFML()->getPlayingOffset().asSeconds() / musicPlayer->getSFML()->getDuration().asSeconds();
-	if (progressBar1->Value == progressBar1->Maximum)
-		musicPlayer->playNextSong();
+		if (progressBar1->Value == progressBar1->Maximum)
+			musicPlayer->playNextSong();
+	}
+	else {
+		progressBar1->Value = 100000 * musicPlayer->getSFML()->getPlayingOffset().asSeconds() / musicPlayer->getSFML()->getDuration().asSeconds() + offsetSFML;
+		if (progressBar1->Value > 99900)
+			musicPlayer->playNextSong();
+	}
 
+	if (musicPlayer->getSFML()->getPlayingOffset().asSeconds() == 0)
+		offsetSFML = 0;
 } 
 
 System::Void PlayerForm::progressBar1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
 		musicPlayer->getNAudioReader()->Skip((e->Location.X / 960.0) * musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
-	
+	else {
+		musicPlayer->getSFML()->setPlayingOffset(sf::microseconds((e->Location.X / 960.0) * musicPlayer->getSFML()->getDuration().asMicroseconds()/2));
+		offsetSFML = 100000 * (e->Location.X / 960.0) / 2;
+	}
 }
 
 System::Void PlayerForm::button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {

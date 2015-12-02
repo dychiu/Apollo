@@ -51,6 +51,7 @@ namespace GUI {
 		bool play;
 		bool artistSelectionsCleared;
 		bool songSelectionChanged;
+		int offsetSFML;
 		MusicPlayer^ musicPlayer;
 		Generic::List<PictureBox^>^ artwork;
 		Generic::List<Label^>^ album;
