@@ -7,9 +7,18 @@ PreferencesForm::PreferencesForm(MusicPlayer^ _player) {
 	player = _player;
 	genres = player->getMusicLibrary()->getGenreList();
 
+	workPreferences = player->getMusicLibrary()->getWorkPreferences();
+	gamingPreferences = player->getMusicLibrary()->getGamingPreferences();
+	otherPreferences = player->getMusicLibrary()->getOtherPreferences();
+
 	for each (String^ s in genres) {
 		if (!String::IsNullOrWhiteSpace(s))
 			workBox->Items->Add(s);
+	}
+
+	for (int i = 0; i < workBox->Items->Count; i++) {
+		if (workPreferences->IndexOf(workBox->Items[i]->ToString()) != -1)
+			workBox->SetItemChecked(i, true);
 	}
 
 	for each (String^ s in genres) {
@@ -17,9 +26,19 @@ PreferencesForm::PreferencesForm(MusicPlayer^ _player) {
 			gamingBox->Items->Add(s);
 	}
 
+	for (int i = 0; i < gamingBox->Items->Count; i++) {
+		if (gamingPreferences->IndexOf(gamingBox->Items[i]->ToString()) != -1)
+			gamingBox->SetItemChecked(i, true);
+	}
+
 	for each (String^ s in genres) {
 		if (!String::IsNullOrWhiteSpace(s))
 			otherBox->Items->Add(s);
+	}
+
+	for (int i = 0; i < otherBox->Items->Count; i++) {
+		if (otherPreferences->IndexOf(otherBox->Items[i]->ToString()) != -1)
+			otherBox->SetItemChecked(i, true);
 	}
 }
 

@@ -20,8 +20,8 @@ public:
 	void setGamingPreferences(List<String^>^ _gamingPreferences);
 	void setOtherPreferences(List<String^>^ _otherPreferences);
 	List<String^>^ getWorkPreferences();
-	List<String^>^ setGamingPreferences();
-	List<String^>^ setOtherPreferences();
+	List<String^>^ getGamingPreferences();
+	List<String^>^ getOtherPreferences();
 private:
 	List<Artist^>^ artistList;
 	List<Album^>^ albumList;

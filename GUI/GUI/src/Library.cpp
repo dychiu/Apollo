@@ -21,7 +21,8 @@ List<Artist^>^ Library::getArtistList() {
 List<String^>^ Library::getGenreList() {
 	HashSet<String^>^ genreHash = gcnew HashSet<String^>();
 	for each (Song^ song in songList) {
-		genreHash->Add(song->getGenre());
+		if (!String::IsNullOrWhiteSpace(song->getGenre()))
+			genreHash->Add(song->getGenre());
 	}
 	List<String^>^ genres = gcnew List<String^>(genreHash);
 	genres->Sort();
@@ -145,8 +146,7 @@ void Library::save()
 		xmlFile->WriteEndElement();
 	}
 	xmlFile->WriteEndElement();
-	xmlFile->WriteStartElement("games");
-
+	xmlFile->WriteStartElement("gaming");
 	for each (String^ gaming in gamingPreferences) {
 		xmlFile->WriteStartElement("genre");
 		xmlFile->WriteStartElement("name");
@@ -234,6 +234,21 @@ void Library::load() {
 		//no artists listed
 		return;
 	}
+
+	//Load the previous preferences
+	Diagnostics::Debug::WriteLine(root->ChildNodes[0]->ChildNodes[0]->SelectSingleNode("gaming")->Name);
+	for each (XmlNode^ genre in root->ChildNodes[0]->ChildNodes[0]->SelectSingleNode("work")->ChildNodes) {
+		workPreferences->Add(genre->SelectSingleNode("name")->InnerText);
+	}
+
+	for each (XmlNode^ genre in root->ChildNodes[0]->ChildNodes[0]->SelectSingleNode("gaming")->ChildNodes) {
+		gamingPreferences->Add(genre->SelectSingleNode("name")->InnerText);
+	}
+
+	for each (XmlNode^ genre in root->ChildNodes[0]->ChildNodes[0]->SelectSingleNode("other")->ChildNodes) {
+		otherPreferences->Add(genre->SelectSingleNode("name")->InnerText);
+	}
+
 	for each (XmlNode^ artist in root->ChildNodes[1]->ChildNodes) {
 		Artist^ tempArtist = gcnew Artist();
 		//Get the artist metadata
@@ -282,10 +297,10 @@ List<String^>^ Library::getWorkPreferences() {
 	return workPreferences;
 }
 
-List<String^>^ Library::setGamingPreferences(){
+List<String^>^ Library::getGamingPreferences(){
 	return  gamingPreferences;
 }
 
-List<String^>^ Library::setOtherPreferences() {
+List<String^>^ Library::getOtherPreferences() {
 	return otherPreferences;
 }
