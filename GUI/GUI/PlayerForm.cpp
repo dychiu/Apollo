@@ -22,6 +22,7 @@ PlayerForm::PlayerForm() {
 	
 	offsetSFML = 0;
 
+	mouseDown = false;
 	artistSelectionsCleared = false;
 	songSelectionChanged = true;
 
@@ -550,12 +551,39 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 } 
 
 System::Void PlayerForm::progressBar1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
-		musicPlayer->getNAudioReader()->Skip((e->Location.X / 960.0) * musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
-	else {
-		musicPlayer->getSFML()->setPlayingOffset(sf::microseconds((e->Location.X / 960.0) * musicPlayer->getSFML()->getDuration().asMicroseconds()/2));
-		offsetSFML = 100000 * (e->Location.X / 960.0) / 2;
+	mouseDown = true;
+}
+
+System::Void PlayerForm::progressBar1_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	if (mouseDown == true) {
+		if (musicPlayer->getCurrentSong() != nullptr) {
+			if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+				if (e->Location.X > 960)
+					musicPlayer->getNAudioReader()->Skip(musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
+				else if (e->Location.X < 0)
+					musicPlayer->getNAudioReader()->Skip(-musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
+				else
+					musicPlayer->getNAudioReader()->Skip((e->Location.X / 960.0) * musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
+			else {
+				if (e->Location.X > 960) {
+					musicPlayer->getSFML()->setPlayingOffset(sf::microseconds(musicPlayer->getSFML()->getDuration().asMicroseconds() / 2));
+					offsetSFML = 50000;
+				}
+				else if (e->Location.X < 0) {
+					musicPlayer->getSFML()->setPlayingOffset(sf::microseconds(0));
+					offsetSFML = 0;
+				}
+				else {
+					musicPlayer->getSFML()->setPlayingOffset(sf::microseconds((e->Location.X / 960.0) * musicPlayer->getSFML()->getDuration().asMicroseconds() / 2));
+					offsetSFML = 100000 * (e->Location.X / 960.0) / 2;
+				}
+			}
+		}
 	}
+}
+
+System::Void PlayerForm::progressBar1_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDown = false;
 }
 
 System::Void PlayerForm::button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {

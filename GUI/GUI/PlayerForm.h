@@ -20,11 +20,6 @@ namespace GUI {
 		PlayerForm();
 
 		const int WM_NCLBUTTONDOWN = 0xA1;
-	private: System::ComponentModel::BackgroundWorker^  backgroundWorker1;
-	private: System::Windows::Forms::Button^  button2;
-
-	public:
-
 		const int HT_CAPTION = 0x2;
 		[DllImportAttribute("user32.dll")]
 		static int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -47,10 +42,13 @@ namespace GUI {
 		System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog1;
 		System::Windows::Forms::Button^  button1;
 		System::ComponentModel::IContainer^  components;
+	    System::ComponentModel::BackgroundWorker^  backgroundWorker1;
+	    System::Windows::Forms::Button^  button2;
 	
 		bool play;
 		bool artistSelectionsCleared;
 		bool songSelectionChanged;
+		bool mouseDown;
 		int offsetSFML;
 		MusicPlayer^ musicPlayer;
 		Generic::List<PictureBox^>^ artwork;
@@ -90,7 +88,9 @@ namespace GUI {
 		System::Void backgroundWorker1_ProgressChanged(System::Object^  sender, System::ComponentModel::ProgressChangedEventArgs^  e);
 		System::Void progressBar1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 		System::Void button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
-		
+		System::Void progressBar1_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		System::Void progressBar1_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+
 		//plays a song (for button change)
 		void playSongNormal();
 		void playSongSmart();
@@ -177,6 +177,8 @@ namespace GUI {
 			this->progressBar1->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
 			this->progressBar1->TabIndex = 2;
 			this->progressBar1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::progressBar1_MouseDown);
+			this->progressBar1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::progressBar1_MouseMove);
+			this->progressBar1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::progressBar1_Release);
 			// 
 			// panel1
 			// 
@@ -304,11 +306,14 @@ namespace GUI {
 			// 
 			this->volume->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(75)), static_cast<System::Int32>(static_cast<System::Byte>(75)),
 				static_cast<System::Int32>(static_cast<System::Byte>(75)));
+			this->volume->Cursor = System::Windows::Forms::Cursors::Default;
 			this->volume->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->volume->Location = System::Drawing::Point(1091, 629);
+			this->volume->Location = System::Drawing::Point(1091, 628);
+			this->volume->Maximum = 1000;
 			this->volume->Name = L"volume";
-			this->volume->Size = System::Drawing::Size(144, 22);
+			this->volume->Size = System::Drawing::Size(144, 23);
+			this->volume->Step = 1;
 			this->volume->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
 			this->volume->TabIndex = 26;
 			this->volume->Value = 50;
@@ -363,7 +368,7 @@ namespace GUI {
 
 		}
 
-		#pragma endregion
-		
+		#pragma endregion		
+
 };
 }
