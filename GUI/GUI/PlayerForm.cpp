@@ -617,7 +617,7 @@ System::Void PlayerForm::volume_MouseDown(System::Object^  sender, System::Windo
 	volume->Value = 100 * (e->Location.X / 105.0);
 	if (musicPlayer->getCurrentSong() != nullptr) {
 		if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
-			musicPlayer->getNAudio()->Volume = volume->Value / 100;
+			musicPlayer->getNAudio()->Volume = volume->Value / 100.0;
 		else
 			musicPlayer->getSFML()->setVolume(volume->Value);
 	}
@@ -635,7 +635,7 @@ System::Void PlayerForm::volume_MouseMove(System::Object^  sender, System::Windo
 		// setting song volume
 		if (musicPlayer->getCurrentSong() != nullptr) {
 			if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
-				musicPlayer->getNAudio()->Volume = volume->Value / 100;
+				musicPlayer->getNAudio()->Volume = volume->Value / 100.0;
 			else
 				musicPlayer->getSFML()->setVolume(volume->Value);
 		}
