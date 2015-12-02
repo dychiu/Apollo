@@ -584,6 +584,12 @@ System::Void PlayerForm::progressBar1_MouseMove(System::Object^  sender, System:
 
 System::Void PlayerForm::progressBar1_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	mouseDown = false;
+	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+		musicPlayer->getNAudioReader()->Skip((e->Location.X / 960.0) * musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
+	else {
+		musicPlayer->getSFML()->setPlayingOffset(sf::microseconds((e->Location.X / 960.0) * musicPlayer->getSFML()->getDuration().asMicroseconds() / 2));
+		offsetSFML = 100000 * (e->Location.X / 960.0) / 2;
+	}
 }
 
 System::Void PlayerForm::button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
