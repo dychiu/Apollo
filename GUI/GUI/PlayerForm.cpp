@@ -551,11 +551,20 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 } 
 
 System::Void PlayerForm::progressBar1_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	if (musicPlayer->getCurrentSong() != nullptr) {
+		if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+			musicPlayer->getNAudioReader()->Skip((e->Location.X / 960.0) * musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
+		else {
+			musicPlayer->getSFML()->setPlayingOffset(sf::microseconds((e->Location.X / 960.0) * musicPlayer->getSFML()->getDuration().asMicroseconds() / 2));
+			offsetSFML = 100000 * (e->Location.X / 960.0) / 2;
+		}
+	}
 	mouseDown = true;
 }
 
 System::Void PlayerForm::progressBar1_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	if (mouseDown == true) {
+		System::Diagnostics::Debug::WriteLine(e->Location.X);
 		if (musicPlayer->getCurrentSong() != nullptr) {
 			if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
 				if (e->Location.X > 960)
@@ -584,12 +593,6 @@ System::Void PlayerForm::progressBar1_MouseMove(System::Object^  sender, System:
 
 System::Void PlayerForm::progressBar1_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	mouseDown = false;
-	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
-		musicPlayer->getNAudioReader()->Skip((e->Location.X / 960.0) * musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
-	else {
-		musicPlayer->getSFML()->setPlayingOffset(sf::microseconds((e->Location.X / 960.0) * musicPlayer->getSFML()->getDuration().asMicroseconds() / 2));
-		offsetSFML = 100000 * (e->Location.X / 960.0) / 2;
-	}
 }
 
 System::Void PlayerForm::button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {

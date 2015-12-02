@@ -316,7 +316,7 @@ namespace GUI {
 			this->volume->Step = 1;
 			this->volume->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
 			this->volume->TabIndex = 26;
-			this->volume->Value = 50;
+			this->volume->Value = 1000;
 			// 
 			// folderBrowserDialog1
 			// 
