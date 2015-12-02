@@ -501,6 +501,12 @@ void PlayerForm::playSongNormal() {
 		backgroundWorker1->RunWorkerAsync(1);
 	roundButton->BackgroundImage = imageList1->Images[1];
 	musicPlayer->playSong();
+	// matching song volume to volume bar
+	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+		musicPlayer->getNAudio()->Volume = volume->Value / 100;
+	else
+		musicPlayer->getSFML()->setVolume(volume->Value);
+
 	play = true;
 }
 
@@ -516,6 +522,12 @@ void PlayerForm::playSongSmart() {
 		backgroundWorker1->RunWorkerAsync(1);
 	roundButton->BackgroundImage = imageList1->Images[3];
 	musicPlayer->playSong();
+	// matching song volume to volume bar
+	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+		musicPlayer->getNAudio()->Volume = volume->Value / 100;
+	else
+		musicPlayer->getSFML()->setVolume(volume->Value);
+
 	play = true;
 }
 
@@ -603,42 +615,29 @@ System::Void PlayerForm::button2_Release(System::Object^  sender, System::Window
 
 System::Void PlayerForm::volume_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	volume->Value = 100 * (e->Location.X / 105.0);
-	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
-		musicPlayer->getNAudio()->Volume = 1 * (e->Location.X / 105.0);
-	else
-		musicPlayer->getSFML()->setVolume(100 * (e->Location.X / 105.0));
+	if (musicPlayer->getCurrentSong() != nullptr) {
+		if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+			musicPlayer->getNAudio()->Volume = volume->Value / 100;
+		else
+			musicPlayer->getSFML()->setVolume(volume->Value);
+	}
 	mouseDownVolume = true;
 }
 
 System::Void PlayerForm::volume_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	if (mouseDownVolume == true) {
-		if (musicPlayer->isMP3(musicPlayer->getCurrentSong())) {
-			if (e->Location.X > 105) {
-				volume->Value = 100;
-				musicPlayer->getNAudio()->Volume = 1;
-			}
-			else if (e->Location.X < 0) {
-				volume->Value = 0;
-				musicPlayer->getNAudio()->Volume = 0;
-			}
-			else {
-				volume->Value = 100 * (e->Location.X / 105.0);
-				musicPlayer->getNAudio()->Volume = 1 * (e->Location.X / 105.0);
-			}
-		}
-		else {
-			if (e->Location.X > 105) {
-				volume->Value = 100;
-				musicPlayer->getSFML()->setVolume(100);
-			}
-			else if (e->Location.X < 0) {
-				volume->Value = 0;
-				musicPlayer->getSFML()->setVolume(0);
-			}
-			else {
-				volume->Value = 100 * (e->Location.X / 105.0);
-				musicPlayer->getSFML()->setVolume(100 * (e->Location.X / 105.0));
-			}
+		if (e->Location.X > 105) 
+			volume->Value = 100;
+		else if (e->Location.X < 0)
+			volume->Value = 0;
+		else
+			volume->Value = 100 * (e->Location.X / 105.0);
+		// setting song volume
+		if (musicPlayer->getCurrentSong() != nullptr) {
+			if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+				musicPlayer->getNAudio()->Volume = volume->Value / 100;
+			else
+				musicPlayer->getSFML()->setVolume(volume->Value);
 		}
 	}
 }
