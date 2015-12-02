@@ -48,7 +48,8 @@ namespace GUI {
 		bool play;
 		bool artistSelectionsCleared;
 		bool songSelectionChanged;
-		bool mouseDown;
+		bool mouseDownProgress;
+		bool mouseDownVolume;
 		int offsetSFML;
 		MusicPlayer^ musicPlayer;
 		Generic::List<PictureBox^>^ artwork;
@@ -90,6 +91,9 @@ namespace GUI {
 		System::Void button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 		System::Void progressBar1_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 		System::Void progressBar1_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		System::Void volume_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		System::Void volume_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
+		System::Void volume_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e);
 
 		//plays a song (for button change)
 		void playSongNormal();
@@ -310,13 +314,15 @@ namespace GUI {
 			this->volume->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
 			this->volume->Location = System::Drawing::Point(1091, 628);
-			this->volume->Maximum = 1000;
 			this->volume->Name = L"volume";
 			this->volume->Size = System::Drawing::Size(144, 23);
 			this->volume->Step = 1;
 			this->volume->Style = System::Windows::Forms::ProgressBarStyle::Continuous;
 			this->volume->TabIndex = 26;
-			this->volume->Value = 1000;
+			this->volume->Value = 100;
+			this->volume->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::volume_MouseDown);
+			this->volume->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::volume_MouseMove);
+			this->volume->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::volume_Release);
 			// 
 			// folderBrowserDialog1
 			// 

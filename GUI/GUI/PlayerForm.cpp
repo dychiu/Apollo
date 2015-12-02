@@ -22,7 +22,8 @@ PlayerForm::PlayerForm() {
 	
 	offsetSFML = 0;
 
-	mouseDown = false;
+	mouseDownProgress = false;
+	mouseDownVolume = false;
 	artistSelectionsCleared = false;
 	songSelectionChanged = true;
 
@@ -559,20 +560,20 @@ System::Void PlayerForm::progressBar1_MouseDown(System::Object^  sender, System:
 			offsetSFML = 100000 * (e->Location.X / 960.0) / 2;
 		}
 	}
-	mouseDown = true;
+	mouseDownProgress = true;
 }
 
 System::Void PlayerForm::progressBar1_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-	if (mouseDown == true) {
-		System::Diagnostics::Debug::WriteLine(e->Location.X);
+	if (mouseDownProgress == true) {
 		if (musicPlayer->getCurrentSong() != nullptr) {
-			if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+			if (musicPlayer->isMP3(musicPlayer->getCurrentSong())) {
 				if (e->Location.X > 960)
 					musicPlayer->getNAudioReader()->Skip(musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
 				else if (e->Location.X < 0)
 					musicPlayer->getNAudioReader()->Skip(-musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
 				else
 					musicPlayer->getNAudioReader()->Skip((e->Location.X / 960.0) * musicPlayer->getNAudioReader()->TotalTime.TotalSeconds - musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds);
+			}
 			else {
 				if (e->Location.X > 960) {
 					musicPlayer->getSFML()->setPlayingOffset(sf::microseconds(musicPlayer->getSFML()->getDuration().asMicroseconds() / 2));
@@ -592,10 +593,57 @@ System::Void PlayerForm::progressBar1_MouseMove(System::Object^  sender, System:
 }
 
 System::Void PlayerForm::progressBar1_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
-	mouseDown = false;
+	mouseDownProgress = false;
 }
 
 System::Void PlayerForm::button2_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	Form^ prefWindow = gcnew PreferencesForm(musicPlayer);
 	prefWindow->Show();
 }
+
+System::Void PlayerForm::volume_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	volume->Value = 100 * (e->Location.X / 105.0);
+	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
+		musicPlayer->getNAudio()->Volume = 1 * (e->Location.X / 105.0);
+	else
+		musicPlayer->getSFML()->setVolume(100 * (e->Location.X / 105.0));
+	mouseDownVolume = true;
+}
+
+System::Void PlayerForm::volume_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	if (mouseDownVolume == true) {
+		if (musicPlayer->isMP3(musicPlayer->getCurrentSong())) {
+			if (e->Location.X > 105) {
+				volume->Value = 100;
+				musicPlayer->getNAudio()->Volume = 1;
+			}
+			else if (e->Location.X < 0) {
+				volume->Value = 0;
+				musicPlayer->getNAudio()->Volume = 0;
+			}
+			else {
+				volume->Value = 100 * (e->Location.X / 105.0);
+				musicPlayer->getNAudio()->Volume = 1 * (e->Location.X / 105.0);
+			}
+		}
+		else {
+			if (e->Location.X > 105) {
+				volume->Value = 100;
+				musicPlayer->getSFML()->setVolume(100);
+			}
+			else if (e->Location.X < 0) {
+				volume->Value = 0;
+				musicPlayer->getSFML()->setVolume(0);
+			}
+			else {
+				volume->Value = 100 * (e->Location.X / 105.0);
+				musicPlayer->getSFML()->setVolume(100 * (e->Location.X / 105.0));
+			}
+		}
+	}
+}
+
+System::Void PlayerForm::volume_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	mouseDownVolume = false;
+}
+

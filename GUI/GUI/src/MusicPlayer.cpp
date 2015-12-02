@@ -8,6 +8,7 @@ MusicPlayer::MusicPlayer() {
 	playingSong->setVolume(100);
 
 	mp3Player = gcnew naudio::WaveOut();
+	mp3Player->Volume = 1;
 
 	currentSong = nullptr;
 	selectedSong = nullptr;
