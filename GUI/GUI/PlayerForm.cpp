@@ -243,7 +243,9 @@ System::Void PlayerForm::minimizeButton_Release(System::Object^  sender, System:
 System::Void PlayerForm::importButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	folderBrowserDialog1->ShowDialog();
 	musicPlayer->getMusicLibrary()->import(folderBrowserDialog1->SelectedPath);
+	artistSelectionsCleared = false;
 	listBox1->DataSource = nullptr;
+	artistSelectionsCleared = true;
 	listBox1->DataSource = musicPlayer->getMusicLibrary()->getArtistList();
 	listBox1->DisplayMember = "ArtistName";
 
