@@ -8,15 +8,18 @@ PreferencesForm::PreferencesForm(MusicPlayer^ _player) {
 	genres = player->getMusicLibrary()->getGenreList();
 
 	for each (String^ s in genres) {
-		workBox->Items->Add(s);
+		if (!String::IsNullOrWhiteSpace(s))
+			workBox->Items->Add(s);
 	}
 
 	for each (String^ s in genres) {
-		gamingBox->Items->Add(s);
+		if (!String::IsNullOrWhiteSpace(s))
+			gamingBox->Items->Add(s);
 	}
 
 	for each (String^ s in genres) {
-		otherBox->Items->Add(s);
+		if (!String::IsNullOrWhiteSpace(s))
+			otherBox->Items->Add(s);
 	}
 }
 
@@ -32,17 +35,18 @@ System::Void PreferencesForm::okButton_Click(System::Object^  sender, System::Ev
 		workPreferences->Add(item);
 	}
 	gamingPreferences = gcnew List<String^>();
-	for each (String^ item in workBox->CheckedItems) {
+	for each (String^ item in gamingBox->CheckedItems) {
 		gamingPreferences->Add(item);
 	}
 	otherPreferences = gcnew List<String^>();
-	for each (String^ item in workBox->CheckedItems) {
+	for each (String^ item in otherBox->CheckedItems) {
 		otherPreferences->Add(item);
 	}
-	player->setWorkPreferences(workPreferences);
-	player->setGamingPreferences(gamingPreferences);
-	player->setOtherPreferences(otherPreferences);
+	player->getMusicLibrary()->setWorkPreferences(workPreferences);
+	player->getMusicLibrary()->setGamingPreferences(gamingPreferences);
+	player->getMusicLibrary()->setOtherPreferences(otherPreferences);
 
+	player->getMusicLibrary()->save();
 	Close();
 }
 

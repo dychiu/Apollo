@@ -31,9 +31,6 @@ public:
 	void setSelectedSong(Song^ newSelection);
 	void setSelectedArtist(Artist^ newSelection);
 	void setSmartPlay(bool smartPlay);
-	void setWorkPreferences(List<String^>^ _workPreferences);
-	void setGamingPreferences(List<String^>^ _gamingPreferences);
-	void setOtherPreferences(List<String^>^ _otherPreferences);
 
 	Song^ getSelectedSong();
 	Artist^ getSelectedArtist();
@@ -59,8 +56,4 @@ private:
 	bool smartPlayMode;
 	
 	void setPlayingSong(Song^ song);
-
-	List<String^>^ workPreferences;
-	List<String^>^ gamingPreferences;
-	List<String^>^ otherPreferences;
 };

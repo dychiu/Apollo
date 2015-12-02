@@ -4,6 +4,11 @@ Library::Library() {
 	artistList = gcnew List<Artist^>();
 	albumList = gcnew List<Album^>();
 	songList = gcnew List<Song^>();
+	saveFileLoc = "apollo.xml";
+
+	workPreferences = gcnew List<String^>();
+	gamingPreferences = gcnew List<String^>();
+	otherPreferences = gcnew List<String^>();
 }
 List<Song^>^ Library::getSongList() {
 	return songList;
@@ -14,7 +19,6 @@ List<Artist^>^ Library::getArtistList() {
 }
 
 List<String^>^ Library::getGenreList() {
-	//SortedDictionary<String^, bool>^ genres = gcnew SortedDictionary<String^, bool>();
 	HashSet<String^>^ genreHash = gcnew HashSet<String^>();
 	for each (Song^ song in songList) {
 		genreHash->Add(song->getGenre());
@@ -52,11 +56,13 @@ void Library::import(String^ dir) {
 
 		//If no album artist tag, check artist and use that if present
 		//otherwise set as 'Unknown'
-		if (artistName == nullptr || artistName == " ") {
-			if (tagFile->Tag->FirstArtist == nullptr || tagFile->Tag->FirstArtist == " ") {
+		if (String::IsNullOrWhiteSpace(artistName)) {
+			if (String::IsNullOrWhiteSpace(tagFile->Tag->FirstArtist)) {
 				artistName = "Unknown";
 			}
-			artistName = tagFile->Tag->FirstArtist;
+			else {
+				artistName = tagFile->Tag->FirstArtist;
+			}
 		}
 
 		String^ albumName = tagFile->Tag->Album;
@@ -120,19 +126,47 @@ void Library::import(String^ dir) {
 
 //n^3 so room for improvement
 void Library::save()
-{
+{	
 	XmlWriterSettings^ xmlSettings = gcnew XmlWriterSettings();
 	xmlSettings->Indent = true;
-	XmlWriter^ xmlFile = XmlWriter::Create("apollo.xml", xmlSettings);
+	XmlWriter^ xmlFile = XmlWriter::Create(saveFileLoc, xmlSettings);
 	xmlFile->WriteStartDocument(true);
 	xmlFile->WriteStartElement("apollo");
 
+	//Write the current settings
 	xmlFile->WriteStartElement("settings");
-	//////////////////////////////
-	//put settings between these//
-	//////////////////////////////
+	xmlFile->WriteStartElement("profiles");
+	xmlFile->WriteStartElement("work");
+	for each (String^ work in workPreferences) {
+		xmlFile->WriteStartElement("genre");
+		xmlFile->WriteStartElement("name");
+		xmlFile->WriteString(work);
+		xmlFile->WriteEndElement();
+		xmlFile->WriteEndElement();
+	}
 	xmlFile->WriteEndElement();
+	xmlFile->WriteStartElement("games");
 
+	for each (String^ gaming in gamingPreferences) {
+		xmlFile->WriteStartElement("genre");
+		xmlFile->WriteStartElement("name");
+		xmlFile->WriteString(gaming);
+		xmlFile->WriteEndElement();
+		xmlFile->WriteEndElement();
+	}
+	xmlFile->WriteEndElement();
+	xmlFile->WriteStartElement("other");
+	for each (String^ other in otherPreferences) {
+		xmlFile->WriteStartElement("genre");
+		xmlFile->WriteStartElement("name");
+		xmlFile->WriteString(other);
+		xmlFile->WriteEndElement();
+		xmlFile->WriteEndElement();
+	}
+	xmlFile->WriteEndElement();
+	xmlFile->WriteEndElement();
+	xmlFile->WriteEndElement();
+	//Write the current library
 	xmlFile->WriteStartElement("library");
 	if (artistList->Count > 0) {
 		for each (Artist^ artist in artistList) {
@@ -178,8 +212,7 @@ void Library::save()
 	xmlFile->WriteEndElement();
 	xmlFile->WriteEndDocument();
 	xmlFile->Close();
-
-	Diagnostics::Debug::WriteLine("XML document saved to " + Directory::GetCurrentDirectory());
+	Diagnostics::Debug::WriteLine("XML document saved to " + saveFileLoc);
 }
 
 //n^3 so room for improvement
@@ -231,4 +264,28 @@ void Library::load() {
 			}
 		}
 	}
+}
+
+void Library::setWorkPreferences(List<String^>^ _workPreferences) {
+	workPreferences = _workPreferences;
+}
+
+void Library::setGamingPreferences(List<String^>^ _gamingPreferences) {
+	gamingPreferences = _gamingPreferences;
+}
+
+void Library::setOtherPreferences(List<String^>^ _otherPreferences) {
+	otherPreferences = _otherPreferences;
+}
+
+List<String^>^ Library::getWorkPreferences() {
+	return workPreferences;
+}
+
+List<String^>^ Library::setGamingPreferences(){
+	return  gamingPreferences;
+}
+
+List<String^>^ Library::setOtherPreferences() {
+	return otherPreferences;
 }

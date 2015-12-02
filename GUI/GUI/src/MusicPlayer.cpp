@@ -123,18 +123,6 @@ void MusicPlayer::setSmartPlay(bool smartPlay) {
 	smartPlayMode = smartPlay;
 }
 
-void MusicPlayer::setWorkPreferences(List<String^>^ _workPreferences) {
-	workPreferences = _workPreferences;
-}
-
-void MusicPlayer::setGamingPreferences(List<String^>^ _gamingPreferences) {
-	gamingPreferences = _gamingPreferences;
-}
-
-void MusicPlayer::setOtherPreferences(List<String^>^ _otherPreferences) {
-	otherPreferences = _otherPreferences;
-}
-
 void MusicPlayer::playNextSong() {
 	if (!smartPlayMode) {
 		//If current song is last in album
@@ -143,7 +131,6 @@ void MusicPlayer::playNextSong() {
 			if (currentArtist->getAlbums()[currentArtist->getAlbums()->Count - 1] == currentAlbum) {
 				//Won't change pause button back to play button though!
 				//Causes a crash if playbutton is clicked now.
-				Diagnostics::Debug::WriteLine("End of artist!");
 				closeSong();
 			}
 			else {
