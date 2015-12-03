@@ -68,6 +68,13 @@ System::Void PreferencesForm::okButton_Click(System::Object^  sender, System::Ev
 	for each (String^ item in otherBox->CheckedItems) {
 		otherPreferences->Add(item);
 	}
+
+	if (otherPreferences->Count == 0) {
+		System::Windows::Forms::MessageBox^ error;
+		error->Show("Other must have at least one genre selected!", "Error!");
+		return;
+	}
+
 	player->getMusicLibrary()->setWorkPreferences(workPreferences);
 	player->getMusicLibrary()->setGamingPreferences(gamingPreferences);
 	player->getMusicLibrary()->setOtherPreferences(otherPreferences);
