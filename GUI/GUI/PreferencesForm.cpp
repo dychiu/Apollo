@@ -40,6 +40,13 @@ PreferencesForm::PreferencesForm(MusicPlayer^ _player) {
 		if (otherPreferences->IndexOf(otherBox->Items[i]->ToString()) != -1)
 			otherBox->SetItemChecked(i, true);
 	}
+
+	//If there are no checked boxes, set them all as true
+	if (otherBox->CheckedItems->Count == 0) {
+		for (int i = 0; i < otherBox->Items->Count; i++) {
+			otherBox->SetItemChecked(i, true);
+		}
+	}
 }
 
 
