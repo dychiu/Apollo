@@ -1,4 +1,3 @@
-#include <Windows.h>
 #include "Library.h"
 
 Library::Library() {
@@ -6,17 +5,7 @@ Library::Library() {
 	albumList = gcnew List<Album^>();
 	songList = gcnew List<Song^>();
 	saveFileLoc = "apollo.xml";
-
-	workPreferences = gcnew List<String^>();
-	gamingPreferences = gcnew List<String^>();
-	otherPreferences = gcnew List<String^>();
-
-	workApps = gcnew List<String^>();
-	gamingApps = gcnew List<String^>();
-
-	validSongs = gcnew List<Song^>();
-
-	initializeApps();
+	smartPlay = gcnew SmartPlay();
 }
 List<Song^>^ Library::getSongList() {
 	return songList;
@@ -146,7 +135,7 @@ void Library::save()
 	xmlFile->WriteStartElement("settings");
 	xmlFile->WriteStartElement("profiles");
 	xmlFile->WriteStartElement("work");
-	for each (String^ work in workPreferences) {
+	for each (String^ work in smartPlay->getWorkPreferences()) {
 		xmlFile->WriteStartElement("genre");
 		xmlFile->WriteStartElement("name");
 		xmlFile->WriteString(work);
@@ -155,7 +144,7 @@ void Library::save()
 	}
 	xmlFile->WriteEndElement();
 	xmlFile->WriteStartElement("gaming");
-	for each (String^ gaming in gamingPreferences) {
+	for each (String^ gaming in smartPlay->getGamingPreferences()) {
 		xmlFile->WriteStartElement("genre");
 		xmlFile->WriteStartElement("name");
 		xmlFile->WriteString(gaming);
@@ -164,7 +153,7 @@ void Library::save()
 	}
 	xmlFile->WriteEndElement();
 	xmlFile->WriteStartElement("other");
-	for each (String^ other in otherPreferences) {
+	for each (String^ other in smartPlay->getOtherPreferences()) {
 		xmlFile->WriteStartElement("genre");
 		xmlFile->WriteStartElement("name");
 		xmlFile->WriteString(other);
@@ -243,18 +232,26 @@ void Library::load() {
 		return;
 	}
 
+	List<String^>^ tempWorkPreferences = gcnew List<String^>();
+	List<String^>^ tempGamingPreferences = gcnew List<String^>();
+	List<String^>^ tempOtherPreferences = gcnew List<String^>();
+
 	//Load the previous preferences
 	for each (XmlNode^ genre in root->ChildNodes[0]->ChildNodes[0]->SelectSingleNode("work")->ChildNodes) {
-		workPreferences->Add(genre->SelectSingleNode("name")->InnerText);
+		tempWorkPreferences->Add(genre->SelectSingleNode("name")->InnerText);
 	}
 
 	for each (XmlNode^ genre in root->ChildNodes[0]->ChildNodes[0]->SelectSingleNode("gaming")->ChildNodes) {
-		gamingPreferences->Add(genre->SelectSingleNode("name")->InnerText);
+		tempGamingPreferences->Add(genre->SelectSingleNode("name")->InnerText);
 	}
 
 	for each (XmlNode^ genre in root->ChildNodes[0]->ChildNodes[0]->SelectSingleNode("other")->ChildNodes) {
-		otherPreferences->Add(genre->SelectSingleNode("name")->InnerText);
+		tempOtherPreferences->Add(genre->SelectSingleNode("name")->InnerText);
 	}
+
+	smartPlay->setWorkPreferences(tempWorkPreferences);
+	smartPlay->setGamingPreferences(tempGamingPreferences);
+	smartPlay->setOtherPreferences(tempOtherPreferences);
 
 	for each (XmlNode^ artist in root->ChildNodes[1]->ChildNodes) {
 		Artist^ tempArtist = gcnew Artist();
@@ -288,101 +285,6 @@ void Library::load() {
 	}
 }
 
-void Library::setWorkPreferences(List<String^>^ _workPreferences) {
-	workPreferences = _workPreferences;
-}
-
-void Library::setGamingPreferences(List<String^>^ _gamingPreferences) {
-	gamingPreferences = _gamingPreferences;
-}
-
-void Library::setOtherPreferences(List<String^>^ _otherPreferences) {
-	otherPreferences = _otherPreferences;
-}
-
-List<String^>^ Library::getWorkPreferences() {
-	return workPreferences;
-}
-
-List<String^>^ Library::getGamingPreferences(){
-	return  gamingPreferences;
-}
-
-List<String^>^ Library::getOtherPreferences() {
-	return otherPreferences;
-}
-
-Song ^ Library::getSmartSong()
-{
-	refreshValidSongs();
-	Random^ rand = gcnew Random();
-	if (validSongs->Count == 0) {
-		return nullptr;
-	}
-	Song^ s = validSongs[rand->Next() % validSongs->Count];
-	System::Diagnostics::Debug::Print(s->getSongName());
-	return s;
-}
-
-String ^ Library::getActiveWindow()
-{
-	System::Diagnostics::Debug::Print("GETTING ACTIVE WINDOW");
-	const int buffSize = 256;
-	wchar_t buffer[buffSize];
-	HWND handle = GetForegroundWindow();
-
-	if (GetWindowText(handle, buffer, buffSize) > 0)
-	{
-		return gcnew String(buffer);
-	}
-	return "";
-}
-
-void Library::refreshValidSongs()
-{
-	// assign the current application
-	activeApplication = getActiveWindow()->ToLower();
-	System::Diagnostics::Debug::Print(activeApplication);
-
-	// assign the active category
-	List<String^>^ genres = otherPreferences;
-
-
-	for (int i = 0; i < workApps->Count; i++) {
-		if (activeApplication->Contains(workApps[i])) {
-			genres = workPreferences;
-		}
-	}
-
-	for (int i = 0; i < gamingApps->Count; i++) {
-		if (activeApplication->Contains(gamingApps[i])) {
-			genres = gamingPreferences;
-		}
-	}
-
-	List<Song^>^ newValidSongs = gcnew List<Song^>;
-
-	// add the song to our new list of valid songs if it matches the selected genres
-	for (int i = 0; i < songList->Count; i++) {
-		for (int j = 0; j < genres->Count; j++) {
-			if ((genres[j])->Equals(songList[i]->getGenre())) {
-				newValidSongs->Add(songList[i]);
-			}
-		}
-	}
-	validSongs = newValidSongs;
-}
-
-void Library::initializeApps() {
-		// work applications
-		workApps->Add("outlook");
-		workApps->Add("word");
-		workApps->Add("excel");
-		workApps->Add("powerpoint");
-		workApps->Add("visual studio");
-		workApps->Add("eclipse");
-
-		// gaming applications
-		gamingApps->Add("solitaire");
-		gamingApps->Add("minesweeper");
+SmartPlay^ Library::getSmartPlayObj() {
+	return smartPlay;
 }
