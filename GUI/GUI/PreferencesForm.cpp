@@ -7,9 +7,9 @@ PreferencesForm::PreferencesForm(MusicPlayer^ _player) {
 	player = _player;
 	genres = player->getMusicLibrary()->getGenreList();
 
-	workPreferences = player->getMusicLibrary()->getWorkPreferences();
-	gamingPreferences = player->getMusicLibrary()->getGamingPreferences();
-	otherPreferences = player->getMusicLibrary()->getOtherPreferences();
+	workPreferences = player->getMusicLibrary()->getSmartPlayObj()->getWorkPreferences();
+	gamingPreferences = player->getMusicLibrary()->getSmartPlayObj()->getGamingPreferences();
+	otherPreferences = player->getMusicLibrary()->getSmartPlayObj()->getOtherPreferences();
 
 	for each (String^ s in genres) {
 		if (!String::IsNullOrWhiteSpace(s))
@@ -75,9 +75,9 @@ System::Void PreferencesForm::okButton_Click(System::Object^  sender, System::Ev
 		return;
 	}
 
-	player->getMusicLibrary()->setWorkPreferences(workPreferences);
-	player->getMusicLibrary()->setGamingPreferences(gamingPreferences);
-	player->getMusicLibrary()->setOtherPreferences(otherPreferences);
+	player->getMusicLibrary()->getSmartPlayObj()->setWorkPreferences(workPreferences);
+	player->getMusicLibrary()->getSmartPlayObj()->setGamingPreferences(gamingPreferences);
+	player->getMusicLibrary()->getSmartPlayObj()->setOtherPreferences(otherPreferences);
 
 	player->getMusicLibrary()->save();
 	Close();

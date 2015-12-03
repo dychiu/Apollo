@@ -151,7 +151,7 @@ void MusicPlayer::playNextSong() {
 	}
 	else {
 		//Smartplay integration goes here
-		setSelectedSong(musicLibrary->getSmartSong());
+		setSelectedSong(musicLibrary->getSmartPlayObj()->getSmartSong(musicLibrary->getSongList()));
 		setCurrentSong();
 		playSong();
 	}

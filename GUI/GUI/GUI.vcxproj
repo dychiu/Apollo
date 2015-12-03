@@ -138,6 +138,7 @@
     <ClCompile Include="src\LibraryObjects.cpp" />
     <ClCompile Include="src\Library.cpp" />
     <ClCompile Include="src\MusicPlayer.cpp" />
+    <ClCompile Include="src\SmartPlay.cpp" />
     <ClCompile Include="WinCLR2015.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,7 +166,11 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PreferencesForm.h" />
+<<<<<<< HEAD
     <ClInclude Include="resource.h" />
+=======
+    <ClInclude Include="src\SmartPlay.h" />
+>>>>>>> cb4f88432d46a8fca0640fd94813bab9ce259e82
     <ClInclude Include="src\LibraryObjects.h" />
     <ClInclude Include="src\Library.h" />
     <ClInclude Include="src\MusicPlayer.h" />
