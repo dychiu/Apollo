@@ -166,6 +166,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PreferencesForm.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\LibraryObjects.h" />
     <ClInclude Include="src\Library.h" />
     <ClInclude Include="src\MusicPlayer.h" />
@@ -179,10 +180,14 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\pausebutton.jpg" />
+    <Image Include="D:\University\2015-2016\CMPE 320\Project\GUI\apolloicon.ico" />
     <Image Include="pause.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GUI.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
