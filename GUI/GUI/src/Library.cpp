@@ -1,3 +1,4 @@
+#include <Windows.h>
 #include "Library.h"
 
 Library::Library() {
@@ -9,6 +10,11 @@ Library::Library() {
 	workPreferences = gcnew List<String^>();
 	gamingPreferences = gcnew List<String^>();
 	otherPreferences = gcnew List<String^>();
+
+	workApps = gcnew List<String^>();
+	gamingApps = gcnew List<String^>();
+
+	validSongs = gcnew List<Song^>();
 }
 List<Song^>^ Library::getSongList() {
 	return songList;
@@ -302,4 +308,77 @@ List<String^>^ Library::getGamingPreferences(){
 
 List<String^>^ Library::getOtherPreferences() {
 	return otherPreferences;
+}
+
+Song ^ Library::getSmartSong()
+{
+	refreshValidSongs();
+	Random^ rand = gcnew Random();
+	if (validSongs->Count == 0) {
+		return nullptr;
+	}
+	Song^ s = validSongs[rand->Next() % validSongs->Count];
+	System::Diagnostics::Debug::Print(s->getSongName());
+}
+
+String ^ Library::getActiveWindow()
+{
+	System::Diagnostics::Debug::Print("GETTING ACTIVE WINDOW");
+	const int buffSize = 256;
+	wchar_t buffer[buffSize];
+	HWND handle = GetForegroundWindow();
+
+	if (GetWindowText(handle, buffer, buffSize) > 0)
+	{
+		return gcnew String(buffer);
+	}
+	return "";
+}
+
+void Library::refreshValidSongs()
+{
+	// assign the current application
+	activeApplication = getActiveWindow()->ToLower();
+
+	// assign the active category
+	List<String^>^ genres = otherPreferences;
+
+
+	for (int i = 0; i < workApps->Count; i++) {
+		if (activeApplication->Contains(workApps[i])) {
+			genres = workPreferences;
+		}
+	}
+
+	for (int i = 0; i < gamingApps->Count; i++) {
+		if (activeApplication->Contains(gamingApps[i])) {
+			genres = gamingPreferences;
+		}
+	}
+
+	List<Song^>^ newValidSongs = gcnew List<Song^>;
+
+	// add the song to our new list of valid songs if it matches the selected genres
+	for (int i = 0; i < songList->Count; i++) {
+		for (int j = 0; j < genres->Count; j++) {
+			if ((genres[j]->ToLower())->Equals(songList[i]->getGenre())) {
+				validSongs->Add(songList[i]);
+			}
+		}
+	}
+	validSongs = newValidSongs;
+}
+
+void Library::initializeApps() {
+		// work applications
+		workApps->Add("outlook");
+		workApps->Add("word");
+		workApps->Add("excel");
+		workApps->Add("powerpoint");
+		workApps->Add("visual studio");
+		workApps->Add("eclipse");
+
+		// gaming applications
+		gamingApps->Add("solitaire");
+		gamingApps->Add("minesweeper");
 }
