@@ -15,6 +15,8 @@ Library::Library() {
 	gamingApps = gcnew List<String^>();
 
 	validSongs = gcnew List<Song^>();
+
+	initializeApps();
 }
 List<Song^>^ Library::getSongList() {
 	return songList;
@@ -319,6 +321,7 @@ Song ^ Library::getSmartSong()
 	}
 	Song^ s = validSongs[rand->Next() % validSongs->Count];
 	System::Diagnostics::Debug::Print(s->getSongName());
+	return s;
 }
 
 String ^ Library::getActiveWindow()
@@ -339,6 +342,7 @@ void Library::refreshValidSongs()
 {
 	// assign the current application
 	activeApplication = getActiveWindow()->ToLower();
+	System::Diagnostics::Debug::Print(activeApplication);
 
 	// assign the active category
 	List<String^>^ genres = otherPreferences;
@@ -361,8 +365,8 @@ void Library::refreshValidSongs()
 	// add the song to our new list of valid songs if it matches the selected genres
 	for (int i = 0; i < songList->Count; i++) {
 		for (int j = 0; j < genres->Count; j++) {
-			if ((genres[j]->ToLower())->Equals(songList[i]->getGenre())) {
-				validSongs->Add(songList[i]);
+			if ((genres[j])->Equals(songList[i]->getGenre())) {
+				newValidSongs->Add(songList[i]);
 			}
 		}
 	}
