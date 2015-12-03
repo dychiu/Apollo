@@ -236,7 +236,6 @@ void Library::load() {
 	}
 
 	//Load the previous preferences
-	Diagnostics::Debug::WriteLine(root->ChildNodes[0]->ChildNodes[0]->SelectSingleNode("gaming")->Name);
 	for each (XmlNode^ genre in root->ChildNodes[0]->ChildNodes[0]->SelectSingleNode("work")->ChildNodes) {
 		workPreferences->Add(genre->SelectSingleNode("name")->InnerText);
 	}

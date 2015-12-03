@@ -503,7 +503,7 @@ void PlayerForm::playSongNormal() {
 	musicPlayer->playSong();
 	// matching song volume to volume bar
 	if (musicPlayer->isMP3(musicPlayer->getCurrentSong()))
-		musicPlayer->getNAudio()->Volume = volume->Value / 100;
+		musicPlayer->getNAudio()->Volume = volume->Value / 100.0;
 	else
 		musicPlayer->getSFML()->setVolume(volume->Value);
 
