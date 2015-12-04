@@ -20,6 +20,8 @@ namespace GUI {
 		PlayerForm();
 
 		const int WM_NCLBUTTONDOWN = 0xA1;
+	private: System::Windows::Forms::PictureBox^  playSymbol;
+	public:
 		const int HT_CAPTION = 0x2;
 		[DllImportAttribute("user32.dll")]
 		static int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -132,6 +134,9 @@ namespace GUI {
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->playSymbol = (gcnew System::Windows::Forms::PictureBox());
+			this->panel2->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->playSymbol))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -198,6 +203,7 @@ namespace GUI {
 			this->panel2->AutoScroll = true;
 			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->panel2->Controls->Add(this->playSymbol);
 			this->panel2->Location = System::Drawing::Point(373, 21);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(930, 621);
@@ -345,6 +351,16 @@ namespace GUI {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::button2_Release);
 			// 
+			// playSymbol
+			// 
+			this->playSymbol->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"playSymbol.BackgroundImage")));
+			this->playSymbol->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->playSymbol->Location = System::Drawing::Point(215, 110);
+			this->playSymbol->Name = L"playSymbol";
+			this->playSymbol->Size = System::Drawing::Size(21, 21);
+			this->playSymbol->TabIndex = 0;
+			this->playSymbol->TabStop = false;
+			// 
 			// PlayerForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -370,6 +386,8 @@ namespace GUI {
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"PlayerForm";
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::PlayerForm_MouseDown);
+			this->panel2->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->playSymbol))->EndInit();
 			this->ResumeLayout(false);
 
 		}

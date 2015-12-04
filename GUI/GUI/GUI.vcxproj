@@ -179,8 +179,8 @@
     <EmbeddedResource Include="PreferencesForm.resx" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\apolloicon.ico" />
     <Image Include="..\pausebutton.jpg" />
-    <Image Include="D:\University\2015-2016\CMPE 320\Project\GUI\apolloicon.ico" />
     <Image Include="pause.bmp" />
   </ItemGroup>
   <ItemGroup>

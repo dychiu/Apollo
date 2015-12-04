@@ -17,6 +17,7 @@ PlayerForm::PlayerForm() {
 	minimizeButton->BackgroundImage = imageList1->Images[8];
 	// initialize import button image
 	importButton->BackgroundImage = imageList1->Images[10];
+	playSymbol->BackgroundImage = imageList1->Images[13];
 
 	musicPlayer = gcnew MusicPlayer();
 	
