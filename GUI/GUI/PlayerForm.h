@@ -383,7 +383,7 @@ namespace GUI {
 			// 
 			this->square->Location = System::Drawing::Point(198, 111);
 			this->square->Name = L"square";
-			this->square->Size = System::Drawing::Size(36, 18);
+			this->square->Size = System::Drawing::Size(31, 18);
 			this->square->TabIndex = 1;
 			this->square->TabStop = false;
 			this->square->Visible = false;

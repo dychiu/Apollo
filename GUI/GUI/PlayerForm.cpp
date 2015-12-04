@@ -253,6 +253,7 @@ System::Void PlayerForm::skipButton_Paint(System::Object^  sender, System::Windo
 
 System::Void PlayerForm::skipButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	musicPlayer->playNextSong();
+	changePlayLocation();
 }
 
 System::Void PlayerForm::minimizeButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
@@ -282,6 +283,14 @@ System::Void PlayerForm::listBox1_SelectedIndexChanged(System::Object^  sender, 
 void PlayerForm::changeArtist() {
 	removeComponents();
 	createComponents();
+	if (musicPlayer->getCurrentArtist() == musicPlayer->getSelectedArtist()) {
+		playSymbol->Visible = true;
+		square->Visible = true;
+	}
+	else {
+		playSymbol->Visible = false;
+		square->Visible = false;
+	}
 }
 
 void PlayerForm::removeComponents() {
@@ -587,6 +596,8 @@ void PlayerForm::playSongSmart() {
 	else
 		musicPlayer->getSFML()->setVolume(volume->Value);
 
+	changePlayLocation();
+
 	play = true;
 }
 
@@ -614,8 +625,10 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 	}
 	else {
 		progressBar1->Value = 100000 * musicPlayer->getSFML()->getPlayingOffset().asSeconds() / musicPlayer->getSFML()->getDuration().asSeconds() + offsetSFML;
-		if (progressBar1->Value > 99900)
+		if (progressBar1->Value > 99900) {
 			musicPlayer->playNextSong();
+			changePlayLocation();
+		}
 	}
 
 	if (musicPlayer->getSFML()->getPlayingOffset().asSeconds() == 0)
