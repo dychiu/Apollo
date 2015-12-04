@@ -262,6 +262,7 @@ System::Void PlayerForm::skipButton_Paint(System::Object^  sender, System::Windo
 System::Void PlayerForm::skipButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	musicPlayer->playNextSong();
 	changePlayLocation();
+	changePlaying();
 }
 
 System::Void PlayerForm::minimizeButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
@@ -583,6 +584,7 @@ void PlayerForm::playSongNormal() {
 		musicPlayer->getSFML()->setVolume(volume->Value);
 
 	changePlayLocation();
+	changePlaying();
 
 	play = true;
 }
@@ -606,6 +608,7 @@ void PlayerForm::playSongSmart() {
 		musicPlayer->getSFML()->setVolume(volume->Value);
 
 	changePlayLocation();
+	changePlaying();
 
 	play = true;
 }
@@ -632,6 +635,7 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 		if (progressBar1->Value == progressBar1->Maximum) {
 			musicPlayer->playNextSong();
 			changePlayLocation();
+			changePlaying();
 		}
 	}
 	else {
@@ -639,6 +643,7 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 		if (progressBar1->Value > 99900) {
 			musicPlayer->playNextSong();
 			changePlayLocation();
+			changePlaying();
 		}
 	}
 
@@ -768,4 +773,9 @@ void PlayerForm::changePlayLocation() {
 		playSymbol->Location = System::Drawing::Point(x, y);
 		square->Location = System::Drawing::Point(x - 13, y);
 	}
+}
+
+void PlayerForm::changePlaying() {
+	playing->Text = (musicPlayer->getCurrentArtist()->getName() + " - " + musicPlayer->getCurrentSong()->getSongName());
+	playing->Location = System::Drawing::Point(480 - playing->Size.Width/2, 0); 
 }
