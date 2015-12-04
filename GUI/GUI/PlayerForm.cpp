@@ -457,10 +457,10 @@ void PlayerForm::createComponents() {
 			static_cast<System::Byte>(0)));
 		tempYear->Location = System::Drawing::Point(0, offset + 158);
 
-		if (musicPlayer->getCurrentAlbum()->getYear() == 0)
+		if (musicPlayer->getSelectedArtist()->getAlbums()[i]->getYear() <= 0)
 			tempYear->Text = "(unknown year)";
 		else
-			tempYear->Text = System::Convert::ToString(musicPlayer->getCurrentAlbum()->getYear());
+			tempYear->Text = System::Convert::ToString(musicPlayer->getSelectedArtist()->getAlbums()[i]->getYear());
 
 		panel2->Controls->Add(tempYear);
 		year->Add(tempYear);
