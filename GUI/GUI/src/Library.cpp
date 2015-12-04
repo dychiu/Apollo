@@ -176,6 +176,9 @@ void Library::save()
 				xmlFile->WriteStartElement("name");
 				xmlFile->WriteString(album->getName());
 				xmlFile->WriteEndElement();
+				xmlFile->WriteStartElement("year");
+				xmlFile->WriteString(album->getYear().ToString());
+				xmlFile->WriteEndElement();
 				for each (Song^ song in album->getSongs()) {
 					xmlFile->WriteStartElement("song");
 					//song name
@@ -262,6 +265,7 @@ void Library::load() {
 			Album^ tempAlbum = gcnew Album();
 			//Get the album metadata
 			tempAlbum->setName(album->FirstChild->InnerText);
+			tempAlbum->setYear(album->ChildNodes[1]->InnerText);
 			//Art requires filepath, take the first song and use that for the art?
 			tempAlbum->setAlbumArt(album->ChildNodes[1]->SelectSingleNode("filepath")->InnerText);
 			tempAlbum->setParentArtist(tempArtist);

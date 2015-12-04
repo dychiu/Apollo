@@ -50,6 +50,7 @@ Album::Album() {
 
 Album::Album(TagLib::File^ tagFile) {
 	name = tagFile->Tag->Album;
+	year = tagFile->Tag->Year;
 	songList = gcnew List<Song^>();
 
 	//Get album art
@@ -69,6 +70,16 @@ System::String^ Album::getName() {
 
 Drawing::Image^ Album::getAlbumArt() {
 	return art;
+}
+
+int Album::getYear() {
+	return year;
+}
+
+void Album::setYear(String^ _year)
+{
+	year = Convert::ToInt32(_year);
+	return;
 }
 
 System::String^ Album::getArtworkLocation() {

@@ -39,18 +39,22 @@ public:
 	void setParentArtist(Artist^ artist);
 	void setName(String^ _name);
 	void setAlbumArt(String^ filepath);
+	void setYear(String^ _year);
 
 	System::String^ getName();
 	Drawing::Image^ getAlbumArt();
 	System::String^ getArtworkLocation();
 	Artist^ getParentArtist();
 	List<Song^>^ getSongs();
+	int getYear();
+
 private:
 	System::String^ name;
 	System::String^ artworkLocation;
 	List<Song^>^ songList;
 	Drawing::Image^ art;
 	Artist^ parentArtist;
+	int year;
 };
 
 public ref class Song {
