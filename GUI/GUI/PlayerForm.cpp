@@ -147,10 +147,14 @@ void PlayerForm::changeToSmart() {
 	button1->BackgroundImage = imageList1->Images[7];
 	button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(100)));
-
+	button1->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+		static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
+	
 	minimizeButton->BackgroundImage = imageList1->Images[9];
 	minimizeButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(100)));
+	minimizeButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+		static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
 
 	importButton->BackgroundImage = imageList1->Images[11];
 	importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
@@ -164,8 +168,8 @@ void PlayerForm::changeToSmart() {
 
 	BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(100)));
-	progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-		static_cast<System::Int32>(static_cast<System::Byte>(100)));
+	progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(80)),
+		static_cast<System::Int32>(static_cast<System::Byte>(80)));
 
 	panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
 		static_cast<System::Int32>(static_cast<System::Byte>(210)));
@@ -207,9 +211,13 @@ void PlayerForm::changeToNormal() {
 	button1->BackgroundImage = imageList1->Images[6];
 	button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
+	button1->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
+		static_cast<System::Int32>(static_cast<System::Byte>(255)));
 
 	minimizeButton->BackgroundImage = imageList1->Images[8];
 	minimizeButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
+		static_cast<System::Int32>(static_cast<System::Byte>(255)));
+	minimizeButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
 
 	importButton->BackgroundImage = imageList1->Images[10];
@@ -224,7 +232,7 @@ void PlayerForm::changeToNormal() {
 
 	BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
+	progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(80)),
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
 
 	panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
