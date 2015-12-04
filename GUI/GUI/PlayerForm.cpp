@@ -719,38 +719,43 @@ System::Void PlayerForm::volume_Release(System::Object^  sender, System::Windows
 }
 
 void PlayerForm::changePlayLocation() {
-	playSymbol->Visible = true;
-	square->Visible = true;
+	if (musicPlayer->getCurrentSong() != nullptr) {
+		listBox1->SetSelected(musicPlayer->getMusicLibrary()->getArtistList()->IndexOf(musicPlayer->getCurrentArtist()), true);
+		playSymbol->Visible = true;
+		square->Visible = true;
 
-	int x;
-	int y;
+		int x;
+		int y;
 
-	int albumNum;
-	int songNum;
-	int totalSongs;
+		int albumNum;
+		int songNum;
+		int totalSongs;
 
-	for (int i = 0; i < musicPlayer->getCurrentArtist()->getAlbums()->Count; i++) {
-		if (musicPlayer->getCurrentAlbum() == musicPlayer->getCurrentArtist()->getAlbums()[i]) {
-			albumNum = i;
+		for (int i = 0; i < musicPlayer->getCurrentArtist()->getAlbums()->Count; i++) {
+			if (musicPlayer->getCurrentAlbum() == musicPlayer->getCurrentArtist()->getAlbums()[i]) {
+				albumNum = i;
+			}
 		}
-	}
 
-	totalSongs = musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()->Count;
+		totalSongs = musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()->Count;
 
-	for (int i = 0; i < totalSongs; i++) {
-		if (musicPlayer->getCurrentSong() == musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()[i])
-			songNum = i;
-	}
+		for (int i = 0; i < totalSongs; i++) {
+			if (musicPlayer->getCurrentSong() == musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()[i])
+				songNum = i;
+		}
+		Debug::WriteLine(musicPlayer->getCurrentArtist()->getName());
+		Debug::WriteLine(musicPlayer->getCurrentAlbum()->getName());
+		Debug::WriteLine(musicPlayer->getCurrentSong()->getSongName());
+		if (songNum < ceil(totalSongs / 2.0)) {
+			x = 163;
+			y = leftNumbers[albumNum]->Location.Y + (21 * songNum) + 3;
+		}
+		else {
+			x = 411;
+			y = leftNumbers[albumNum]->Location.Y + (21 * (songNum - ceil(totalSongs / 2.0))) + 3;
+		}
 
-	if (songNum < ceil(totalSongs / 2.0)) {
-		x = 163;
-		y = leftNumbers[albumNum]->Location.Y + (21 * songNum) + 3;
+		playSymbol->Location = System::Drawing::Point(x, y);
+		square->Location = System::Drawing::Point(x - 13, y);
 	}
-	else {
-		x = 411;
-		y = leftNumbers[albumNum]->Location.Y + (21 * (songNum - ceil(totalSongs / 2.0))) + 3;
-	}
-	
-	playSymbol->Location = System::Drawing::Point(x, y);
-	square->Location = System::Drawing::Point(x-13, y);
 }
