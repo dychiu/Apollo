@@ -267,7 +267,7 @@ void Library::load() {
 			tempAlbum->setName(album->FirstChild->InnerText);
 			tempAlbum->setYear(album->ChildNodes[1]->InnerText);
 			//Art requires filepath, take the first song and use that for the art?
-			tempAlbum->setAlbumArt(album->ChildNodes[1]->SelectSingleNode("filepath")->InnerText);
+			tempAlbum->setAlbumArt(album->ChildNodes[2]->SelectSingleNode("filepath")->InnerText);
 			tempAlbum->setParentArtist(tempArtist);
 			tempArtist->addAlbum(tempAlbum);
 			albumList->Add(tempAlbum);
