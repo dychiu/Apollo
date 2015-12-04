@@ -714,13 +714,15 @@ void PlayerForm::changePlayLocation() {
 
 	int albumNum;
 	int songNum;
-	int totalSongs = musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()->Count;
+	int totalSongs;
 
 	for (int i = 0; i < musicPlayer->getCurrentArtist()->getAlbums()->Count; i++) {
 		if (musicPlayer->getCurrentAlbum() == musicPlayer->getCurrentArtist()->getAlbums()[i]) {
 			albumNum = i;
 		}
 	}
+
+	totalSongs = musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()->Count;
 
 	for (int i = 0; i < totalSongs; i++) {
 		if (musicPlayer->getCurrentSong() == musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()[i])
