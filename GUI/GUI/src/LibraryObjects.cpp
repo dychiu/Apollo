@@ -50,7 +50,11 @@ Album::Album() {
 
 Album::Album(TagLib::File^ tagFile) {
 	name = tagFile->Tag->Album;
-	year = tagFile->Tag->Year;
+	if (tagFile->Tag->Year <= 0)
+		year = 0;
+	else
+		year = tagFile->Tag->Year;
+
 	songList = gcnew List<Song^>();
 
 	//Get album art
