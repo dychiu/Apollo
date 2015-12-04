@@ -21,8 +21,12 @@ Library^ MusicPlayer::getMusicLibrary() {
 
 void MusicPlayer::playSong()
 {
-	if (currentSong == nullptr) { return; }
-	if (isMP3(currentSong)) {
+	if (currentSong == nullptr && !smartPlayMode) { return; }
+	else if (currentSong == nullptr && smartPlayMode) { 
+
+		playNextSong();
+	}
+	else if (isMP3(currentSong)) {
 		mp3Player->Play();
 	}
 	else {

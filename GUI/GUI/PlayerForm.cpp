@@ -99,6 +99,9 @@ System::Void PlayerForm::roundButton_Release(System::Object^  sender, System::Wi
 			}
 		}
 	}
+	else if (musicPlayer->getSelectedSong() == nullptr && musicPlayer->getSmartPlay()) {
+		playSongSmart();
+	}
 }
 
 System::Void PlayerForm::smartPlayButton_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
