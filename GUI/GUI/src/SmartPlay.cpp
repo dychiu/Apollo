@@ -23,7 +23,7 @@ Song ^ SmartPlay::getSmartSong(List<Song^>^ _songList)
 		return nullptr;
 	}
 	Song^ s = validSongs[rand->Next() % validSongs->Count];
-	System::Diagnostics::Debug::Print("Selected song: " + s->getSongName() + " with genre: " + s->getGenre());
+	System::Diagnostics::Debug::Print("SELECTED SONG: " + s->getSongName() + " WITH GENRE: " + s->getGenre());
 	return s;
 }
 
@@ -44,7 +44,7 @@ void SmartPlay::refreshValidSongs()
 {
 	// assign the current application
 	activeApplication = getActiveWindow()->ToLower();
-	System::Diagnostics::Debug::Print("Active application: " + activeApplication);
+	System::Diagnostics::Debug::Print("ACTIVE APPLICATION: " + activeApplication);
 
 	// assign the active category
 	List<String^>^ genres = otherPreferences;
