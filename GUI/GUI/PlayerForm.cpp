@@ -723,7 +723,8 @@ System::Void PlayerForm::volume_Release(System::Object^  sender, System::Windows
 
 void PlayerForm::changePlayLocation() {
 	if (musicPlayer->getCurrentSong() != nullptr) {
-		listBox1->SetSelected(musicPlayer->getMusicLibrary()->getArtistList()->IndexOf(musicPlayer->getCurrentArtist()), true);
+		if (listBox1->SelectedIndex != musicPlayer->getMusicLibrary()->getArtistList()->IndexOf(musicPlayer->getCurrentArtist()))
+			listBox1->SetSelected(musicPlayer->getMusicLibrary()->getArtistList()->IndexOf(musicPlayer->getCurrentArtist()), true);
 		playSymbol->Visible = true;
 		square->Visible = true;
 
