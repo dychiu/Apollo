@@ -743,9 +743,7 @@ void PlayerForm::changePlayLocation() {
 			if (musicPlayer->getCurrentSong() == musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()[i])
 				songNum = i;
 		}
-		Debug::WriteLine(musicPlayer->getCurrentArtist()->getName());
-		Debug::WriteLine(musicPlayer->getCurrentAlbum()->getName());
-		Debug::WriteLine(musicPlayer->getCurrentSong()->getSongName());
+
 		if (songNum < ceil(totalSongs / 2.0)) {
 			x = 163;
 			y = leftNumbers[albumNum]->Location.Y + (21 * songNum) + 3;
