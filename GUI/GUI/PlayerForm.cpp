@@ -41,6 +41,7 @@ PlayerForm::PlayerForm() {
 	leftSongs = gcnew List<ListBox^>();
 	rightSongs = gcnew List<ListBox^>();
 	year = gcnew List<Label^>();
+	genre = gcnew List<Label^>();
 
 	selectedList = nullptr;
 
@@ -289,6 +290,7 @@ void PlayerForm::removeComponents() {
 		panel2->Controls->Remove(leftSongs[i]);
 		panel2->Controls->Remove(rightSongs[i]);
 		panel2->Controls->Remove(year[i]);
+		panel2->Controls->Remove(genre[i]);
 	}
 	artwork->Clear();
 	album->Clear();
@@ -297,6 +299,7 @@ void PlayerForm::removeComponents() {
 	leftSongs->Clear();
 	rightSongs->Clear();
 	year->Clear();
+	genre->Clear();
 }
 
 void PlayerForm::createComponents() {
@@ -432,8 +435,8 @@ void PlayerForm::createComponents() {
 		if (i != musicPlayer->getSelectedArtist()->getAlbums()->Count - 1)
 			tempRightSongs->Size = System::Drawing::Size(210, 21 * listSize);
 		// in the case that it is the last song list and has a list size that is smaller than the music artwork
-		else if (listSize < 6)
-			tempRightSongs->Size = System::Drawing::Size(210, 21 * 6 + 75);
+		else if (listSize < 7)
+			tempRightSongs->Size = System::Drawing::Size(210, 21 * 7 + 75);
 		else
 			tempRightSongs->Size = System::Drawing::Size(210, 21 * listSize + 75);
 		tempRightSongs->SelectedIndexChanged += gcnew System::EventHandler(this, &PlayerForm::songs_SelectedIndexChanged);
@@ -464,12 +467,29 @@ void PlayerForm::createComponents() {
 
 		panel2->Controls->Add(tempYear);
 		year->Add(tempYear);
+
+		//
+		// genre
+		//
+		System::Windows::Forms::Label^ tempGenre = (gcnew System::Windows::Forms::Label());
+		tempGenre->AutoSize = true;
+		tempGenre->Font = (gcnew System::Drawing::Font(L"Century Gothic", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(0)));
+		tempGenre->Location = System::Drawing::Point(0, offset + 173);
+
+		if (String::IsNullOrWhiteSpace(musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()[0]->getGenre()))
+			tempGenre->Text = "(unknown genre)";
+		else
+			tempGenre->Text = musicPlayer->getSelectedArtist()->getAlbums()[i]->getSongs()[0]->getGenre();
+
+		panel2->Controls->Add(tempGenre);
+		genre->Add(tempGenre);
 		
 		// adjusting offset
-		if (listSize > 5)
-			offset = tempRightSongs->Location.Y + tempRightSongs->Size.Height + 45;
+		if (listSize < 7)
+			offset = tempGenre->Location.Y + tempGenre->Size.Height + 45;
 		else
-			offset = tempArtwork->Location.Y + tempArtwork->Size.Height + 45;
+			offset = tempRightSongs->Location.Y + tempRightSongs->Size.Height + 45;			
 	}	
 }
 

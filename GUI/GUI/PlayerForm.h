@@ -63,6 +63,7 @@ namespace GUI {
 		Generic::List<ListBox^>^ leftSongs;
 		Generic::List<ListBox^>^ rightSongs;
 		Generic::List<Label^>^ year;
+		Generic::List<Label^>^ genre;
 		System::Windows::Forms::ListBox^ selectedList;
 
 		// closes window
