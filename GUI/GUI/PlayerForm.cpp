@@ -776,6 +776,8 @@ void PlayerForm::changePlayLocation() {
 }
 
 void PlayerForm::changePlaying() {
-	playing->Text = (musicPlayer->getCurrentArtist()->getName() + " - " + musicPlayer->getCurrentSong()->getSongName());
-	playing->Location = System::Drawing::Point(480 - playing->Size.Width/2, 0); 
+	if (musicPlayer->getCurrentSong() != nullptr) {
+		playing->Text = (musicPlayer->getCurrentArtist()->getName() + " - " + musicPlayer->getCurrentSong()->getSongName());
+		playing->Location = System::Drawing::Point(480 - playing->Size.Width / 2, 0);
+	}
 }
