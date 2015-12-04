@@ -287,6 +287,8 @@ void Library::load() {
 			}
 		}
 	}
+	if (smartPlay->getOtherPreferences()->Count == 0)
+		smartPlay->setOtherPreferences(getGenreList());
 }
 
 SmartPlay^ Library::getSmartPlayObj() {

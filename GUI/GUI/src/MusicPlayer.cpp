@@ -23,7 +23,6 @@ void MusicPlayer::playSong()
 {
 	if (currentSong == nullptr && !smartPlayMode) { return; }
 	else if (currentSong == nullptr && smartPlayMode) { 
-
 		playNextSong();
 	}
 	else if (isMP3(currentSong)) {
@@ -129,7 +128,7 @@ void MusicPlayer::setSmartPlay(bool smartPlay) {
 }
 
 void MusicPlayer::playNextSong() {
-	if (!smartPlayMode) {
+	if (!smartPlayMode && currentSong != nullptr) {
 		//If current song is last in album
 		if (currentAlbum->getSongs()[currentAlbum->getSongs()->Count - 1] == currentSong) {
 			//If the current album is the last album as well
@@ -153,7 +152,7 @@ void MusicPlayer::playNextSong() {
 			playSong();
 		}
 	}
-	else {
+	else if (smartPlayMode){
 		//Smartplay integration goes here
 		setSelectedSong(musicLibrary->getSmartPlayObj()->getSmartSong(musicLibrary->getSongList()));
 		setCurrentSong();

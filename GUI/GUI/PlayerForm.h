@@ -21,6 +21,11 @@ namespace GUI {
 
 		const int WM_NCLBUTTONDOWN = 0xA1;
 	private: System::Windows::Forms::PictureBox^  playSymbol;
+	private: System::Windows::Forms::PictureBox^  square;
+	private: System::Windows::Forms::PictureBox^  apollo;
+	private: System::Windows::Forms::Label^  playing;
+
+
 	public:
 		const int HT_CAPTION = 0x2;
 		[DllImportAttribute("user32.dll")]
@@ -115,6 +120,8 @@ namespace GUI {
 		void changeArtist();
 		void removeComponents();
 		void createComponents();
+		void changePlayLocation();
+		void changePlaying();
 
 		#pragma region Windows Form Designer generated code
 		
@@ -127,7 +134,9 @@ namespace GUI {
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->apollo = (gcnew System::Windows::Forms::PictureBox());
 			this->playSymbol = (gcnew System::Windows::Forms::PictureBox());
+			this->square = (gcnew System::Windows::Forms::PictureBox());
 			this->roundButton = (gcnew System::Windows::Forms::Button());
 			this->imageList1 = (gcnew System::Windows::Forms::ImageList(this->components));
 			this->skipButton = (gcnew System::Windows::Forms::Button());
@@ -139,8 +148,11 @@ namespace GUI {
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			this->preferencesButton = (gcnew System::Windows::Forms::Button());
+			this->playing = (gcnew System::Windows::Forms::Label());
 			this->panel2->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->apollo))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->playSymbol))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->square))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -150,6 +162,8 @@ namespace GUI {
 			this->button1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.BackgroundImage")));
 			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->button1->FlatAppearance->BorderSize = 0;
+			this->button1->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
+				static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button1->Location = System::Drawing::Point(1259, 1);
 			this->button1->Name = L"button1";
@@ -180,7 +194,7 @@ namespace GUI {
 			// 
 			this->progressBar1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			this->progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
+			this->progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(80)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->progressBar1->Location = System::Drawing::Point(-1, 640);
 			this->progressBar1->Maximum = 100000;
@@ -207,21 +221,43 @@ namespace GUI {
 			this->panel2->AutoScroll = true;
 			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->panel2->Controls->Add(this->apollo);
 			this->panel2->Controls->Add(this->playSymbol);
+			this->panel2->Controls->Add(this->square);
 			this->panel2->Location = System::Drawing::Point(373, 21);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(930, 621);
 			this->panel2->TabIndex = 4;
 			// 
+			// apollo
+			// 
+			this->apollo->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"apollo.BackgroundImage")));
+			this->apollo->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->apollo->Location = System::Drawing::Point(171, 193);
+			this->apollo->Name = L"apollo";
+			this->apollo->Size = System::Drawing::Size(545, 231);
+			this->apollo->TabIndex = 2;
+			this->apollo->TabStop = false;
+			// 
 			// playSymbol
 			// 
 			this->playSymbol->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"playSymbol.BackgroundImage")));
 			this->playSymbol->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->playSymbol->Location = System::Drawing::Point(215, 110);
+			this->playSymbol->Location = System::Drawing::Point(16, 3);
 			this->playSymbol->Name = L"playSymbol";
-			this->playSymbol->Size = System::Drawing::Size(21, 21);
+			this->playSymbol->Size = System::Drawing::Size(18, 18);
 			this->playSymbol->TabIndex = 0;
 			this->playSymbol->TabStop = false;
+			this->playSymbol->Visible = false;
+			// 
+			// square
+			// 
+			this->square->Location = System::Drawing::Point(3, 3);
+			this->square->Name = L"square";
+			this->square->Size = System::Drawing::Size(31, 18);
+			this->square->TabIndex = 1;
+			this->square->TabStop = false;
+			this->square->Visible = false;
 			// 
 			// roundButton
 			// 
@@ -300,6 +336,8 @@ namespace GUI {
 			this->minimizeButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"minimizeButton.BackgroundImage")));
 			this->minimizeButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->minimizeButton->FlatAppearance->BorderSize = 0;
+			this->minimizeButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
+				static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->minimizeButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->minimizeButton->Location = System::Drawing::Point(1238, 1);
 			this->minimizeButton->Name = L"minimizeButton";
@@ -333,8 +371,8 @@ namespace GUI {
 			this->volume->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(75)), static_cast<System::Int32>(static_cast<System::Byte>(75)),
 				static_cast<System::Int32>(static_cast<System::Byte>(75)));
 			this->volume->Cursor = System::Windows::Forms::Cursors::Default;
-			this->volume->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
-				static_cast<System::Int32>(static_cast<System::Byte>(224)));
+			this->volume->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)), static_cast<System::Int32>(static_cast<System::Byte>(180)),
+				static_cast<System::Int32>(static_cast<System::Byte>(180)));
 			this->volume->Location = System::Drawing::Point(1059, 628);
 			this->volume->Name = L"volume";
 			this->volume->Size = System::Drawing::Size(144, 23);
@@ -372,6 +410,19 @@ namespace GUI {
 			this->preferencesButton->UseVisualStyleBackColor = true;
 			this->preferencesButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::button2_Release);
 			// 
+			// playing
+			// 
+			this->playing->AutoSize = true;
+			this->playing->BackColor = System::Drawing::Color::Transparent;
+			this->playing->Font = (gcnew System::Drawing::Font(L"Century Gothic", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->playing->ForeColor = System::Drawing::Color::White;
+			this->playing->Location = System::Drawing::Point(543, 0);
+			this->playing->Name = L"playing";
+			this->playing->Size = System::Drawing::Size(0, 20);
+			this->playing->TabIndex = 28;
+			this->playing->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
 			// PlayerForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -379,6 +430,7 @@ namespace GUI {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->ClientSize = System::Drawing::Size(1280, 720);
+			this->Controls->Add(this->playing);
 			this->Controls->Add(this->preferencesButton);
 			this->Controls->Add(this->volume);
 			this->Controls->Add(this->importButton);
@@ -395,11 +447,14 @@ namespace GUI {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"PlayerForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"PlayerForm";
+			this->Text = L"Apollo";
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::PlayerForm_MouseDown);
 			this->panel2->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->apollo))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->playSymbol))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->square))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 

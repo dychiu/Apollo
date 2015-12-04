@@ -147,10 +147,14 @@ void PlayerForm::changeToSmart() {
 	button1->BackgroundImage = imageList1->Images[7];
 	button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(100)));
-
+	button1->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+		static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
+	
 	minimizeButton->BackgroundImage = imageList1->Images[9];
 	minimizeButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(100)));
+	minimizeButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+		static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
 
 	importButton->BackgroundImage = imageList1->Images[11];
 	importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
@@ -164,8 +168,8 @@ void PlayerForm::changeToSmart() {
 
 	BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(100)));
-	progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
-		static_cast<System::Int32>(static_cast<System::Byte>(100)));
+	progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(80)),
+		static_cast<System::Int32>(static_cast<System::Byte>(80)));
 
 	panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(210)),
 		static_cast<System::Int32>(static_cast<System::Byte>(210)));
@@ -207,9 +211,13 @@ void PlayerForm::changeToNormal() {
 	button1->BackgroundImage = imageList1->Images[6];
 	button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
+	button1->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
+		static_cast<System::Int32>(static_cast<System::Byte>(255)));
 
 	minimizeButton->BackgroundImage = imageList1->Images[8];
 	minimizeButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
+		static_cast<System::Int32>(static_cast<System::Byte>(255)));
+	minimizeButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
 
 	importButton->BackgroundImage = imageList1->Images[10];
@@ -224,7 +232,7 @@ void PlayerForm::changeToNormal() {
 
 	BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
-	progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
+	progressBar1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(30)), static_cast<System::Int32>(static_cast<System::Byte>(80)),
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
 
 	panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
@@ -253,6 +261,8 @@ System::Void PlayerForm::skipButton_Paint(System::Object^  sender, System::Windo
 
 System::Void PlayerForm::skipButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 	musicPlayer->playNextSong();
+	changePlayLocation();
+	changePlaying();
 }
 
 System::Void PlayerForm::minimizeButton_Release(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
@@ -274,6 +284,7 @@ System::Void PlayerForm::importButton_Release(System::Object^  sender, System::W
 
 System::Void PlayerForm::listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (artistSelectionsCleared == true) {
+		apollo->Visible = false;
 		musicPlayer->setSelectedArtist(musicPlayer->getMusicLibrary()->getArtistList()[listBox1->SelectedIndex]);
 		changeArtist();
 	}
@@ -282,6 +293,14 @@ System::Void PlayerForm::listBox1_SelectedIndexChanged(System::Object^  sender, 
 void PlayerForm::changeArtist() {
 	removeComponents();
 	createComponents();
+	if (musicPlayer->getCurrentArtist() == musicPlayer->getSelectedArtist()) {
+		playSymbol->Visible = true;
+		square->Visible = true;
+	}
+	else {
+		playSymbol->Visible = false;
+		square->Visible = false;
+	}
 }
 
 void PlayerForm::removeComponents() {
@@ -527,6 +546,7 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 		else if (list%2 == 1)
 			musicPlayer->setSelectedSong(musicPlayer->getSelectedArtist()->getAlbums()[(list-1) / 2]->getSongs()[index + leftSongs[(list-1) / 2]->Size.Height/21]);
 		
+		// for single clicks on program open
 		if (musicPlayer->getCurrentSong() == nullptr)
 			musicPlayer->setCurrentSong();
 		
@@ -551,8 +571,10 @@ System::Void PlayerForm::artists_DoubleClick(System::Object^  sender, System::Ev
 
 //Needed in order to change the play button to pause when playing a song
 void PlayerForm::playSongNormal() {
+	// progress bar thread
 	if (backgroundWorker1->IsBusy == false)
 		backgroundWorker1->RunWorkerAsync(1);
+	// changing button image
 	roundButton->BackgroundImage = imageList1->Images[1];
 	musicPlayer->playSong();
 	// matching song volume to volume bar
@@ -560,6 +582,9 @@ void PlayerForm::playSongNormal() {
 		musicPlayer->getNAudio()->Volume = volume->Value / 100.0;
 	else
 		musicPlayer->getSFML()->setVolume(volume->Value);
+
+	changePlayLocation();
+	changePlaying();
 
 	play = true;
 }
@@ -581,6 +606,9 @@ void PlayerForm::playSongSmart() {
 		musicPlayer->getNAudio()->Volume = volume->Value / 100;
 	else
 		musicPlayer->getSFML()->setVolume(volume->Value);
+
+	changePlayLocation();
+	changePlaying();
 
 	play = true;
 }
@@ -604,13 +632,19 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 	//progressBar1->Value += e->ProgressPercentage;
 	if (musicPlayer->isMP3(musicPlayer->getCurrentSong())) {
 		progressBar1->Value = 100000 * musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds / musicPlayer->getNAudioReader()->TotalTime.TotalSeconds;
-		if (progressBar1->Value == progressBar1->Maximum)
+		if (progressBar1->Value == progressBar1->Maximum) {
 			musicPlayer->playNextSong();
+			changePlayLocation();
+			changePlaying();
+		}
 	}
 	else {
 		progressBar1->Value = 100000 * musicPlayer->getSFML()->getPlayingOffset().asSeconds() / musicPlayer->getSFML()->getDuration().asSeconds() + offsetSFML;
-		if (progressBar1->Value > 99900)
+		if (progressBar1->Value > 99900) {
 			musicPlayer->playNextSong();
+			changePlayLocation();
+			changePlaying();
+		}
 	}
 
 	if (musicPlayer->getSFML()->getPlayingOffset().asSeconds() == 0)
@@ -700,3 +734,50 @@ System::Void PlayerForm::volume_Release(System::Object^  sender, System::Windows
 	mouseDownVolume = false;
 }
 
+void PlayerForm::changePlayLocation() {
+	if (musicPlayer->getCurrentSong() != nullptr) {
+		if (listBox1->SelectedIndex != musicPlayer->getMusicLibrary()->getArtistList()->IndexOf(musicPlayer->getCurrentArtist()))
+			listBox1->SetSelected(musicPlayer->getMusicLibrary()->getArtistList()->IndexOf(musicPlayer->getCurrentArtist()), true);
+		playSymbol->Visible = true;
+		square->Visible = true;
+
+		int x;
+		int y;
+
+		int albumNum;
+		int songNum;
+		int totalSongs;
+
+		for (int i = 0; i < musicPlayer->getCurrentArtist()->getAlbums()->Count; i++) {
+			if (musicPlayer->getCurrentAlbum() == musicPlayer->getCurrentArtist()->getAlbums()[i]) {
+				albumNum = i;
+			}
+		}
+
+		totalSongs = musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()->Count;
+
+		for (int i = 0; i < totalSongs; i++) {
+			if (musicPlayer->getCurrentSong() == musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()[i])
+				songNum = i;
+		}
+
+		if (songNum < ceil(totalSongs / 2.0)) {
+			x = 163;
+			y = leftNumbers[albumNum]->Location.Y + (21 * songNum) + 3;
+		}
+		else {
+			x = 411;
+			y = leftNumbers[albumNum]->Location.Y + (21 * (songNum - ceil(totalSongs / 2.0))) + 3;
+		}
+
+		playSymbol->Location = System::Drawing::Point(x, y);
+		square->Location = System::Drawing::Point(x - 13, y);
+	}
+}
+
+void PlayerForm::changePlaying() {
+	if (musicPlayer->getCurrentSong() != nullptr) {
+		playing->Text = (musicPlayer->getCurrentArtist()->getName() + " - " + musicPlayer->getCurrentSong()->getSongName());
+		playing->Location = System::Drawing::Point(480 - playing->Size.Width / 2, 0);
+	}
+}
