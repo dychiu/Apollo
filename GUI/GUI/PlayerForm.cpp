@@ -17,6 +17,7 @@ PlayerForm::PlayerForm() {
 	minimizeButton->BackgroundImage = imageList1->Images[8];
 	// initialize import button image
 	importButton->BackgroundImage = imageList1->Images[10];
+	preferencesButton->BackgroundImage = imageList1->Images[14];
 	playSymbol->BackgroundImage = imageList1->Images[13];
 
 	musicPlayer = gcnew MusicPlayer();
@@ -39,6 +40,7 @@ PlayerForm::PlayerForm() {
 	rightNumbers = gcnew List<ListBox^>();
 	leftSongs = gcnew List<ListBox^>();
 	rightSongs = gcnew List<ListBox^>();
+	year = gcnew List<Label^>();
 
 	selectedList = nullptr;
 
@@ -147,9 +149,13 @@ void PlayerForm::changeToSmart() {
 		static_cast<System::Int32>(static_cast<System::Byte>(100)));
 
 	importButton->BackgroundImage = imageList1->Images[11];
-	this->importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+	importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
 		static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
 
+	preferencesButton->BackgroundImage = imageList1->Images[15];
+	preferencesButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)),
+		static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(100)));
+	
 	notifyIcon1->Visible = true;
 
 	BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
@@ -203,7 +209,11 @@ void PlayerForm::changeToNormal() {
 		static_cast<System::Int32>(static_cast<System::Byte>(255)));
 
 	importButton->BackgroundImage = imageList1->Images[10];
-	this->importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
+	importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
+		static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+
+	preferencesButton->BackgroundImage = imageList1->Images[14];
+	preferencesButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
 		static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
 
 	notifyIcon1->Visible = false;
@@ -278,6 +288,7 @@ void PlayerForm::removeComponents() {
 		panel2->Controls->Remove(rightNumbers[i]);
 		panel2->Controls->Remove(leftSongs[i]);
 		panel2->Controls->Remove(rightSongs[i]);
+		panel2->Controls->Remove(year[i]);
 	}
 	artwork->Clear();
 	album->Clear();
@@ -285,6 +296,7 @@ void PlayerForm::removeComponents() {
 	rightNumbers->Clear();
 	leftSongs->Clear();
 	rightSongs->Clear();
+	year->Clear();
 }
 
 void PlayerForm::createComponents() {
@@ -435,7 +447,25 @@ void PlayerForm::createComponents() {
 		tempRightSongs->ClearSelected();
 		songSelectionChanged = true;
 		rightSongs->Add(tempRightSongs);		
+
+		//
+		// year
+		//
+		System::Windows::Forms::Label^ tempYear = (gcnew System::Windows::Forms::Label());
+		tempYear->AutoSize = true;
+		tempYear->Font = (gcnew System::Drawing::Font(L"Century Gothic", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(0)));
+		tempYear->Location = System::Drawing::Point(0, offset + 158);
+
+		if (musicPlayer->getCurrentAlbum()->getYear() == 0)
+			tempYear->Text = "(unknown year)";
+		else
+			tempYear->Text = System::Convert::ToString(musicPlayer->getCurrentAlbum()->getYear());
+
+		panel2->Controls->Add(tempYear);
+		year->Add(tempYear);
 		
+		// adjusting offset
 		if (listSize > 5)
 			offset = tempRightSongs->Location.Y + tempRightSongs->Size.Height + 45;
 		else

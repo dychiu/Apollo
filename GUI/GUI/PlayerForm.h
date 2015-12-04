@@ -45,7 +45,9 @@ namespace GUI {
 		System::Windows::Forms::Button^  button1;
 		System::ComponentModel::IContainer^  components;
 	    System::ComponentModel::BackgroundWorker^  backgroundWorker1;
-	    System::Windows::Forms::Button^  button2;
+	private: System::Windows::Forms::Button^  preferencesButton;
+
+
 	
 		bool play;
 		bool artistSelectionsCleared;
@@ -60,6 +62,7 @@ namespace GUI {
 		Generic::List<ListBox^>^ rightNumbers;
 		Generic::List<ListBox^>^ leftSongs;
 		Generic::List<ListBox^>^ rightSongs;
+		Generic::List<Label^>^ year;
 		System::Windows::Forms::ListBox^ selectedList;
 
 		// closes window
@@ -123,6 +126,7 @@ namespace GUI {
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->playSymbol = (gcnew System::Windows::Forms::PictureBox());
 			this->roundButton = (gcnew System::Windows::Forms::Button());
 			this->imageList1 = (gcnew System::Windows::Forms::ImageList(this->components));
 			this->skipButton = (gcnew System::Windows::Forms::Button());
@@ -133,8 +137,7 @@ namespace GUI {
 			this->volume = (gcnew System::Windows::Forms::ProgressBar());
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->playSymbol = (gcnew System::Windows::Forms::PictureBox());
+			this->preferencesButton = (gcnew System::Windows::Forms::Button());
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->playSymbol))->BeginInit();
 			this->SuspendLayout();
@@ -209,6 +212,16 @@ namespace GUI {
 			this->panel2->Size = System::Drawing::Size(930, 621);
 			this->panel2->TabIndex = 4;
 			// 
+			// playSymbol
+			// 
+			this->playSymbol->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"playSymbol.BackgroundImage")));
+			this->playSymbol->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->playSymbol->Location = System::Drawing::Point(215, 110);
+			this->playSymbol->Name = L"playSymbol";
+			this->playSymbol->Size = System::Drawing::Size(21, 21);
+			this->playSymbol->TabIndex = 0;
+			this->playSymbol->TabStop = false;
+			// 
 			// roundButton
 			// 
 			this->roundButton->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
@@ -244,6 +257,8 @@ namespace GUI {
 			this->imageList1->Images->SetKeyName(11, L"importred.jpg");
 			this->imageList1->Images->SetKeyName(12, L"default.png");
 			this->imageList1->Images->SetKeyName(13, L"play.png");
+			this->imageList1->Images->SetKeyName(14, L"preferencesblue.jpg");
+			this->imageList1->Images->SetKeyName(15, L"preferencesred.jpg");
 			// 
 			// skipButton
 			// 
@@ -305,7 +320,7 @@ namespace GUI {
 			this->importButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
 				static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->importButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->importButton->Location = System::Drawing::Point(1242, 628);
+			this->importButton->Location = System::Drawing::Point(1246, 628);
 			this->importButton->Name = L"importButton";
 			this->importButton->Size = System::Drawing::Size(25, 25);
 			this->importButton->TabIndex = 25;
@@ -319,7 +334,7 @@ namespace GUI {
 			this->volume->Cursor = System::Windows::Forms::Cursors::Default;
 			this->volume->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
 				static_cast<System::Int32>(static_cast<System::Byte>(224)));
-			this->volume->Location = System::Drawing::Point(1091, 628);
+			this->volume->Location = System::Drawing::Point(1059, 628);
 			this->volume->Name = L"volume";
 			this->volume->Size = System::Drawing::Size(144, 23);
 			this->volume->Step = 1;
@@ -341,25 +356,20 @@ namespace GUI {
 			this->backgroundWorker1->DoWork += gcnew System::ComponentModel::DoWorkEventHandler(this, &PlayerForm::backgroundWorker1_DoWork);
 			this->backgroundWorker1->ProgressChanged += gcnew System::ComponentModel::ProgressChangedEventHandler(this, &PlayerForm::backgroundWorker1_ProgressChanged);
 			// 
-			// button2
+			// preferencesButton
 			// 
-			this->button2->Location = System::Drawing::Point(1008, 628);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(75, 23);
-			this->button2->TabIndex = 27;
-			this->button2->Text = L"Preferences";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::button2_Release);
-			// 
-			// playSymbol
-			// 
-			this->playSymbol->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"playSymbol.BackgroundImage")));
-			this->playSymbol->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->playSymbol->Location = System::Drawing::Point(215, 110);
-			this->playSymbol->Name = L"playSymbol";
-			this->playSymbol->Size = System::Drawing::Size(21, 21);
-			this->playSymbol->TabIndex = 0;
-			this->playSymbol->TabStop = false;
+			this->preferencesButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"preferencesButton.BackgroundImage")));
+			this->preferencesButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->preferencesButton->FlatAppearance->BorderSize = 0;
+			this->preferencesButton->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)),
+				static_cast<System::Int32>(static_cast<System::Byte>(100)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+			this->preferencesButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->preferencesButton->Location = System::Drawing::Point(1212, 628);
+			this->preferencesButton->Name = L"preferencesButton";
+			this->preferencesButton->Size = System::Drawing::Size(25, 25);
+			this->preferencesButton->TabIndex = 27;
+			this->preferencesButton->UseVisualStyleBackColor = true;
+			this->preferencesButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::button2_Release);
 			// 
 			// PlayerForm
 			// 
@@ -368,7 +378,7 @@ namespace GUI {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(50)), static_cast<System::Int32>(static_cast<System::Byte>(100)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->ClientSize = System::Drawing::Size(1280, 720);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->preferencesButton);
 			this->Controls->Add(this->volume);
 			this->Controls->Add(this->importButton);
 			this->Controls->Add(this->minimizeButton);
