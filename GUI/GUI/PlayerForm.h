@@ -21,6 +21,8 @@ namespace GUI {
 
 		const int WM_NCLBUTTONDOWN = 0xA1;
 	private: System::Windows::Forms::PictureBox^  playSymbol;
+	private: System::Windows::Forms::PictureBox^  square;
+
 	public:
 		const int HT_CAPTION = 0x2;
 		[DllImportAttribute("user32.dll")]
@@ -115,6 +117,7 @@ namespace GUI {
 		void changeArtist();
 		void removeComponents();
 		void createComponents();
+		void changePlayLocation();
 
 		#pragma region Windows Form Designer generated code
 		
@@ -139,8 +142,10 @@ namespace GUI {
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			this->preferencesButton = (gcnew System::Windows::Forms::Button());
+			this->square = (gcnew System::Windows::Forms::PictureBox());
 			this->panel2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->playSymbol))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->square))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -208,6 +213,7 @@ namespace GUI {
 			this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)), static_cast<System::Int32>(static_cast<System::Byte>(240)),
 				static_cast<System::Int32>(static_cast<System::Byte>(255)));
 			this->panel2->Controls->Add(this->playSymbol);
+			this->panel2->Controls->Add(this->square);
 			this->panel2->Location = System::Drawing::Point(373, 21);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(930, 621);
@@ -217,11 +223,12 @@ namespace GUI {
 			// 
 			this->playSymbol->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"playSymbol.BackgroundImage")));
 			this->playSymbol->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-			this->playSymbol->Location = System::Drawing::Point(215, 110);
+			this->playSymbol->Location = System::Drawing::Point(216, 111);
 			this->playSymbol->Name = L"playSymbol";
-			this->playSymbol->Size = System::Drawing::Size(21, 21);
+			this->playSymbol->Size = System::Drawing::Size(18, 18);
 			this->playSymbol->TabIndex = 0;
 			this->playSymbol->TabStop = false;
+			this->playSymbol->Visible = false;
 			// 
 			// roundButton
 			// 
@@ -372,6 +379,15 @@ namespace GUI {
 			this->preferencesButton->UseVisualStyleBackColor = true;
 			this->preferencesButton->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::button2_Release);
 			// 
+			// square
+			// 
+			this->square->Location = System::Drawing::Point(198, 111);
+			this->square->Name = L"square";
+			this->square->Size = System::Drawing::Size(36, 18);
+			this->square->TabIndex = 1;
+			this->square->TabStop = false;
+			this->square->Visible = false;
+			// 
 			// PlayerForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -395,10 +411,11 @@ namespace GUI {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"PlayerForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
-			this->Text = L"PlayerForm";
+			this->Text = L"Apollo";
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &PlayerForm::PlayerForm_MouseDown);
 			this->panel2->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->playSymbol))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->square))->EndInit();
 			this->ResumeLayout(false);
 
 		}

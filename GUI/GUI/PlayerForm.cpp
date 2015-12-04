@@ -524,6 +524,7 @@ System::Void PlayerForm::songs_SelectedIndexChanged(System::Object^  sender, Sys
 		else if (list%2 == 1)
 			musicPlayer->setSelectedSong(musicPlayer->getSelectedArtist()->getAlbums()[(list-1) / 2]->getSongs()[index + leftSongs[(list-1) / 2]->Size.Height/21]);
 		
+		// for single clicks on program open
 		if (musicPlayer->getCurrentSong() == nullptr)
 			musicPlayer->setCurrentSong();
 		
@@ -548,8 +549,10 @@ System::Void PlayerForm::artists_DoubleClick(System::Object^  sender, System::Ev
 
 //Needed in order to change the play button to pause when playing a song
 void PlayerForm::playSongNormal() {
+	// progress bar thread
 	if (backgroundWorker1->IsBusy == false)
 		backgroundWorker1->RunWorkerAsync(1);
+	// changing button image
 	roundButton->BackgroundImage = imageList1->Images[1];
 	musicPlayer->playSong();
 	// matching song volume to volume bar
@@ -557,6 +560,8 @@ void PlayerForm::playSongNormal() {
 		musicPlayer->getNAudio()->Volume = volume->Value / 100.0;
 	else
 		musicPlayer->getSFML()->setVolume(volume->Value);
+
+	changePlayLocation();
 
 	play = true;
 }
@@ -697,3 +702,37 @@ System::Void PlayerForm::volume_Release(System::Object^  sender, System::Windows
 	mouseDownVolume = false;
 }
 
+void PlayerForm::changePlayLocation() {
+	playSymbol->Visible = true;
+	square->Visible = true;
+
+	int x;
+	int y;
+
+	int albumNum;
+	int songNum;
+	int totalSongs = musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()->Count;
+
+	for (int i = 0; i < musicPlayer->getCurrentArtist()->getAlbums()->Count; i++) {
+		if (musicPlayer->getCurrentAlbum() == musicPlayer->getCurrentArtist()->getAlbums()[i]) {
+			albumNum = i;
+		}
+	}
+
+	for (int i = 0; i < totalSongs; i++) {
+		if (musicPlayer->getCurrentSong() == musicPlayer->getCurrentArtist()->getAlbums()[albumNum]->getSongs()[i])
+			songNum = i;
+	}
+
+	if (songNum < ceil(totalSongs / 2.0)) {
+		x = 163;
+		y = leftNumbers[albumNum]->Location.Y + (21 * songNum) + 3;
+	}
+	else {
+		x = 411;
+		y = leftNumbers[albumNum]->Location.Y + (21 * (songNum - ceil(totalSongs / 2.0))) + 3;
+	}
+	
+	playSymbol->Location = System::Drawing::Point(x, y);
+	square->Location = System::Drawing::Point(x-13, y);
+}
