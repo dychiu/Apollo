@@ -50,10 +50,7 @@ Album::Album() {
 
 Album::Album(TagLib::File^ tagFile) {
 	name = tagFile->Tag->Album;
-	if (tagFile->Tag->Year <= 0)
-		year = 0;
-	else
-		year = tagFile->Tag->Year;
+	year = tagFile->Tag->Year;
 
 	songList = gcnew List<Song^>();
 
