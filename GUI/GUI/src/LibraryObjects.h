@@ -84,9 +84,12 @@ public:
 			return songName;
 		}
 	}
-	property int SongNumber {
-		int get() {
-			return trackNumber;
+	property String^ SongNumber {
+		String^ get() {
+			if (getTrackNumber() == 0)
+				return " ";
+			else
+				return trackNumber.ToString();
 		}
 	}
 private:
