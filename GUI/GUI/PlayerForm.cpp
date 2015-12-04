@@ -275,6 +275,7 @@ System::Void PlayerForm::importButton_Release(System::Object^  sender, System::W
 
 System::Void PlayerForm::listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (artistSelectionsCleared == true) {
+		apollo->Visible = false;
 		musicPlayer->setSelectedArtist(musicPlayer->getMusicLibrary()->getArtistList()[listBox1->SelectedIndex]);
 		changeArtist();
 	}
@@ -620,8 +621,10 @@ System::Void PlayerForm::backgroundWorker1_ProgressChanged(System::Object^  send
 	//progressBar1->Value += e->ProgressPercentage;
 	if (musicPlayer->isMP3(musicPlayer->getCurrentSong())) {
 		progressBar1->Value = 100000 * musicPlayer->getNAudioReader()->CurrentTime.TotalSeconds / musicPlayer->getNAudioReader()->TotalTime.TotalSeconds;
-		if (progressBar1->Value == progressBar1->Maximum)
+		if (progressBar1->Value == progressBar1->Maximum) {
 			musicPlayer->playNextSong();
+			changePlayLocation();
+		}
 	}
 	else {
 		progressBar1->Value = 100000 * musicPlayer->getSFML()->getPlayingOffset().asSeconds() / musicPlayer->getSFML()->getDuration().asSeconds() + offsetSFML;
